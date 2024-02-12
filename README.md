@@ -43,12 +43,19 @@ Admins will be able to search users via a search feature. This might be to affir
 
 This will allow admins to create accounts for users (employees) or other admin users. This priveledge will only be granted to admins so as to prevent standard users from creating accounts. Admins will have to enter a few bare details about the user before account creation, such as: Name, Email, Department.
 
-(Strictly Nice To Have)
+**(Strictly Nice To Have)**
 
 - Training Opportunities Feature:
 
+This feature will be accessible via the Training page and will allow all users to view upcoming training / upskilling opportunities they might be interested in. Admins will be responsible for adding the opportunities.
+
 - Training Booking Feature:
 
+Upon clicking the training opportunity, users will be able to register their interest for an event. Upon deletion of the listing, all accumulative data will be deleted too.
+
+- Events Page Feature:
+
+This feature will be viewable under the Events page and will show users company updates to keep them informed, conferences, and guest speaker sessions users can also register their interest for.
 
 
 ### Target Audience
