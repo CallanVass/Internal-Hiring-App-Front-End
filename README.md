@@ -33,11 +33,15 @@ Users will be able to search for jobs within their companies (seperated by depar
 
 - Job Listing Feature:
 
-Admins have access to this feature, which will allow them to list company jobs on the site itself. 
+Admins have access to this feature, which will allow them to list company jobs on the site itself. Jobs will have a listing title along with a department, description, salary, expectations, close date.
 
 - User Search Feature:
 
+Admins will be able to search users via a search feature. This might be to affirm contact details or update details of the user upon acceptance of the new job.
+
 - Account Creation Feature:
+
+This will allow admins to create accounts for users (employees) or other admin users. This priveledge will only be granted to admins so as to prevent standard users from creating accounts. Admins will have to enter a few bare details about the user before account creation, such as: Name, Email, Department.
 
 (Strictly Nice To Have)
 
@@ -52,18 +56,21 @@ Admins have access to this feature, which will allow them to list company jobs o
 ### Tech Stack
 
 
-## R2 - Dataflow Diagram
+### R2 - Dataflow Diagram
+
+#### Sitemap
+[Sitemap](docs/Sitemap.pdf)
 
 
-## R3 - Application Architecture Diagram
+### R3 - Application Architecture Diagram
 
 
-## R4 - User Stories
+### R4 - User Stories
 
 
-## R5 - Wireframes
+### R5 - Wireframes
 
 
-## R6 - Kanban Screenshots
+### R6 - Kanban Screenshots
 
 
