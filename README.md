@@ -66,7 +66,7 @@ This feature will be viewable under the Events page and will show users company 
 ### R2 - Dataflow Diagram
 
 #### Sitemap
-![Sitemap](/docs/Sitemap.pdf)
+![Sitemap](/docs/TalentForge_Sitemap.png)
 
 
 ### R3 - Application Architecture Diagram
