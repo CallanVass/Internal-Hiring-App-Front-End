@@ -13,7 +13,7 @@
 
 ### Purpose
 
-The purpose of TalentForge is to provide a space for organisations and companies to advertise their positions internally before displaying them on job-listing websites. By providing this functionality, we're able to give employees a chance to display their ambitions. This works for the employer by lessening the costs (both time-wise and monetariy) associated with the hiring process, and for the employee by providing them a place to display their interest and ambition for a company position.
+The purpose of TalentForge is to provide a space for organisations and companies to advertise their positions internally before displaying them on job-listing websites. By providing this functionality, we're able to give employees a chance to display their ambitions. This works for the employer by lessening the costs (both time-wise and monetarily) associated with the hiring process, and for the employee by providing them a place to display their interest and ambition for a company position.
 
 ### Functionality / Features
 
@@ -25,11 +25,11 @@ This will allow Users to login to the application. It will check usernames and p
 
 - Profile Feature:
 
-Each user will have a profile page they can visit to update their information. Users will be encouraged to update their profile past the bare essentials admins will have to enter upon account creation. It will contain the following sections: Name, Contact Info, Bio, Current Role, Skills, Career Plan, and potentially Resume. This way when the user applies to a job, the information can be taken directly from their profile, making the entire process as simple as a click.
+Each user will have a profile page they can visit to update their information. Users will be encouraged to update their profile beyond the bare essentials admins will have to enter upon account creation. It will contain the following sections: Name, Contact Info, Bio, Current Role, Skills, Career Plan, and potentially Resume. This way when the user applies to a job, the information can be taken directly from their profile, making the entire process as simple as a click.
 
 - Job Search Feature:
 
-Users will be able to search for jobs within their companies (seperated by department). This will help users speedily navigate their job search.
+Users will be able to search for jobs within their companies (separated by department). This will help users speedily navigate their job search.
 
 - Job Listing Feature:
 
@@ -41,7 +41,7 @@ Admins will be able to search users via a search feature. This might be to affir
 
 - Account Creation Feature:
 
-This will allow admins to create accounts for users (employees) or other admin users. This priveledge will only be granted to admins so as to prevent standard users from creating accounts. Admins will have to enter a few bare details about the user before account creation, such as: Name, Email, Department.
+This will allow admins to create accounts for users (employees) or other admin users. This priveledge will only be granted to admins so as to prevent standard users from creating accounts. Admins will have to enter a few essential details about the user before account creation, such as: Name, Email, Department, Job Title.
 
 **(Strictly Nice To Have)**
 
@@ -73,6 +73,25 @@ This feature will be viewable under the Events page and will show users company 
 
 
 ### R4 - User Stories
+User stories are an important part of agile software development. They provide a general explanation of the purpose of a particular feature from the perspective of the user. This ensures the end user is the focus and gives context to the development team on what they are building, what it needs to deliver and the value it will add for the user.
+
+Having interviewed team members about their needs/expectations, the user stories are told from the perspectives of Luke (general user), Alex (manager) and Heather (HR team leader/admin):
+
+* As Luke, I want to create a profile that shows off my skills and where I can talk about my current role and career plan, to highlight my achievements and goals to others within the company
+* As Luke, I want to be able to search and apply for other opportunities within the organisation, so that I can broaden my knowledge and experience
+* As Luke, I want to search for other users in the organisation, so that I can see their skills and experience (*** discussion ***)
+* As Alex, I want to be able to post vacancies within my team, as the preference is always to fill roles internally if possible, and give users the opportunity to apply directly in the app
+* As Alex, I want to be see a list of any users who have applied for a role, to begin the process of next steps
+* As Heather, I want to set up new users, so that new team members joining the business have access to this resource 
+* As Heather, I want to remove users’ profiles once they’ve left the business so that their profile no longer appears in any search results
+* As Heather & Alex, we want to be able to change the job roles or departments of team members, to keep their details up to date when department moves or promotions occur
+
+#### Additional (nice to have) features:
+* As Luke, I want to be able to search for training sessions and learning opportunities, so that I can broaden my skill set
+* As Alex, I want to be able to see an overview of skills within my team, to identify training needs and opportunities
+* As Heather, I’d like to be able to set up training sessions and other internal events, so that individuals within the company can take advantage of learning opportunities
+* As Heather, I want users to be able to register for training sessions/events, as some of these will be in-person events where numbers are limited
+
 
 
 ### R5 - Wireframes
