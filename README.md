@@ -17,11 +17,14 @@ The purpose of TalentForge is to provide a space for organisations and companies
 
 ### Functionality / Features
 
+#### Sitemap
+![Sitemap](/docs/TalentForge_Sitemap.png)
+
 The main functionality of TalentForge is the ability to list jobs internally, however the web app consists of five different pages, each possessing a different function/feature. The features go as follows:
 
 - Login Feature:
 
-This will allow Users to login to the application. It will check usernames and passwords (hashed using bcrypt and Mongoose schema) against a MongoDB database. If the username and password do not match / are incorrect, the page will deny them access to the homepage and prompt the user to try again.
+This will allow Users to login to the application. It will check usernames and passwords (hashed using bcrypt and Mongoose schema) against a MongoDB database. If the username and password do not match / are incorrect, the API will deny them access to the homepage and prompt the user to try again.
 
 - Profile Feature:
 
@@ -60,13 +63,39 @@ This feature will be viewable under the Events page and will show users company 
 
 ### Target Audience
 
+The target audience for TalentForge will be employers looking to promote employees from within their own company before they search for talent outside of their current pool.
+
 ### Tech Stack
 
+Our team will be completing this project using the MERN stack, as outlined below.
+
+**MongoDB**
+
+A non-relational database with a focus on flexibility and scalability, is used to store and retrieve data for web applications. MongoDB stores data as BSON (a binary representation of JSON) in object-like *documents* that contain key-value pairs. MongoDB is also an agnostic database, in that it is compatible across many different technologies. Inside of MongoDB, we will be using Mongoose as our ORM (Object Data Model) library, using hooks, schema validation, and models to interact with our back-end API.
+
+**Express.js**
+
+Express is a minimal web-application framework that uses JavaScript to help developers create server-side applications, API's, and web applications. We will be using Express to create our API for TalentForge using its routing capablities and middleware. Express will also connect directly to our Mongo database.
+
+**React.js**
+
+React is an open source, front-end framework which uses JavaScript to help developers create interactive applications by harnessing the power of HTML, CSS, and JSX (JavaScript + XML). React makes it easy to create SPAs (single-page applications), which conditionally render a webpage for the user by adding and removing its moving parts dynamically. It also uses a virtual DOM in a process known as reconciliation to improve performance speed. 
+
+**Node.js**
+
+Node is a back-end runtime environment that allows developers to write server-side applications in JavaScript. Built with Google Chrome's V8 JavaScript engine, node is suitable for real-time applications and intergration with other technologies. We will use Node as our server-side environment, hosting the Express app which will respond to API calls. We will also use NPM (Node Package Manager) to install dependencies for our application including:
+
+*bcrypt* - To hash user passwords so they aren't stored in plain text in our database
+
+*cors* - Simple middleware to enable CORS requests for specific urls (or all for development)
+
+*dotenv* - For storing sensitive environment variables without having to commit them to the repo
+
+*jsonwebtoken* - For returning JSON Web Tokens to app users for session security and timeout purposes
 
 ### R2 - Dataflow Diagram
 
-#### Sitemap
-![Sitemap](/docs/TalentForge_Sitemap.png)
+
 
 
 ### R3 - Application Architecture Diagram
