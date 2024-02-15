@@ -122,6 +122,16 @@ This diagram shows the login process, with admin verification and moves on to th
 
 ### R3 - Application Architecture Diagram
 
+To elaborate on the application architecture; 
+
+- The end user interacts with the front end interface which is built with the following languages; Javascript (React), HTML, CSS, and XML. The front end also utlises Vite as a build tool and development server. 
+- As users interact with the front end, the front end communicates with Express, a back end web application framework built for JavaScript (Node). Mongoose is used alongside Node as an Object Data Modeling library which communicates with the database (Mongo.db). 
+- The database consists of collections, which contain documents and in this application, the respective documents are categorised into Users (including User Profiles), and Job Listings. Between the front and back end are API calls and requests, and between the back end and database are data queries and responses. 
+
+The combination of communication between these tools and technologies result in a full stack MERN application architecture. 
+
+
+![Application Architecture Diagram](./docs/Application%20Architecture%20Diagram.drawio.png)
 
 ### R4 - User Stories
 User stories are an important part of agile software development. They provide a general explanation of the purpose of a particular feature from the perspective of the user. This ensures the end user is the focus and gives context to the development team on what they are building, what it needs to deliver and the value it will add for the user.
