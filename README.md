@@ -121,7 +121,7 @@ This diagram shows the login process, with admin verification and moves on to th
 
 
 ### R3 - Application Architecture Diagram
-
+![Application Architecture Diagram](./docs/Application%20Architecture%20Diagram.drawio.png)
 
 ### R4 - User Stories
 User stories are an important part of agile software development. They provide a general explanation of the purpose of a particular feature from the perspective of the user. This ensures the end user is the focus and gives context to the development team on what they are building, what it needs to deliver and the value it will add for the user.
