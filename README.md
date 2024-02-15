@@ -94,7 +94,10 @@ Node is a back-end runtime environment that allows developers to write server-si
 *jsonwebtoken* - For returning JSON Web Tokens to app users for session security and timeout purposes
 
 ### R2 - Dataflow Diagram
-
+![Key Diagram](./docs/keys%20diagram.drawio.png)
+![DFD 1](./docs/1%20login%20and%20profile.drawio.png)
+![DFD 2](./docs/2%20login%20and%20job%20listings.drawio.png)
+![DFD 3](./docs/3%20login%20and%20view%20users.drawio.png)
 
 
 
