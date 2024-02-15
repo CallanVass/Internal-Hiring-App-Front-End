@@ -10,7 +10,7 @@
 - [Kanban Screenshots](#r6---kanban-screenshots)
 
 ### R1 - Website Description
-## TEST HEADING (FOR GIT PULL)
+
 ### Purpose
 
 The purpose of TalentForge is to provide a space for organisations and companies to advertise their positions internally before displaying them on job-listing websites. By providing this functionality, we're able to give employees a chance to display their ambitions. This works for the employer by lessening the costs (both time-wise and monetarily) associated with the hiring process, and for the employee by providing them a place to display their interest and ambition for a company position.
