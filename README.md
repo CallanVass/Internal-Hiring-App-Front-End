@@ -94,7 +94,29 @@ Node is a back-end runtime environment that allows developers to write server-si
 *jsonwebtoken* - For returning JSON Web Tokens to app users for session security and timeout purposes
 
 ### R2 - Dataflow Diagram
+#### Dataflow Diagram Keys: 
+The following image shows the keys for the dataflow diagram;
+ - The red rectangle represents the external entity AKA the end user
+ - The green rectangle represents the documents inside a collection, in the database
+ - The yellow oval represents a data process
+ - The outbound arrow represents an ingoing or outgoing operation, this can be interpreted as CRUD in some cases
 
+![Key Diagram](./docs/keys%20diagram.drawio.png)
+
+#### Diagram 1: Login Process & User Profile
+This diagram shows the login process, with admin verification and moves on to the User Profile section. Here users can view, modify or delete their own profile. This serves the purpose of preparing their profile for job applications.
+
+![DFD 1](./docs/1%20login%20and%20profile.drawio.png)
+
+#### Diagram 2: Login Process & Job Listings
+This diagram shows the login process, with admin verification and moves on to the Opportunities/Job Listings section. Users can search for job listings, as well as view or apply for said listings. Admin are able to access the job listings and make modifications (adding, removing, updating etc). This serves the purpose of users accessing job listings and applying for the appropriate/suitable ones. It also serves the purpose of curating the listings database for admin.
+
+![DFD 2](./docs/2%20login%20and%20job%20listings.drawio.png)
+
+#### Diagram 3: Login Process & Users (admin only)
+This diagram shows the login process, with admin verification and moves on to the user section, this section is admin only and serves the purpose of adding, removing, and modifying users in the user document. 
+
+![DFD 3](./docs/3%20login%20and%20view%20users.drawio.png)
 
 
 
