@@ -172,4 +172,37 @@ Having interviewed team members about their needs/expectations, the user stories
 
 ### R6 - Kanban Screenshots
 
+Kanban Screenshots:
 
+![Kanban Screenshot 1](./docs/Kanban_Screenshots/Kanban_1.png) 
+![Kanban Screenshot 2](./docs/Kanban_Screenshots/Kanban_2.png)
+![Kanban Screenshot 3](./docs/Kanban_Screenshots/Kanban_3.png)
+![Kanban Screenshot 4](./docs/Kanban_Screenshots/Kanban_4.png)
+![Kanban Screenshot 5](./docs/Kanban_Screenshots/Kanban_5.png)
+![Kanban Screenshot 6](./docs/Kanban_Screenshots/Kanban_6.png)
+
+Revised Changes:
+
+The sitemap created originally contained all features in full colour, however after revising this approach, the additional features were changed to grey to represent possible implementation rather than guaranteed.
+
+- Original Sitemap
+![Original Sitemap](./docs/original_sitemap.png)
+
+- Updated Sitemap
+![Updated Sitemap](./docs/TalentForge_Sitemap.png)
+
+The application architecture diagram has also undergone changes, adding a higher level of detail surrounding the explanations of frameworks/programming languages for the front-end, back-end, and database.
+
+- Original Application Architecture Diagram
+![Original Application Architecture Diagram](./docs/original_application_diagram.png)
+
+- Updated Application Architecture Diagram
+![Updated Application Architecture Diagram](./docs/Application%20Architecture%20Diagram.drawio.png)
+
+The user stories issue underwent changes when another issue was created to indicate the user stories necessitated revision. The details of these changes can be found above in the User Stories section.
+
+- Original Kanban Screenshots (User Stories):
+![Original Kanban Screenshots (User Stories)](./docs/Kanban_Screenshots/Kanban_1.png)
+
+- Updated Kanban Screenshots (User Stories)
+![Updated Kanban Screenshots (User Stories)](./docs/Kanban_Screenshots/Kanban_3.png)
