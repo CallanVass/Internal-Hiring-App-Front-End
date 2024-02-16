@@ -8,6 +8,7 @@
 - [User Stories](#r3---application-architecture-diagram)
 - [Wireframes](#r5---wireframes)
 - [Kanban Screenshots](#r6---kanban-screenshots)
+- [Revised Changes](#revised-changes)
 
 ### R1 - Website Description
 
@@ -174,6 +175,8 @@ Having interviewed team members about their needs/expectations, the user stories
 
 Kanban Screenshots:
 
+For tracking our TalentForge documentation tasks, we've chosen to use use GitHub Projects, which acts much like Trello with its carded/ticketed system for asigning tasks and indicating their current state. This was to keep our work centralised on the one platform and to avoid unnecessary navigation.
+
 ![Kanban Screenshot 1](./docs/Kanban_Screenshots/Kanban_1.png) 
 ![Kanban Screenshot 2](./docs/Kanban_Screenshots/Kanban_2.png)
 ![Kanban Screenshot 3](./docs/Kanban_Screenshots/Kanban_3.png)
@@ -181,7 +184,8 @@ Kanban Screenshots:
 ![Kanban Screenshot 5](./docs/Kanban_Screenshots/Kanban_5.png)
 ![Kanban Screenshot 6](./docs/Kanban_Screenshots/Kanban_6.png)
 
-Revised Changes:
+
+### - Revised Changes:
 
 The sitemap created originally contained all features in full colour, however after revising this approach, the additional features were changed to grey to represent possible implementation rather than guaranteed.
 
