@@ -140,12 +140,18 @@ Having interviewed team members about their needs/expectations, the user stories
 
 * As Luke, I want to create a profile that shows off my skills and where I can talk about my current role and career plan, to highlight my achievements and goals to others within the company
 * As Luke, I want to be able to search and apply for other opportunities within the organisation, so that I can broaden my knowledge and experience
-* As Luke, I want to search for other users in the organisation, so that I can see their skills and experience (*** discussion ***)
+* As Luke, I want to search for other users in the organisation, so that I can see their skills and experience
+* **REVISION** As Luke, I would like to see any roles I've applied for, but if other people search my profile, that information should be private and therefore only visible to me (*added this point after completing the wireframes as it became apparent that users wouldn't want their applications to be publicly accessible*)
 * As Alex, I want to be able to post vacancies within my team, as the preference is always to fill roles internally if possible, and give users the opportunity to apply directly in the app
+* **REVISION** As Alex, when creating job listings, I'd like some standard features to have a tick box type selection (e.g. full time/part time) to make it quicker and easier to create the listing (*this feature has been incorporated into the wireframe - radio buttons allow job type/location of work etc to be selected*)
+* **REVISION** As Alex, when creating job listings, it would be nice to be able to save it as a draft, without it being published straight away, that way if the job hasn't been signed off yet or I'm waiting for confirmation on something, I could get things ready and then simply update it to 'final' when it's ready (*added 'Active on site' on/off slider to the job listing wireframe so that the creator can create, update etc but leave the slider set to off until they are ready for it to be live*)
 * As Alex, I want to be see a list of any users who have applied for a role, to begin the process of next steps
 * As Heather, I want to set up new users, so that new team members joining the business have access to this resource 
+* **REVISION** As Heather, I think it's important for users who are applying for roles to indicate they have spoken with and received the consent of their line manager to apply, so that team members are aware that this process must be followed. (*Added a tick box to the job application page - the 'send' button should be disabled until this box is ticked*)
 * As Heather, I want to remove users’ profiles once they’ve left the business so that their profile no longer appears in any search results
-* As Heather & Alex, we want to be able to change the job roles or departments of team members, to keep their details up to date when department moves or promotions occur
+* As Heather & Alex, we want to be able to change the job roles or departments of team members, to keep their details up to date when department moves or promotions occur  
+
+**REVISION**: After some discussions we decided that for the initial version of the app, there will only be two types of users: admin / non-admin. Managers (who are able to create/manage job listings) will have the same privileges as admin (who are able to create/delete users and re-set passwords etc). Therefore, although the needs of Heather and Alex are different, initially these two types of user will have the same access.
 
 #### Additional (nice to have) features:
 * As Luke, I want to be able to search for training sessions and learning opportunities, so that I can broaden my skill set
