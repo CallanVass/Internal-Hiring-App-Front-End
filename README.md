@@ -156,7 +156,7 @@ Having interviewed team members about their needs/expectations, the user stories
 
 
 ### R5 - Wireframes
-
+![Website Wireframes](./docs/wireframes_v1.2.pdf)
 
 ### R6 - Kanban Screenshots
 
