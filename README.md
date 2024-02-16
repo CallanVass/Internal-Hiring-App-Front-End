@@ -156,7 +156,13 @@ Having interviewed team members about their needs/expectations, the user stories
 
 
 ### R5 - Wireframes
-![Website Wireframes](./docs/wireframes_v1.2.png)
+![Login Wireframes](./docs/wireframes/1_login.png)
+![Homepage Wireframes](./docs/wireframes/2_homepage.png)
+![Profile  Wireframes](./docs/wireframes/3.profile.png)
+![Network Wireframes](./docs/wireframes/4_network.png)
+![Listings Wireframes](./docs/wireframes/5_listings.png)
+![Training Wireframes](./docs/wireframes/6_training.png)
+![Events Wireframes](./docs/wireframes/7_events.png)
 
 ### R6 - Kanban Screenshots
 
