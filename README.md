@@ -185,7 +185,7 @@ For tracking our TalentForge documentation tasks, we've chosen to use use GitHub
 ![Kanban Screenshot 6](./docs/Kanban_Screenshots/Kanban_6.png)
 
 
-### - Revised Changes:
+### Revised Changes:
 
 The sitemap created originally contained all features in full colour, however after revising this approach, the additional features were changed to grey to represent possible implementation rather than guaranteed.
 
