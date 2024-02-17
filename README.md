@@ -214,3 +214,25 @@ The user stories issue underwent changes when another issue was created to indic
 
 
 ### Bibliography
+
+- Atlassian n.d., Git Push | Atlassian Git Tutorial, Atlassian, viewed 13 February 2024, [Link](https://www.atlassian.com/git/tutorials/syncing/git-push)
+
+- Creating a pull request n.d., GitHub Docs, viewed 13 February 2024, [Link](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+
+- Documents — MongoDB Manual n.d., https://github.com/mongodb/docs-bi-connector/blob/DOCSP-3279/source/index.txt, viewed 14 February 2024, [Link](https://www.mongodb.com/docs/manual/core/document/)
+
+- Ed Discussion n.d., edstem.org, viewed 14 February 2024, [Link](https://edstem.org/au/courses/13831/lessons/41823/slides/288674)
+
+- Farkas, M 2023, martonfarkas/BookSwapU, GitHub, viewed 15 February 2024, [Link](https://github.com/martonfarkas/BookSwapU)
+
+- Gillis, A n.d., What is MongoDB? A definition from WhatIs.com, SearchDataManagement, viewed 14 February 2024, [Link](https://www.techtarget.com/searchdatamanagement/definition/MongoDB)
+
+- Node.js Tutorial 2019, W3schools.com, viewed 14 February 2024, [Link](https://www.w3schools.com/nodejs/)
+
+- OpenJS Foundation 2017, Express - Node.js web application framework, Expressjs.com, viewed 14 February 2024, [Link](https://expressjs.com/)
+
+- Peterson, L 2023, LachlanPeterson/TST-FullStack_Application, GitHub, viewed 15 February 2024, [Link](https://github.com/LachlanPeterson/TST-FullStack_Application)
+
+- Rehkopf, M 2019, User Stories | Atlassian, Atlassian, Atlassian, viewed 13 February 2024, [Link](https://www.atlassian.com/agile/project-management/user-stories)
+
+- Vlaeva, S 2021, MongoDB & Mongoose: Compatibility and Comparison | MongoDB, www.mongodb.com, viewed 14 February 2024, [Link](https://www.mongodb.com/developer/languages/javascript/mongoose-versus-nodejs-driver/)
