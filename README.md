@@ -20,7 +20,7 @@ The purpose of TalentForge is to provide a space for organisations and companies
 ### Functionality / Features
 
 #### Sitemap
-![Sitemap](/docs/TalentForge_Sitemap.png)
+![Sitemap](./docs/TalentForge_Sitemap.png)
 
 The main functionality of TalentForge is the ability to list jobs internally, however the web app consists of five different pages, each possessing a different function/feature. The features go as follows:
 
