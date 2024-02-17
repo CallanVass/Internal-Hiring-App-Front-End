@@ -9,6 +9,7 @@
 - [Wireframes](#r5---wireframes)
 - [Kanban Screenshots](#r6---kanban-screenshots)
 - [Revised Changes](#revised-changes)
+- [Bibliography](#bibliography)
 
 ### R1 - Website Description
 
@@ -210,3 +211,6 @@ The user stories issue underwent changes when another issue was created to indic
 
 - Updated Kanban Screenshots (User Stories)
 ![Updated Kanban Screenshots (User Stories)](./docs/Kanban_Screenshots/Kanban_3.png)
+
+
+### Bibliography
