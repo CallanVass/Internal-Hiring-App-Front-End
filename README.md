@@ -171,6 +171,10 @@ Having interviewed team members about their needs/expectations, the user stories
 ![Training Wireframes](./docs/wireframes/6_training.png)
 ![Events Wireframes](./docs/wireframes/7_events.png)
 
+---
+#### Visual Sitemap
+![Sitemap with thumbnails of wireframes](./docs/wireframes/8_visual_sitemap.png)
+
 ### R6 - Kanban Screenshots
 
 Kanban Screenshots:
