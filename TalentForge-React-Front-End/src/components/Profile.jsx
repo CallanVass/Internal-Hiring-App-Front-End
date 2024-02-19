@@ -14,7 +14,10 @@ const Profile = () => {
             text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
         }
     }
+    // Dummy Data
+    const statuses = ["Looking for a new job!", "Happy where I am!", "Could be willing to move!", "Not sure!"]
 
+    
   return (
     <>
 
@@ -46,6 +49,16 @@ const Profile = () => {
 
     {/* Divider */}
     <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md"/>
+
+    {/* Checkboxes */}
+    <div className="flex flex-col space-y-2 items-center">
+      {statuses.map((status, index) => (
+        <label key={index} className="flex items-center space-x-2">
+          <input type="checkbox" id={`status-${index}`} className="form-checkbox h-5 w-5 text-blue-600" />
+          <span>{status}</span>
+        </label>
+      ))}
+    </div>
     </>
     
   )
