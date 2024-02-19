@@ -17,8 +17,8 @@ export default {
       },
       screens: {
         // Breakpoints for screen sizes
-        'sm': '450px', // Small
-        'md': '768px', // Medium
+        'sm': '1px', // Small
+        'md': '450px', // Medium
         'lg': '1024px', // Large
       }
     }
