@@ -15,7 +15,13 @@ export default {
         'washed-blue': '#455f6e',
        
       },
-    },
+      screens: {
+        // Breakpoints for screen sizes
+        'sm': '1px', // Small
+        'md': '450px', // Medium
+        'lg': '1024px', // Large
+      }
+    }
   },
   plugins: [],
 }
