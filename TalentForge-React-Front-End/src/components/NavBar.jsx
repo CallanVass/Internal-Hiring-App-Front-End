@@ -37,11 +37,11 @@ export default function navBar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   {/* logo image */}
-                  <img
-                    className="h-10 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
+                  {/* <img
+                    className="h-20 w-auto"
+                    src="./src/assets/text-only-logo.png"
+                    alt="Talent Forge Logo"
+                  /> */}
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4 justify-center">
