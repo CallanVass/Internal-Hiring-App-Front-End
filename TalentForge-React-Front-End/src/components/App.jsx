@@ -7,7 +7,7 @@ import HomePage from './HomePage'; // Import the 'HomePage' component
 import Profile from './Profile'; // Import the 'Profile' component
 import Opportunities from './Opportunities'; // Import the 'Opportunities' component
 import UserSearch from './UserSearch'; // Import the 'UserSearch' component
-// Internal-Hiring-App-Front-End/TalentForge-React-Front-End/src/assets/App.css
+
 // This will be where components are configured before being sent to main.jsx
 
 
