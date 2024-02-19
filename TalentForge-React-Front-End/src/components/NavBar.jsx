@@ -1,11 +1,12 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
+  { name: "Home", href: "/", current: true },
   { name: "Company Network", href: "#", current: false },
-  { name: "Opportunities", href: "#", current: false },
+  { name: "Opportunities", href: "/opportunities", current: false },
   { name: "Training", href: "#", current: false },
   { name: "Events", href: "#", current: false },
 ];
@@ -89,7 +90,7 @@ export default function navBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/profile"
                             className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
                           >
                             Your Profile
