@@ -47,6 +47,7 @@ const Profile = () => {
     {/* Divider */}
     <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md"/>
     </>
+    
   )
 }
 
