@@ -4,15 +4,17 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Home', href: '#', current: true },
+  { name: 'Company Network', href: '#', current: false },
   { name: 'Opportunities', href: '#', current: false },
-  { name: 'Profile', href: '#', current: false },
+  { name: 'Training', href: '#', current: false },
+  { name: 'Events', href: '#', current: false },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function navBar() {
   return (
     <Disclosure as="nav" className="bg-dark-blue">
       {({ open }) => (
@@ -31,6 +33,7 @@ export default function Example() {
                   )}
                 </Disclosure.Button>
               </div>
+              {/* Div holding menu items */}
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <img
