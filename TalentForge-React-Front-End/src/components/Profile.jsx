@@ -92,7 +92,6 @@ const Profile = () => {
     </div>
 
     {/* List of Applications */}
-
     <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5">
       {Object.entries(applications).map(([key, value]) => (
         <div key={key} className="bg-blue-500 text-white p-4 rounded-lg shadow-md">
@@ -101,6 +100,11 @@ const Profile = () => {
           <p className="text-sm">{value.jobDescription}</p>
         </div>
       ))}
+    </div>
+
+    {/* Edit Button */}
+    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
+        <button className="bg-blue-800 text-white p-4 rounded-lg shadow-md">Edit Profile</button>
     </div>
     </>
     
