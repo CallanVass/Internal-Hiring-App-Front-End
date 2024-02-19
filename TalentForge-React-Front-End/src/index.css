@@ -1,0 +1,19 @@
+/* grey= #C1C22BE
+light green= #76BC79
+dark green= #2C4754
+dark blue= #21336D
+washed green= #455F6E */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #C1C2BE;
+    color: #333333;
+  }
