@@ -25,14 +25,14 @@ const Footer = () => {
             <div>
               {/* follow us */}
               <h2 className="mb-6 text-sm font-medium text-white uppercase dark:text-white">Follow us</h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className="text-white dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="https://github.com/themesberg/flowbite" className="hover:underline text-dark-blue ">
+                  <a href="https://github.com/themesberg/flowbite" className="hover:underline hover:text-dark-blue">
                     Github
                   </a>
                 </li>
                 <li>
-                  <a href="https://discord.gg/4eeurUVvTy" className="hover:underline">
+                  <a href="https://discord.gg/4eeurUVvTy" className="hover:underline hover:text-dark-blue">
                     Discord
                   </a>
                 </li>
@@ -41,14 +41,14 @@ const Footer = () => {
             <div>
               {/* legal heading */}
               <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Legal</h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className="text-white dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="#" className="hover:underline">
+                  <a href="#" className="hover:underline hover:text-dark-blue">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:underline">
+                  <a href="#" className="hover:underline hover:text-dark-blue">
                     Terms &amp; Conditions
                   </a>
                 </li>
@@ -58,7 +58,7 @@ const Footer = () => {
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-dark-blue sm:text-center dark:text-gray-400">
+          <span className="text-sm text-white sm:text-center dark:text-gray-400">
             © 2023{" "}
             <a href="/" className="hover:underline">
               TalentForge™
@@ -66,7 +66,7 @@ const Footer = () => {
             . All Rights Reserved.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
-            <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -82,7 +82,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Facebook page</span>
             </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -94,7 +94,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Discord community</span>
             </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -110,7 +110,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Twitter page</span>
             </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -126,7 +126,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">GitHub account</span>
             </a>
-            <a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
