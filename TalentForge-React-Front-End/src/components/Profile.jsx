@@ -76,27 +76,25 @@ const Profile = () => {
 
     {/* Profile Image, Role, & Department*/}
     <div className="flex items-center space-x-4 max-w-lg mx-auto mt-10 px-5">
-
-    <div className="flex-1">
-
+    
+    {/* Edit Profile Picture */}
     {isEditMode ? (
-        <>
-            <label htmlFor="image-upload" className="cursor-pointer">
-                <img src={profileImage} alt="Profile" className="w-1/3" />
-            </label>
-            <input
-                id="image-upload"
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="hidden"
-            />
-        </>
-    ) : (
-        <img src={profileImage} alt="Profile" className="w-1/3" />
-    )}
-      {/* <img src="path-to-your-image.jpg" alt="Profile" className="w-1/3" /> */}
-       
+            <div> <p className="text-xs">Click To Select Image</p>
+                <label htmlFor="image-upload" className="cursor-pointer">
+                    <img src={profileImage} alt="Profile" className="w-3/3" />
+                </label>
+                <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                />
+        </div>
+        ) : (
+            <img src={profileImage} alt="Profile" className="w-1/3" />
+        )}
+        <div className="flex-1">
 
       {/* Edit Name */}
         {isEditMode ? (
