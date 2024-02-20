@@ -2,6 +2,7 @@ import { useState } from 'react'
 import '../assets/App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar'; // Import the 'NavBar' component
+import Footer from './Footer'; // Import the 'Footer' component
 import Login from './Login'; // Import the 'Login' component
 import HomePage from './HomePage'; // Import the 'HomePage' component
 import Profile from './Profile'; // Import the 'Profile' component
@@ -13,6 +14,7 @@ import Network from './Network';
 
 
 function App() {
+  // eslint-disable-next-line no-unused-vars
   const [count, setCount] = useState(0)
 
   return (
@@ -27,6 +29,7 @@ function App() {
           <Route path='/opportunities' element={<Opportunities />} />
           <Route path='/user-search' element={<UserSearch />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )
