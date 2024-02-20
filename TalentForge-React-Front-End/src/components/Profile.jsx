@@ -89,12 +89,16 @@ const Profile = () => {
     
     
   return (
-    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:max-w-6xl lg:mx-auto lg:mt-10 lg:px-5">
+    <>
+    {/* Div encapsulating/creating grid effect */}
+    <div className="max-w-7xl mx-auto mt-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
 
-    {/* Profile Image, Role, & Department*/}
-    <div className="sm:flex sm:items-center sm:space-x-4 sm:max-w-lg sm:mx-auto sm:mt-10 sm:px-5 sm:bg-red-600
-    md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 md:bg-green-500
-    lg:flex-col lg:items-center lg:space-y-4 lg:p-5 lg:bg-indigo-700">
+    {/* Div for first grid row */}
+    <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+    {/* First Column: Profile Image, Role, & Department */}
+    <div className="flex flex-col sm:flex sm:items-center sm:space-x-4 sm:max-w-lg sm:mx-auto sm:mt-10 sm:px-5
+    md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 
+    lg:max-w-xl lg:mx-0 lg:mt-10 lg:px-5 ">
     
     {/* Edit Profile Picture */}
     {isEditMode ? (
@@ -111,7 +115,7 @@ const Profile = () => {
                 />
         </div>
         ) : (
-            <img src={profileImage} alt="Profile" className="w-1/3" />
+            <img src={profileImage} alt="Profile Picture" className="sm:w-1/3 lg:w-3/3" />
         )}
         <div className="flex-1">
 
@@ -216,19 +220,22 @@ const Profile = () => {
         <textarea
         value={editableProfile.aboutMe}
         onChange={(e) => handleInputChange(e, 'aboutMe')}
-        className="text-input-class w-full h-32 p-2 border rounded-md" // Tailwind classes to adjust width and height
+        className="text-input-class w-full h-32 p-2 border rounded-md"
         />
     </div>
     ) : (
-    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
+    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5 lg:mb-10">
         <h2 className="text-center mb-3 text-xl">About Me</h2>
         <p className="">{editableProfile.aboutMe}</p>
     </div>
     )}
+    {/* END OF FIRST COLUMN DIV */}
+    </div>
 
     {/* Divider */}
     <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md lg:hidden"/>
-
+    {/* Div for second grid row */}
+    <div className="flex lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
     {/* Checkboxes (Radio Buttons) */}
     {isEditMode ? (
     <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
@@ -270,7 +277,10 @@ const Profile = () => {
         <p>{editableProfile.aboutMe}</p>
     </div>
     )}
-
+    {/* END OF SECOND COLUMN DIV */}
+    </div>
+    {/* Div for third grid row */}
+    <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
     {/* List of Applications */}
     <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5">
       {Object.entries(applications).map(([key, value]) => (
@@ -288,7 +298,11 @@ const Profile = () => {
             {isEditMode ? 'Save Changes' : 'Edit Profile'}
         </button>
     </div>
+    {/* END OF THIRD COLUMN DIV */}
     </div>
+    {/* End of div encapsulating/creating griod effect */}
+    </div>
+        </>
     
   )
 }
