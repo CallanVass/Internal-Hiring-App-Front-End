@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 export default function navBar() {
   return (
-    <Disclosure as="nav" className="bg-light-green">
+    <Disclosure as="nav" className="bg-dark-blue">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -36,13 +36,13 @@ export default function navBar() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center">
+                <div className="flex flex-shrink-0 items-center justify-center">
                   {/* logo image */}
-                  {/* <img
-                    className="h-20 w-auto"
-                    src="./src/assets/text-only-logo.png"
+                  <img
+                    className="h-12 w-auto"
+                    src="./src/assets/newtransplogo.png"
                     alt="Talent Forge Logo"
-                  /> */}
+                  />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4 justify-center">
@@ -51,7 +51,7 @@ export default function navBar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? "bg-dark-blue text-white" : "text-gray-300 hover:bg-washed-blue hover:text-white",
+                          item.current ? "bg-washed-blue text-white" : "text-gray-300 hover:bg-washed-blue hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium font-sans"
                         )}
                         aria-current={item.current ? "page" : undefined}
