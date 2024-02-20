@@ -45,6 +45,17 @@ const Profile = () => {
 
     const [isEditMode, setIsEditMode] = useState(false)
 
+    const [profileImage, setProfileImage] = useState('path-to-your-image.jpg')
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            // Create a URL for the new image file
+            const imageUrl = URL.createObjectURL(file);
+            setProfileImage(imageUrl);
+        }
+    }
+
     const [editableProfile, setEditableProfile] = useState({
         name: profileAdam.name,
         role: profileAdam.role,
@@ -64,19 +75,39 @@ const Profile = () => {
     <>
 
     {/* Profile Image, Role, & Department*/}
-
-    {/* Edit Name */}
     <div className="flex items-center space-x-4 max-w-lg mx-auto mt-10 px-5">
-      <img src="path-to-your-image.jpg" alt="Profile" className="w-1/3" />
-      <div className="flex-1">
+
+    <div className="flex-1">
+
+    {isEditMode ? (
+        <>
+            <label htmlFor="image-upload" className="cursor-pointer">
+                <img src={profileImage} alt="Profile" className="w-1/3" />
+            </label>
+            <input
+                id="image-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+            />
+        </>
+    ) : (
+        <img src={profileImage} alt="Profile" className="w-1/3" />
+    )}
+      {/* <img src="path-to-your-image.jpg" alt="Profile" className="w-1/3" /> */}
+       
+
+      {/* Edit Name */}
         {isEditMode ? (
-            <div>
-          <input
-            type="text"
-            value={editableProfile.name}
-            onChange={(e) => handleInputChange(e, 'name')}
-            className="text-input-class"
-          />
+            <div className="flex items-center">
+            <div className="mr-2">Name:</div>
+                <input
+                    type="text"
+                    value={editableProfile.name}
+                    onChange={(e) => handleInputChange(e, 'name')}
+                    className="text-input-class"
+                />
           </div>
         ) : (
           <h2 className="text-xl font-bold mb-2">{editableProfile.name}</h2>
@@ -99,12 +130,15 @@ const Profile = () => {
 
         {/* Edit Department */}
         {isEditMode ? (
+            <div className="flex items-center">
+            <div className="mr-2">Department: </div>
           <input
             type="text"
             value={editableProfile.department}
             onChange={(e) => handleInputChange(e, 'department')}
             className="text-input-class"
           />
+          </div>
         ) : (
           <p>Department: {editableProfile.department}</p>
         )}
@@ -159,13 +193,10 @@ const Profile = () => {
 
     {/* Edit Button */}
     <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
-            <button onClick={toggleEditMode} className="bg-blue-800 text-white p-4 rounded-lg shadow-md">
-                {isEditMode ? 'Save Changes' : 'Edit Profile'}
-            </button>
+        <button onClick={toggleEditMode} className="bg-blue-800 text-white p-4 rounded-lg shadow-md">
+            {isEditMode ? 'Save Changes' : 'Edit Profile'}
+        </button>
     </div>
-    {/* <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
-        <button className="bg-blue-800 text-white p-4 rounded-lg shadow-md">Edit Profile</button>
-    </div> */}
     </>
     
   )
