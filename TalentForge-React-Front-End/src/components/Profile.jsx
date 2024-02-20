@@ -89,10 +89,12 @@ const Profile = () => {
     
     
   return (
-    <>
+    <div className="lg:grid lg:grid-cols-3 lg:gap-4 lg:max-w-6xl lg:mx-auto lg:mt-10 lg:px-5">
 
     {/* Profile Image, Role, & Department*/}
-    <div className="flex items-center space-x-4 max-w-lg mx-auto mt-10 px-5">
+    <div className="sm:flex sm:items-center sm:space-x-4 sm:max-w-lg sm:mx-auto sm:mt-10 sm:px-5 sm:bg-red-600
+    md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 md:bg-green-500
+    lg:flex-col lg:items-center lg:space-y-4 lg:p-5 lg:bg-indigo-700">
     
     {/* Edit Profile Picture */}
     {isEditMode ? (
@@ -225,7 +227,7 @@ const Profile = () => {
     )}
 
     {/* Divider */}
-    <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md"/>
+    <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md lg:hidden"/>
 
     {/* Checkboxes (Radio Buttons) */}
     {isEditMode ? (
@@ -281,12 +283,12 @@ const Profile = () => {
     </div>
 
     {/* Edit Button */}
-    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
+    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
         <button onClick={toggleEditMode} className="bg-blue-800 text-white p-4 rounded-lg shadow-md">
             {isEditMode ? 'Save Changes' : 'Edit Profile'}
         </button>
     </div>
-    </>
+    </div>
     
   )
 }
