@@ -115,7 +115,7 @@ const Profile = () => {
                 />
         </div>
         ) : (
-            <img src={profileImage} alt="Profile Picture" className="sm:w-1/3 lg:w-3/3" />
+            <img src={profileImage} alt="Profile Picture" className="sm:w-1/3 lg:w-1/3" />
         )}
         <div className="flex-1">
 
@@ -234,8 +234,10 @@ const Profile = () => {
 
     {/* Divider */}
     <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md lg:hidden"/>
+
     {/* Div for second grid row */}
     <div className="flex lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+
     {/* Checkboxes (Radio Buttons) */}
     {isEditMode ? (
     <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
