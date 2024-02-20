@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Profile = () => {
     // Skills Dummy Data
@@ -42,17 +42,72 @@ const Profile = () => {
             jobDescription: "Sorry about that one."
         },
     }
+
+    const [isEditMode, setIsEditMode] = useState(false)
+
+    const [editableProfile, setEditableProfile] = useState({
+        name: profileAdam.name,
+        role: profileAdam.role,
+        department: profileAdam.department,
+        aboutMe: profileAdam.aboutMe.text,
+        careerDevelopment: profileAdam.aboutMe.careerDevelopment,
+    })
+
+    const toggleEditMode = () => setIsEditMode(!isEditMode)
+
+    const handleInputChange = (e, field) => {
+        setEditableProfile({...editableProfile, [field]: e.target.value})
+    };
+    
     
   return (
     <>
 
     {/* Profile Image, Role, & Department*/}
-    <div className="flex items-center space-x-4 max-w-lg mx-auto mt-10 px-5" >
-      <img src="path-to-your-image.jpg" alt="Descriptive Text" className="w-1/3" />
+
+    {/* Edit Name */}
+    <div className="flex items-center space-x-4 max-w-lg mx-auto mt-10 px-5">
+      <img src="path-to-your-image.jpg" alt="Profile" className="w-1/3" />
       <div className="flex-1">
-        <h2 className="text-xl font-bold mb-2">{profileAdam.name}</h2>
-        <p className="">Role: {profileAdam.role}</p>
-        <p>Department: {profileAdam.department}</p>
+        {isEditMode ? (
+            <div>
+          <input
+            type="text"
+            value={editableProfile.name}
+            onChange={(e) => handleInputChange(e, 'name')}
+            className="text-input-class"
+          />
+          </div>
+        ) : (
+          <h2 className="text-xl font-bold mb-2">{editableProfile.name}</h2>
+        )}
+
+        {/* Edit Role */}
+        {isEditMode ? (
+            <div className="flex items-center">
+            <div className="mr-2">Role:</div>
+            <input
+                type="text"
+                value={editableProfile.role}
+                onChange={(e) => handleInputChange(e, 'role')}
+                className="text-input-class flex-1"
+            />
+            </div>
+        ) : (
+          <p>Role: {editableProfile.role}</p>
+        )}
+
+        {/* Edit Department */}
+        {isEditMode ? (
+          <input
+            type="text"
+            value={editableProfile.department}
+            onChange={(e) => handleInputChange(e, 'department')}
+            className="text-input-class"
+          />
+        ) : (
+          <p>Department: {editableProfile.department}</p>
+        )}
       </div>
     </div>
 
@@ -104,8 +159,13 @@ const Profile = () => {
 
     {/* Edit Button */}
     <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
-        <button className="bg-blue-800 text-white p-4 rounded-lg shadow-md">Edit Profile</button>
+            <button onClick={toggleEditMode} className="bg-blue-800 text-white p-4 rounded-lg shadow-md">
+                {isEditMode ? 'Save Changes' : 'Edit Profile'}
+            </button>
     </div>
+    {/* <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
+        <button className="bg-blue-800 text-white p-4 rounded-lg shadow-md">Edit Profile</button>
+    </div> */}
     </>
     
   )
