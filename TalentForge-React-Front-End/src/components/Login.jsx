@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import '../assets/Login.css';
+import '../assets/css/Login.css';
 
 
 
@@ -37,7 +37,7 @@ const Login = () => {
     return (
         <>
             <div className="flex-col text-center">
-                <img className="m-2 inline" src="src/assets/talent_forge_logo.jpg" alt="talent forge logo" width="200" height="200"/>
+                <img className="m-2 inline" src="src/assets/logos/talent_forge_logo.jpg" alt="talent forge logo" width="200" height="200"/>
                 <form onSubmit={checkCredentials}>
                     <span className="block m-3">
                     <label className="">Username: </label>
