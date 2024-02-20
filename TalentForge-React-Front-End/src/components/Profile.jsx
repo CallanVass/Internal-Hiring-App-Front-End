@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Profile = () => {
     // Skills Dummy Data
-    const skills = [
-        "Speech", "Excel", "Microsoft Office", "Admin", "Coding"
-    ]
+    // const skills = [
+    //     "Speech", "Excel", "Microsoft Office", "Admin", "Coding"
+    // ]
     // Profile Dummy Data
     const profileAdam = {
-        name: "Adam",
+        name: "Adam Hunter",
         role: "Developer",
         department: "Information Technology",
         aboutMe: {
@@ -16,7 +16,7 @@ const Profile = () => {
         }
     }
     // Checkboxes Dummy Data
-    const statuses = ["Looking for a new job!", "Happy where I am!", "Might be willing to move!", "Not sure!"]
+    const statuses = ["Looking for a new job!", "Happy where I am!", "Might be willing to move!", "Unsure how I feel about it!"]
 
     // Applications Dummy Data
 
@@ -42,57 +42,234 @@ const Profile = () => {
             jobDescription: "Sorry about that one."
         },
     }
+
+    const [isEditMode, setIsEditMode] = useState(false)
+
+    const [profileImage, setProfileImage] = useState('path-to-your-image.jpg')
+
+    const [skills, setSkills] = useState([
+        "Edit Profile to add skills!"
+    ])
+
+    const [newSkill, setNewSkill] = useState('')
+
+    const addSkill = () => {
+        if (newSkill) {
+            setSkills([...skills, newSkill]);
+            setNewSkill(''); // Clear input after adding
+        }
+    }
+
+    const removeSkill = (indexToRemove) => {
+        setSkills(skills.filter((_, index) => index !== indexToRemove));
+    }
+    
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            // Create a URL for the new image file
+            const imageUrl = URL.createObjectURL(file);
+            setProfileImage(imageUrl);
+        }
+    }
+
+    const [editableProfile, setEditableProfile] = useState({
+        name: profileAdam.name,
+        role: profileAdam.role,
+        department: profileAdam.department,
+        aboutMe: profileAdam.aboutMe.text,
+        careerDevelopment: profileAdam.aboutMe.careerDevelopment,
+    })
+
+    const toggleEditMode = () => setIsEditMode(!isEditMode)
+
+    const handleInputChange = (e, field) => {
+        setEditableProfile({...editableProfile, [field]: e.target.value})
+    };
+    
     
   return (
     <>
 
     {/* Profile Image, Role, & Department*/}
-    <div className="flex items-center space-x-4 max-w-lg mx-auto mt-10 px-5" >
-      <img src="path-to-your-image.jpg" alt="Descriptive Text" className="w-1/3" />
-      <div className="flex-1">
-        <h2 className="text-xl font-bold mb-2">{profileAdam.name}</h2>
-        <p className="">Role: {profileAdam.role}</p>
-        <p>Department: {profileAdam.department}</p>
+    <div className="flex items-center space-x-4 max-w-lg mx-auto mt-10 px-5">
+    
+    {/* Edit Profile Picture */}
+    {isEditMode ? (
+            <div> <p className="text-xs">Click To Select Image</p>
+                <label htmlFor="image-upload" className="cursor-pointer">
+                    <img src={profileImage} alt="Profile" className="w-3/3" />
+                </label>
+                <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                />
+        </div>
+        ) : (
+            <img src={profileImage} alt="Profile" className="w-1/3" />
+        )}
+        <div className="flex-1">
+
+      {/* Edit Name */}
+        {isEditMode ? (
+            <div className="flex items-center">
+            <div className="mr-2">Name:</div>
+                <input
+                    type="text"
+                    value={editableProfile.name}
+                    onChange={(e) => handleInputChange(e, 'name')}
+                    className="text-input-class"
+                />
+          </div>
+        ) : (
+          <h2 className="text-xl font-bold mb-2">{editableProfile.name}</h2>
+        )}
+
+        {/* Edit Role */}
+        {isEditMode ? (
+            <div className="flex items-center">
+            <div className="mr-2">Role:</div>
+            <input
+                type="text"
+                value={editableProfile.role}
+                onChange={(e) => handleInputChange(e, 'role')}
+                className="text-input-class flex-1"
+            />
+            </div>
+        ) : (
+          <p>Role: {editableProfile.role}</p>
+        )}
+
+        {/* Edit Department */}
+        {isEditMode ? (
+            <div className="flex items-center">
+            <div className="mr-2">Department: </div>
+          <input
+            type="text"
+            value={editableProfile.department}
+            onChange={(e) => handleInputChange(e, 'department')}
+            className="text-input-class"
+          />
+          </div>
+        ) : (
+          <p>Department: {editableProfile.department}</p>
+        )}
       </div>
     </div>
-
-    {/* Skills Block */}
-    <div className="flex flex-wrap gap-2 items-center space-x-0.5 max-w-lg mx-auto mt-10 px-5">
-        {/* Enumerate over each skill, creating a span for each one. */}
-      {skills.map((skill, index) => (
-        <span key={index} className="bg-blue-500 text-white px-4 py-2 rounded-md text-sm font-medium">
-          {skill}
-        </span>
-      ))}
+    
+    {/* Skills list */}
+    {isEditMode ? (
+        // If isEditMode is true, then display edit options
+        <div className="flex items-center max-w-lg mx-auto mt-10 px-5">
+            <div className="flex flex-wrap gap-2 items-center space-x-0.5 mt-10 px-5">
+                {skills.map((skill, index) => (
+            <div key={index} className="flex items-center">
+                <span className="bg-blue-500 text-white px-4 py-2 rounded-md text-sm font-medium">
+                {skill}
+                </span>
+                <button
+                    onClick={() => removeSkill(index)}
+                    className="bg-red-500 text-white ml-2 px-2 py-1 rounded-md text-sm"
+                >
+                    Delete
+                </button>
+            </div>
+        ))}
     </div>
+    {/* Add new skill */}
+    <div className="max-w-lg mx-auto mt-10 px-5">
+        <input
+            type="text"
+            value={newSkill}
+            onChange={(e) => setNewSkill(e.target.value)}
+            className="border p-2 rounded-md"
+            placeholder="New skill"
+        />
+        <button
+            onClick={addSkill}
+            className="bg-blue-500 text-white  px-4 py-2 rounded-md mt-2"
+        >Add Skill
+        </button>
+    </div>
+          </div>
+        ) : (
+            // Else if false, simply display skills
+            <div className="flex flex-wrap gap-2 items-center space-x-0.5 max-w-lg mx-auto mt-10 px-5">
+                {/* Enumerate over each skill, creating a span for each one. */}
+                {skills.map((skill, index) => (
+                <span key={index} className="bg-blue-500 text-white px-4 py-2 rounded-md text-sm font-medium">
+                {skill}
+                </span>
+                ))}
+            </div>
+        )}
 
-    {/* Profile Description */}
+    {/* Profile Description (About Me) */}
+    {isEditMode ? (
+    <div className="flex flex-col max-w-lg mx-auto mt-10 px-5">
+        <label htmlFor="aboutMe" className="text-center mb-3 text-xl">About Me:</label>
+        <textarea
+        value={editableProfile.aboutMe}
+        onChange={(e) => handleInputChange(e, 'aboutMe')}
+        className="text-input-class w-full h-32 p-2 border rounded-md" // Tailwind classes to adjust width and height
+        />
+    </div>
+    ) : (
     <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
         <h2 className="text-center mb-3 text-xl">About Me</h2>
-        <p className="">{profileAdam.aboutMe.text}</p>
+        <p className="">{editableProfile.aboutMe}</p>
     </div>
+    )}
 
     {/* Divider */}
     <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md"/>
 
-    {/* Checkboxes */}
-    <div className="flex flex-col space-y-2 items-center">
-      {statuses.map((status, index) => (
+    {/* Checkboxes (Radio Buttons) */}
+    {isEditMode ? (
+    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
+        {statuses.map((status, index) => (
         <label key={index} className="flex items-center space-x-2">
-          <input type="checkbox" id={`status-${index}`} className="form-checkbox h-5 w-5 text-blue-600" />
-          <span>{status}</span>
+            <input
+            type="radio"
+            name="status"
+            id={`status-${index}`}
+            value={status}
+            checked={editableProfile.status === status}
+            onChange={(e) => handleInputChange(e, 'status')}
+            className="form-radio h-5 w-5 text-blue-600"
+            />
+            <span>{status}</span>
         </label>
-      ))}
+        ))}
     </div>
+    ) : (
+        <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
+        <h2 className="text-center mb-3 text-xl">Status:</h2>
+        <p>{editableProfile.status}</p>
+        </div>
+    )}
 
     {/* Career Development Description */}
+    {isEditMode ? (
+    <div className="flex flex-col max-w-lg mx-auto mt-10 px-5">
+        <label htmlFor="aboutMe" className="text-center mb-3 text-xl">Career Development:</label>
+        <textarea
+        value={editableProfile.aboutMe}
+        onChange={(e) => handleInputChange(e, 'aboutMe')}
+        className="text-input-class w-full h-32 p-2 border rounded-md" // Tailwind classes to adjust width and height
+        />
+    </div>
+    ) : (
     <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
         <h2 className="text-center mb-3 text-xl">Career Development</h2>
-        <p className="">{profileAdam.aboutMe.careerDevelopment}</p>
+        <p>{editableProfile.aboutMe}</p>
     </div>
+    )}
 
     {/* List of Applications */}
-
     <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5">
       {Object.entries(applications).map(([key, value]) => (
         <div key={key} className="bg-blue-500 text-white p-4 rounded-lg shadow-md">
@@ -101,6 +278,13 @@ const Profile = () => {
           <p className="text-sm">{value.jobDescription}</p>
         </div>
       ))}
+    </div>
+
+    {/* Edit Button */}
+    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
+        <button onClick={toggleEditMode} className="bg-blue-800 text-white p-4 rounded-lg shadow-md">
+            {isEditMode ? 'Save Changes' : 'Edit Profile'}
+        </button>
     </div>
     </>
     
