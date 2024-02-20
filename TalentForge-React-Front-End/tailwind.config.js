@@ -7,13 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Custom colors 
+        // Custom colors
         'grey': '#c1c2be', // Example primary color
         'light-green': '#76bc79', // Example secondary color
         'dark-green': '#2c4754',
         'dark-blue': '#21336d',
         'washed-blue': '#455f6e',
-       
+      },
+      backgroundImage: {
+        'hero' : "url('src/assets/backgrounds/hi-tech-concepts-on-blue-background-hero-header.jpg')",
       },
       screens: {
         // Breakpoints for screen sizes
