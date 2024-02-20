@@ -13,6 +13,7 @@ import UserSearch from './UserSearch'; // Import the 'UserSearch' component
 
 
 function App() {
+  // eslint-disable-next-line no-unused-vars
   const [count, setCount] = useState(0)
 
   return (
