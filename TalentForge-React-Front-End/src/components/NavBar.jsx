@@ -4,8 +4,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Company Network", href: "#", current: false },
+  { name: "Home", href: "/home", current: true },
+  { name: "Company Network", href: "/network", current: false },
   { name: "Opportunities", href: "/opportunities", current: false },
   { name: "Training", href: "#", current: false },
   { name: "Events", href: "#", current: false },
