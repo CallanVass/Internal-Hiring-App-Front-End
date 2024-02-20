@@ -3,12 +3,12 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-washed-blue dark:bg-gray-900">
+    <footer className="bg-dark-blue dark:bg-gray-900">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <a href="" className="flex items-center">
-              <img src="../src/assets/newtransplogo.png" className="h-24 me-3" alt="TalentForge Logo" />
+              <img src="../src/assets/whitetransplogo.png" className="h-24 me-3" alt="TalentForge Logo" />
             </a>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -28,12 +28,12 @@ const Footer = () => {
               <h2 className="mb-6 text-sm font-medium text-white uppercase dark:text-white">Follow us</h2>
               <ul className="text-white dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="https://github.com/themesberg/flowbite" className="hover:underline hover:text-dark-blue">
+                  <a href="https://github.com/themesberg/flowbite" className="hover:underline hover:text-grey">
                     Github
                   </a>
                 </li>
                 <li>
-                  <a href="https://discord.gg/4eeurUVvTy" className="hover:underline hover:text-dark-blue">
+                  <a href="https://discord.gg/4eeurUVvTy" className="hover:underline hover:text-grey">
                     Discord
                   </a>
                 </li>
@@ -44,12 +44,12 @@ const Footer = () => {
               <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Legal</h2>
               <ul className="text-white dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="#" className="hover:underline hover:text-dark-blue">
+                  <a href="#" className="hover:underline hover:text-grey">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:underline hover:text-dark-blue">
+                  <a href="#" className="hover:underline hover:text-grey">
                     Terms &amp; Conditions
                   </a>
                 </li>
@@ -61,13 +61,13 @@ const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-white sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <a href="/" className="hover:underline hover:text-dark-blue">
+            <a href="/" className="hover:underline hover:text-grey">
               TalentForge™
             </a>
             . All Rights Reserved.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
-            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -83,7 +83,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Facebook page</span>
             </a>
-            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -95,7 +95,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Discord community</span>
             </a>
-            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -111,7 +111,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Twitter page</span>
             </a>
-            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -127,7 +127,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">GitHub account</span>
             </a>
-            <a href="#" className="text-white hover:text-dark-blue dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
