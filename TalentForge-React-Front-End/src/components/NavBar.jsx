@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 export default function navBar() {
   return (
-    <Disclosure as="nav" className="bg-light-green">
+    <Disclosure as="nav" className="bg-dark-blue">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -51,7 +51,7 @@ export default function navBar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? "bg-dark-blue text-white" : "text-gray-300 hover:bg-washed-blue hover:text-white",
+                          item.current ? "bg-washed-blue text-white" : "text-gray-300 hover:bg-washed-blue hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium font-sans"
                         )}
                         aria-current={item.current ? "page" : undefined}
