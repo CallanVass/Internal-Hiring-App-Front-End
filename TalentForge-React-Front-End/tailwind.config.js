@@ -18,10 +18,10 @@ export default {
         'hero' : "url('src/assets/backgrounds/hi-tech-concepts-on-blue-background-hero-header.jpg')",
       },
       screens: {
-        // Breakpoints for screen sizes
-        'sm': '1px', // Small
-        'md': '450px', // Medium
-        'lg': '1024px', // Large
+        // // Breakpoints for screen sizes
+        // 'sm': '1px', // Small
+        // 'md': '450px', // Medium
+        // 'lg': '1024px', // Large
       }
     }
   },
