@@ -52,7 +52,7 @@ export default function navBar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? "bg-dark-green text-white" : "text-white hover:bg-washed-blue hover:text-white",
+                          item.current ? "bg-grey text-black" : "text-white hover:bg-grey hover:text-black",
                           "rounded-md px-3 py-2 text-sm font-"
                           // interact with fonts here ^^^^
                         )}
@@ -74,7 +74,7 @@ export default function navBar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="./src/assets/profile-pic.jpg"
+                        src="./src/assets/logos/profile-pic.jpg"
                         alt=""
                       />
                     </Menu.Button>
