@@ -20,7 +20,9 @@ const JobListing = () => {
   const filteredJobs = selectedDepartment === 'All' ? jobs : jobs.filter(job => job.department === selectedDepartment);
 
   return (
+    
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mx-auto max-w-screen-lg">
+      
       <div className="md:col-span-1">
         <div className="mr-8">
           <label htmlFor="department" className="block text-gray-700">Filter by Department:</label>
@@ -38,8 +40,8 @@ const JobListing = () => {
           {filteredJobs.map(job => (
             <div key={job.id} className="bg-white overflow-hidden shadow rounded-lg">
               <div className="p-4">
-                <h2 className="text-xl font-medium text-gray-900">{job.title}</h2>
-                <p className="text-gray-500">{job.department}</p>
+                <h2 className="text-xl text-center font-medium text-gray-900">{job.title}</h2>
+                <p className=" text-base text-center text-gray-500">{job.department}</p> 
                 {/* Add more job details as needed */}
               </div>
             </div>
