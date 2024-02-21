@@ -96,7 +96,7 @@ const Profile = () => {
         {/* Div for first grid row */}
         <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
         {/* First Column: Profile Image, Role, & Department */}
-        <div className="flex flex-col sm:flex sm:items-center sm:space-x-4 sm:max-w-lg sm:mx-auto sm:mt-10 sm:px-5
+        <div className="flex flex-col sm:items-center sm:justify-center items-center max-w-lg mx-auto mt-10 px-5
         md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 
         lg:max-w-xl lg:mx-0 lg:mt-10 lg:px-5 ">
         
@@ -115,7 +115,7 @@ const Profile = () => {
                     />
             </div>
             ) : (
-                <img src={profileImage} alt="Profile Picture" className="sm:w-1/3 lg:w-1/3" />
+                <img src={profileImage} alt="Profile Picture" className="w-28 sm:w-48 md:w-64 lg:w-96" />
             )}
             <div className="flex-1">
     
@@ -215,7 +215,7 @@ const Profile = () => {
     
         {/* Profile Description (About Me) */}
         {isEditMode ? (
-        <div className="flex flex-col max-w-lg mx-auto mt-10 px-5">
+        <div className="flex flex-col max-w-lg mx-auto mt-10 px-5 lg:mb-10">
             <label htmlFor="aboutMe" className="text-center mb-3 text-xl">About Me:</label>
             <textarea
             value={editableProfile.aboutMe}
