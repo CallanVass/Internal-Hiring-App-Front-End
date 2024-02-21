@@ -37,12 +37,12 @@ export default function navBar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center justify-center">
-                  {/* logo image */}
+                  {/* logo image
                   <img
                     className="h-12 w-auto"
                     src="./src/assets/newtransplogo.png"
                     alt="Talent Forge Logo"
-                  />
+                  /> */}
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4 justify-center">
@@ -73,7 +73,7 @@ export default function navBar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="./src/assets/profile-pic.jpg"
+                        src="./src/assets/logos/profile-pic.jpg"
                         alt=""
                       />
                     </Menu.Button>
