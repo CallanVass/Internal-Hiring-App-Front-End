@@ -40,7 +40,8 @@ export default function navBar() {
                   {/* logo image */}
                   <img
                     className="h-12 w-auto"
-                    src="./src/assets/newtransplogo.png"
+                    // KD: changed this to the correct path (transparent logo is the same colour as the background!)
+                    src="src/assets/logos/talent_forge_logo.jpg"
                     alt="Talent Forge Logo"
                   />
                 </div>
