@@ -53,7 +53,7 @@ const UserSearch = () => {
     <div className="flex flex-col sm:items-center sm:justify-center items-center max-w-lg mx-auto mt-10 px-5
         md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 
         lg:max-w-xl lg:mt-10 lg:px-5 lg:mx-auto ">
-        <h2 className="text-xl font-bold mb-2">{company.name}</h2>
+        <h2 className="text-6xl font-bold mb-2">{company.name}</h2>
     </div>
 
     {/* Divider */}
@@ -87,7 +87,7 @@ const UserSearch = () => {
     </div>
 
     {/* Search Bar */}
-    <div className="w-64 flex flex-col justify-center items-center max-w-lg mx-auto mt-6 px-5 lg:mb-10">
+    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-6 px-5 lg:mb-10">
     <SearchBar users={users} ></SearchBar>
     </div>
 
