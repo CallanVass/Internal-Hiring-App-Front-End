@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 
+
 const UserSearch = () => {
     // Dummy Data
     const company = {
@@ -52,7 +53,7 @@ const UserSearch = () => {
         </select>
     </div>
 
-    
+    {/* Search Bar */}
 
   </>
   )
