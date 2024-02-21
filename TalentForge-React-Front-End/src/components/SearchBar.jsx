@@ -53,9 +53,11 @@ const handleSearch = (e) => {
                 <div key={index} className="border border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 bg-blue-500 opacity-50 mb-5">
                     {/* DATABASE PROFILE PICTURE GOES HERE */}
                     <img href=""></img>
+                    {/* Linking profile */}
+                    <a href="http://localhost:5173/profile">
                     <span className="block text-center mb-3 text-2xl">{result.item.name}</span>
                     <span className="block text-center mb-3 text-l">{result.item.role}, {result.item.department}</span>
-                    <div className="m-5">{result.item.aboutMe.text}</div>
+                    <div className="m-5">{result.item.aboutMe.text}</div></a>
                 </div>
             ))}
         </div>
