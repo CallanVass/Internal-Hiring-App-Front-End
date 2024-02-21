@@ -71,7 +71,7 @@ const UserSearch = () => {
             value={selectedDepartment}
             onChange={handleChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        >
+            >
             {/* Default option */}
             <option value="">Select...</option>
 
@@ -82,11 +82,14 @@ const UserSearch = () => {
             </option>
             ))}
         </select>
+
+    
     </div>
 
     {/* Search Bar */}
-
-    <SearchBar users={users}></SearchBar>
+    <div className="w-64 flex flex-col justify-center items-center max-w-lg mx-auto mt-6 px-5 lg:mb-10">
+    <SearchBar users={users} ></SearchBar>
+    </div>
 
   </>
   )
