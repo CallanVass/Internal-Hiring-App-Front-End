@@ -11,8 +11,8 @@ const Profile = () => {
         role: "Developer",
         department: "Information Technology",
         aboutMe: {
-            text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-            careerDevelopment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+            text: "About Me placeholder text",
+            careerDevelopment: "Career Development placeholder text"
         }
     }
     // Checkboxes Dummy Data
@@ -85,7 +85,8 @@ const Profile = () => {
 
     const handleInputChange = (e, field) => {
         setEditableProfile({...editableProfile, [field]: e.target.value})
-    };
+    }
+
     
     
     return (
@@ -124,6 +125,8 @@ const Profile = () => {
                 <div className="flex items-center">
                 <div className="mr-2">Name:</div>
                     <input
+                        maxLength="30"
+                        placeholder="(30 characters max)"
                         type="text"
                         value={editableProfile.name}
                         onChange={(e) => handleInputChange(e, 'name')}
@@ -131,7 +134,7 @@ const Profile = () => {
                     />
               </div>
             ) : (
-              <h2 className="text-xl font-bold mb-2">{editableProfile.name}</h2>
+              <h2 className="text-3xl font-bold mb-2">{editableProfile.name}</h2>
             )}
     
             {/* Edit Role */}
@@ -140,6 +143,8 @@ const Profile = () => {
                 <div className="mr-2">Role:</div>
                 <input
                     type="text"
+                    maxLength="20"
+                    placeholder="(20 character max)"
                     value={editableProfile.role}
                     onChange={(e) => handleInputChange(e, 'role')}
                     className="text-input-class flex-1"
@@ -155,6 +160,8 @@ const Profile = () => {
                 <div className="mr-2">Department: </div>
               <input
                 type="text"
+                maxLength="25"
+                placeholder="(25 character max)"
                 value={editableProfile.department}
                 onChange={(e) => handleInputChange(e, 'department')}
                 className="text-input-class"
@@ -188,11 +195,12 @@ const Profile = () => {
         {/* Add new skill */}
         <div className="max-w-lg mx-auto mt-10 px-5">
             <input
+                maxLength="15"
+                placeholder="(15 character max)"
                 type="text"
                 value={newSkill}
                 onChange={(e) => setNewSkill(e.target.value)}
                 className="border p-2 rounded-md"
-                placeholder="New skill"
             />
             <button
                 onClick={addSkill}
@@ -218,6 +226,8 @@ const Profile = () => {
         <div className="flex flex-col max-w-lg mx-auto mt-10 px-5 lg:mb-10">
             <label htmlFor="aboutMe" className="text-center mb-3 text-xl">About Me:</label>
             <textarea
+            maxLength="220"
+            placeholder="(220 character max)"
             value={editableProfile.aboutMe}
             onChange={(e) => handleInputChange(e, 'aboutMe')}
             className="text-input-class w-full h-32 p-2 border rounded-md"
@@ -268,15 +278,17 @@ const Profile = () => {
         <div className="flex flex-col max-w-lg mx-auto mt-10 px-5">
             <label htmlFor="aboutMe" className="text-center mb-3 text-xl">Career Development:</label>
             <textarea
-            value={editableProfile.aboutMe}
-            onChange={(e) => handleInputChange(e, 'aboutMe')}
+            maxLength="220"
+            placeholder="(220 character max)"
+            value={editableProfile.careerDevelopment}
+            onChange={(e) => handleInputChange(e, 'careerDevelopment')}
             className="text-input-class w-full h-32 p-2 border rounded-md" // Tailwind classes to adjust width and height
             />
         </div>
         ) : (
         <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
             <h2 className="text-center mb-3 text-xl">Career Development</h2>
-            <p>{editableProfile.aboutMe}</p>
+            <p>{editableProfile.careerDevelopment}</p>
         </div>
         )}
         {/* END OF SECOND COLUMN DIV */}

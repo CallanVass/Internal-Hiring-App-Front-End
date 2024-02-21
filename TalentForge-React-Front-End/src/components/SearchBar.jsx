@@ -11,7 +11,13 @@ const [results, setResults] = useState([])
 
 // Create Fuse object, including keys for items that can be found
 const fuse = new Fuse(users, {
-    keys: ["department", "name"],
+    keys: [
+        "department",
+        "name",
+        "role",
+        "aboutMe.text",
+        "aboutMe.careerDevelopment"
+    ],
     includeScore: true,
 })
 
@@ -33,23 +39,30 @@ const handleSearch = (e) => {
 
   return (
     <div>
-      <input
-        type="text"
-        value={query}
-        // On input value change, initate the handleSearch function
-        onChange={handleSearch}
-        // Placeholder text
-        placeholder="Search"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      />
+        <div className="flex justify-center items-center">
+            <input
+                type="text"
+                value={query}
+                onChange={handleSearch}
+                placeholder="Search"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 mb-10"
+            />
+        </div>
         <div>
-        {results.map((result, index) => (
-            // Access the `item` property of the result object
-            <div key={index}>{result.item.name} in department: {result.item.department}</div>
-        ))}
+            {results.map((result, index) => (
+                <div key={index} className="border border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 bg-blue-500 opacity-50 mb-5">
+                    {/* DATABASE PROFILE PICTURE GOES HERE */}
+                    <img href=""></img>
+                    {/* Linking profile */}
+                    <a href="http://localhost:5173/profile">
+                    <span className="block text-center mb-3 text-2xl">{result.item.name}</span>
+                    <span className="block text-center mb-3 text-l">{result.item.role}, {result.item.department}</span>
+                    <div className="m-5">{result.item.aboutMe.text}</div></a>
+                </div>
+            ))}
         </div>
     </div>
-  )
+)
 }
 
 export default SearchBar
