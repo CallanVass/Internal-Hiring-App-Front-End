@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
+import '../assets/css/Login.css';
+
+
 
 const Login = () => {
 
@@ -33,15 +36,21 @@ const Login = () => {
 
     return (
         <>
-            <div className="login">
-                <img src="src/assets/talent_forge_logo.jpg" alt="talent forge logo" width="200" height="200"/>
+            <div className="flex-col text-center">
+                <img className="m-2 inline" src="src/assets/logos/talent_forge_logo.jpg" alt="talent forge logo" width="200" height="200"/>
                 <form onSubmit={checkCredentials}>
-                    <label>Username: </label>
+                    <span className="block m-3">
+                    <label className="">Username: </label>
                     <input type="text" value={username} onChange={e => setUsername(e.target.value)}/>
-                    <label>Password: </label>
+                    </span>
+                    <span className="block m-5">
+                    <label className="m-1">Password: </label>
                     <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                    <button type="submit">Login</button>
+                    </span>
+                    <button type="submit" className="bg-grey hover:bg-dark-blue text-dark-blue font-semibold hover:text-white m-2 py-1 px-5 border border-blue-500 hover:border-transparent rounded">Login</button>
                 </form>
+                <p className="pt-6">Not registered? Contact your HR </p>
+                <p>department to be set up</p>
 
             </div>
         </>
