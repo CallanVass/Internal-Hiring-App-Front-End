@@ -10,7 +10,7 @@ const NewListing = () => {
         </div>
         {/* Form */}
             <div className='py-2 md:py-2 lg:py-2'>
-                <form className='text-lg'>
+                <form className='text-lg md:text-lg lg:text-lg'>
                     <div className='py-3 md:py-6 lg:py-6'>
                         <label htmlFor="role-input">Role: </label>
                         <input type="text" id="role-input" name="role" />
@@ -28,7 +28,7 @@ const NewListing = () => {
 
             {/*Hours Type - Fulltime/parttime  */}
             <div>
-                <form>
+                <form className='text-lg md:text-lg lg:text-lg'>
                     <fieldset>
                         <legend>Role Basis:</legend>
                         <div>
@@ -47,7 +47,7 @@ const NewListing = () => {
 
             {/* Permanent/contract etc */}
             <div>
-                <form>
+                <form className='text-lg md:text-lg lg:text-lg'>
                     <fieldset>
                         <legend>Role type:</legend>
                         <div>
@@ -72,7 +72,7 @@ const NewListing = () => {
 
             {/*Location: on site etc */}
             <div>
-                <form>
+                <form className='text-lg md:text-lg lg:text-lg'>
                     <fieldset>
                         <legend>Role location:</legend>
                         <div>
@@ -100,15 +100,32 @@ const NewListing = () => {
                 <div></div>
             </div>
 
-            <div>
-            <label className="switch">Active on site</label>
-            <input type="checkbox" />
-            <span className="slider round"></span>
+            {/* On/Off Slider */}
+            <div className="inline-flex justify-between mx-8 md:mx-8 lg:mx-8 my-3 md:my-3 lg:my-3">
+                <label htmlFor="listing-active"
+                        className="mt-px mb-0 text-lg md:text-lg lg:text-lg">
+                        Active on site:
+                </label>
+                <div className="relative inline-block w-28 h-4 content-center rounded-full cursor-pointer">
+                    <input id="listing-active"
+                            type="checkbox"
+                            // colouration of on portion and off portion - duration of movement of slider
+                            className="absolute w-8 h-4 transition-colors duration-300 rounded-full appearance-none cursor-pointer peer bg-gray-700 checked:bg-green-500  peer-checked:border-gray-900 peer-checked:before:bg-blue-500"
+                            defaultChecked />
+                    <label htmlFor="listing-active"
+                            // slider marker size/colour
+                            className="before:content[''] absolute top-2/4 -left-1 h-5 w-5 -translate-y-2/4 cursor-pointer rounded-full border border-blue-gray-100 bg-white shadow-md transition-all duration-300 before:absolute before:top-2/4 before:left-2/4 before:block before:h-10 before:w-10 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10 peer-checked:translate-x-full peer-checked:border-gray-900 peer-checked:before:bg-gray-900">
+                        {/* <div className="inline-block p-5 rounded-full top-3/4 left-1/4 -translate-x-3/4 -translate-y-1/4"
+                        data-ripple-dark="true">
+                        </div> */}
+                    </label>
+                </div>
             </div>
 
-
-            <div>
-                <button type="submit">Submit</button>
+            {/* Buttons */}
+            <div className='flex flex-col justify-center'>
+                <button type="submit" className='className="bg-white hover:bg-dark-blue text-dark-blue font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-64 max-w-80 border border-blue-500 hover:border-transparent rounded'>Save</button>
+                <button type="submit" className='className="bg-white hover:bg-dark-blue text-dark-blue font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-64 max-w-80 border border-blue-500 hover:border-transparent rounded'>Close</button>
             </div>
 
 
