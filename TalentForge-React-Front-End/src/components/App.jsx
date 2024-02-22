@@ -10,6 +10,8 @@ import Opportunities from './Opportunities'; // Import the 'Opportunities' compo
 import UserSearch from './UserSearch'; // Import the 'UserSearch' component
 import Network from './Network';
 import ViewListing from './ViewListing';
+import NewListing from './NewListing'; // Import the 'NewListing' component
+
 
 // This will be where components are configured before being sent to main.jsx
 
@@ -23,19 +25,19 @@ function App() {
       <BrowserRouter>
         <div className='flex flex-col min-h-screen'>
           <NavBar />
-            <div className='flex-grow'>
-              <Routes>
-                <Route path='/' element={<Login />} />
-                <Route path='/home' element={<HomePage />} />
-                <Route path='/profile' element={<Profile />} />
-                <Route path='/network' element={<Network />} />
-                <Route path='/opportunities' element={<Opportunities />} />
-                <Route path='/user-search' element={<UserSearch />} />
-                {/* temp route to view page in development */}
-                <Route path='/listing-temp' element={<ViewListing />} />
-                <Route path='/listing-new' element={<ViewListing />} />
-              </Routes>
-            </div>
+                        <div className='flex-grow'>
+                          <Routes>
+                            <Route path='/' element={<Login />} />
+                            <Route path='/home' element={<HomePage />} />
+                            <Route path='/profile' element={<Profile />} />
+                            <Route path='/network' element={<Network />} />
+                            <Route path='/opportunities' element={<Opportunities />} />
+                            <Route path='/user-search' element={<UserSearch />} />
+                            {/* temp route to view page in development */}
+                            <Route path='/listing-temp' element={<ViewListing />} />
+                            <Route path='/listing-new' element={<NewListing />} />
+                          </Routes>
+                        </div>
           <Footer />
         </div>
       </BrowserRouter>
