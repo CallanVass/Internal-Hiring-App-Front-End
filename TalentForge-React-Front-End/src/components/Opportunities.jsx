@@ -65,8 +65,8 @@ const JobListing = () => {
             <input type="text" placeholder="Search jobs..." value={searchQuery} onChange={handleSearchChange} className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
           </div>
         </div>
-        <div className="md:col-span-2">  
-          <div className="grid grid-cols-1 gap-6">
+        <div className="md:col-span-2 mb-8">  
+          <div className="grid grid-cols-1 gap-6  ">
             {filteredJobs.map(job => (
               <div key={job.id} className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="p-4">
@@ -76,6 +76,10 @@ const JobListing = () => {
                   <p className="text-base -2">Salary: {job.salary}</p>
                   <p className="text-base -2">Posted Date: {job.postedDate}</p>
                   <p className="text-base -2">Job Description: {job.jobDescription}</p>
+                  <div className='flex justify-center'>
+                    <button className="bg-dark-blue hover:bg-washed-blue text-white font-bold py-2 px-4 rounded mt-4">Apply Now</button>
+                  </div>  
+
                   {/* Add more job details as needed */}
                 </div>
               </div>
