@@ -12,95 +12,157 @@ const NewListing = () => {
         <input type="date" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
 
         */}
-            <div className='py-2 md:py-2 lg:py-2'>
-                <form className='text-lg md:text-lg lg:text-lg'>
-                    <div className='py-3 md:py-6 lg:py-6'>
-                        <label htmlFor="role-input">Role: </label>
-                        <input type="text" id="role-input" name="role" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+            <div className='pt-10 pb-4 md:pt-10 md:pb-4 lg:pt-10 lg:pb-4'>
+                <form className='space-y-4 md:space-y-4 lg:space-y-4 text-lg md:text-lg lg:text-lg'>
+                    <div className='flex items-center'>
+                        <label htmlFor="role-input" className="w-1/3 text-right mr-4">Job title:</label>
+                        <input type="text" id="role-input" name="role" className="form-input w-2/3 md:w-2/3 lg:w-2/3 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                     </div>
-                    <div className='py-3 md:py-6 lg:py-6'>
-                        <label htmlFor="dept-input">Department: </label>
-                        <input type="text" id="dept-input" name="dept" />
+                    <div className='flex items-center'>
+                        <label htmlFor="dept-input" className="w-1/3 text-right mr-4">Department:</label>
+                        <input type="text" id="dept-input" name="dept" className="form-input w-2/3 md:w-2/3 lg:w-2/3 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                     </div>
-                    <div className='py-3 md:py-6 lg:py-6'>
-                        <label htmlFor="closing-date-input">Closing Date: </label>
-                        <input type="date" id="closing-date-input" name="closing-date" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                    <div className='flex items-center'>
+                        <label htmlFor="closing-date-input" className="w-1/3 text-right mr-4">Closing date:</label>
+                        <input type="date" id="closing-date-input" name="closing-date" className="form-input w-2/3 md:w-2/3 lg:w-2/3 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                     </div>
+
                 </form>
             </div>
+
 
             {/*Hours Type - Fulltime/parttime  */}
-            <div>
-                <form className='text-lg md:text-lg lg:text-lg'>
-                    <fieldset>
-                        <legend>Role Basis:</legend>
-                        <div>
-                            <label htmlFor="fulltime-input">Full Time: </label>
-                            <input type="radio" id="fulltime-input" name="hours" checked />
+            <div className='mt-5 md:mt-5 lg:mt-5 py-2'>
+                <ul className='space-y-2 text-lg md:text-lg lg:text-lg'>
+                    <legend className='text-xl md:text-xl lg:text-xl font-bold'>Role Basis:</legend>
+                    <div>
+                        <li>
+                            <label htmlFor="fulltime-input" className="inline-flex items-center">
+                                <input type="radio" id="fulltime-input" name="hours" checked />
+                                <span className="ml-3">Full Time</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor="parttime-input" className="inline-flex items-center">
+                                <input type="radio" id="parttime-input" name="hours" />
+                                <span className="ml-3">Part Time</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor="other-input" className="inline-flex items-center">
+                                <input type="radio" id="other-input" name="hours" />
+                                <span className="ml-3">Other</span>
+                            </label>
+                        </li>
+                    </div>
 
-                            <label htmlFor="parttime-input">Part Time: </label>
-                            <input type="radio" id="parttime-input" name="hours" />
-
-                            <label htmlFor="other-input">Other: </label>
-                            <input type="radio" id="other-input" name="hours" />
-                        </div>
-                    </fieldset>
-                </form>
+                </ul>
             </div>
+
 
             {/* Permanent/contract etc */}
-            <div>
-                <form className='text-lg md:text-lg lg:text-lg'>
-                    <fieldset>
-                        <legend>Role type:</legend>
-                        <div>
-                            <label htmlFor="permanent-input">Permanent: </label>
+            <div className='mt-2 md:mt-2 lg:mt-2 py-3 md:py-3 lg:py-3 border-t-2 md:border-t-2 lg:border-t-2 border-dotted'>
+                <ul className='space-y-2 text-lg md:text-lg lg:text-lg'>
+                    <legend className='text-xl md:text-xl lg:text-xl font-bold'>Role type:</legend>
+                    <div>
+                        <li>
+                            <label htmlFor="permanent-input" className="inline-flex items-center">
                             <input type="radio" id="permanent-input" name="type" checked />
+                                <span className="ml-3">Permanent</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor="contract-input" className="inline-flex items-center">
+                                <input type="radio" id="contract-input" name="type" />
+                                <span className="ml-3">Contract</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor="parental-input" className="inline-flex items-center">
+                                <input type="radio" id="parental-input" name="type" />
+                                <span className="ml-3">Parental Leave Cover</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor="secondment-input" className="inline-flex items-center">
+                                <input type="radio" id="secondment-input" name="type" />
+                                <span className="ml-3">Secondment</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor="other-input" className="inline-flex items-center">
+                                <input type="radio" id="other-input" name="type" />
+                                <span className="ml-3">Other</span>
+                            </label>
+                        </li>
+                    </div>
 
-                            <label htmlFor="contract-input">Contract: </label>
-                            <input type="radio" id="contract-input" name="type" />
-
-                            <label htmlFor="parental-input">Parental Leave Cover: </label>
-                            <input type="radio" id="parental-input" name="type" checked />
-
-                            <label htmlFor="secondment-input">Secondment: </label>
-                            <input type="radio" id="secondment-input" name="type" />
-
-                            <label htmlFor="other-input">Other: </label>
-                            <input type="radio" id="other-input" name="type" />
-                        </div>
-                    </fieldset>
-                </form>
+                </ul>
             </div>
 
+
+
             {/*Location: on site etc */}
-            <div>
-                <form className='text-lg md:text-lg lg:text-lg'>
-                    <fieldset>
-                        <legend>Role location:</legend>
-                        <div>
-                            <label htmlFor="onsite-input">On Site: </label>
-                            <input type="radio" id="onsite-input" name="location" checked />
+            <div className='mt-2 md:mt-2 lg:mt-2 py-3 md:py-3 lg:py-3 border-t-2 md:border-t-2 lg:border-t-2 border-dotted'>
+                <ul className='space-y-2 text-lg md:text-lg lg:text-lg'>
+                    <legend className='text-xl md:text-xl lg:text-xl font-bold'>Role location:</legend>
+                    <div>
+                        <li>
+                            <label htmlFor="onsite-input" className="inline-flex items-center">
+                                <input type="radio" id="onsite-input" name="location" checked />
+                                <span className="ml-3">On Site</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor="hybrid-input" className="inline-flex items-center">
+                                <input type="radio" id="hybrid-input" name="location" />
+                                <span className="ml-3">Hybrid</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor="other-input" className="inline-flex items-center">
+                                <input type="radio" id="other-input" name="location" />
+                                <span className="ml-3">Other</span>
+                            </label>
+                        </li>
+                    </div>
 
-                            <label htmlFor="hybrid-input">Hybrid: </label>
-                            <input type="radio" id="hybrid-input" name="location" />
-
-                            <label htmlFor="other-input">Other: </label>
-                            <input type="radio" id="other-input" name="location" className='' />
-                        </div>
-                    </fieldset>
-                </form>
+                </ul>
             </div>
 
             {/* Description */}
-            <div>
-                <div>
-                    <h2 className='text-3xl md:text-6xl lg:text-8xl font-bold'>Job Description:</h2>
+            <div className='border-t-2 md:border-t-2 lg:border-t-2 border-dotted'>
+                <div className='my-3 md:my-4 lg:my-4'>
+                    <h2 className='text-2xl md:text-6xl lg:text-8xl font-bold'>Job Description:</h2>
+                </div>
+                <div className='my-4 md:my-4 lg:my-4'>
+                    <p className='text-base md:text-base lg:text-base leading-relaxed'>
+                        Use this section to provide a brief description of the role, including key responsibilities and any essential skills or qualifications required.<br/>
+                        You may include up to 3 bullet points and a full description.
+                    </p>
+
+                </div>
+
+                <div className='my-5 md:my-4 lg:my-4'>
+                    <form className='space-y-4 md:space-y-4 lg:space-y-4 text-lg md:text-lg lg:text-lg'>
+                        <div className='flex items-center'>
+                            <label htmlFor="bullet-point-1" className="w-1/3 text-right mr-4">Bullet point 1:</label>
+                            <input type="text" id="bullet-point-1" name="bullet-points" className="form-input w-2/3 md:w-2/3 lg:w-2/3 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                        </div>
+                        <div className='flex items-center'>
+                            <label htmlFor="bullet-point-2" className="w-1/3 text-right mr-4">Bullet point 2:</label>
+                            <input type="text" id="bullet-point-2" name="bullet-points" className="form-input w-2/3 md:w-2/3 lg:w-2/3 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                        </div>
+                        <div className='flex items-center'>
+                            <label htmlFor="bullet-point-3-" className="w-1/3 text-right mr-4">Bullet point 3:</label>
+                            <input type="text" id="bullet-point-3" name="bullet-points" className="form-input w-2/3 md:w-2/3 lg:w-2/3 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+                        </div>
+
+                    </form>
+
                 </div>
                     <label htmlFor="job-desc-input"></label>
-                    <textarea name="job-description" id="job-desc-input" cols="40" rows="10"></textarea>
-                <div></div>
-                <div></div>
+                    <textarea name="job-description" id="job-desc-input" cols="40" rows="10" className="form-input w-full md:w-2/3 lg:w-2/3 block rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
             </div>
 
             {/* On/Off Slider */}
