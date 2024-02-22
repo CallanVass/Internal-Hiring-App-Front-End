@@ -2,7 +2,6 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-
 const navigation = [
   { name: "Home", href: "/home", current: true },
   { name: "Company Network", href: "/user-search", current: false },
@@ -37,11 +36,10 @@ export default function navBar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center justify-center">
-                  {/* logo image
-                  <img
+                  {/* <img
                     className="h-12 w-auto"
                     // KD: changed this to the correct path (transparent logo is the same colour as the background!)
-                    src="src/assets/logos/talent_forge_logo.jpg"
+                    src="src/assets/logos/whitetransplogo.png"
                     alt="Talent Forge Logo"
                   /> */}
                 </div>
@@ -72,11 +70,7 @@ export default function navBar() {
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="./src/assets/logos/profile-pic.jpg"
-                        alt=""
-                      />
+                      <img className="h-10 w-10 rounded-full" src="./src/assets/logos/profile-pic.jpg" alt="" />
                     </Menu.Button>
                   </div>
                   <Transition
