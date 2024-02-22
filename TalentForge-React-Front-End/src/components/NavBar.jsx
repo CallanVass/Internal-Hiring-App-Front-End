@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "Home", href: "/home", current: true },
-  { name: "Company Network", href: "/network", current: false },
+  { name: "Company Network", href: "/user-search", current: false },
   { name: "Opportunities", href: "/opportunities", current: false },
   { name: "Training", href: "#", current: false },
   { name: "Events", href: "#", current: false },
@@ -40,7 +40,8 @@ export default function navBar() {
                   {/* logo image
                   <img
                     className="h-12 w-auto"
-                    src="./src/assets/newtransplogo.png"
+                    // KD: changed this to the correct path (transparent logo is the same colour as the background!)
+                    src="src/assets/logos/talent_forge_logo.jpg"
                     alt="Talent Forge Logo"
                   /> */}
                 </div>
@@ -51,7 +52,7 @@ export default function navBar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? "bg-dark-green text-white" : "text-white hover:bg-washed-blue hover:text-white",
+                          item.current ? "bg-grey text-black" : "text-white hover:bg-grey hover:text-black",
                           "rounded-md px-3 py-2 text-sm font-"
                           // interact with fonts here ^^^^
                         )}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import '../assets/App.css'
+import '../assets/css/App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar'; // Import the 'NavBar' component
 import Footer from './Footer'; // Import the 'Footer' component
@@ -9,6 +9,7 @@ import Profile from './Profile'; // Import the 'Profile' component
 import Opportunities from './Opportunities'; // Import the 'Opportunities' component
 import UserSearch from './UserSearch'; // Import the 'UserSearch' component
 import Network from './Network';
+import ViewListing from './ViewListing';
 
 // This will be where components are configured before being sent to main.jsx
 
@@ -20,16 +21,23 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path='/' element={<Login />} />
-          <Route path='/home' element={<HomePage />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/network' element={<Network />} />
-          <Route path='/opportunities' element={<Opportunities />} />
-          <Route path='/user-search' element={<UserSearch />} />
-        </Routes>
-        <Footer />
+        <div className='flex flex-col min-h-screen'>
+          <NavBar />
+            <div className='flex-grow'>
+              <Routes>
+                <Route path='/' element={<Login />} />
+                <Route path='/home' element={<HomePage />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/network' element={<Network />} />
+                <Route path='/opportunities' element={<Opportunities />} />
+                <Route path='/user-search' element={<UserSearch />} />
+                {/* temp route to view page in development */}
+                <Route path='/listing-temp' element={<ViewListing />} />
+                <Route path='/listing-new' element={<ViewListing />} />
+              </Routes>
+            </div>
+          <Footer />
+        </div>
       </BrowserRouter>
     </>
   )
