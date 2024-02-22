@@ -95,13 +95,13 @@ const NewListing = () => {
                     <h2 className='text-3xl md:text-6xl lg:text-8xl font-bold'>Job Description:</h2>
                 </div>
                     <label htmlFor="job-desc-input"></label>
-                    <textarea name="job-description" id="job-desc-input" cols="30" rows="10"></textarea>
+                    <textarea name="job-description" id="job-desc-input" cols="40" rows="10"></textarea>
                 <div></div>
                 <div></div>
             </div>
 
             {/* On/Off Slider */}
-            <div className="inline-flex justify-between mx-8 md:mx-8 lg:mx-8 my-3 md:my-3 lg:my-3">
+            <div className="inline-flex items-center justify-between mx-8 md:mx-8 lg:mx-8 my-3 md:my-3 lg:my-3">
                 <label htmlFor="listing-active"
                         className="mt-px mb-0 text-lg md:text-lg lg:text-lg">
                         Active on site:
@@ -110,8 +110,8 @@ const NewListing = () => {
                     <input id="listing-active"
                             type="checkbox"
                             // colouration of on portion and off portion - duration of movement of slider
-                            className="absolute w-8 h-4 transition-colors duration-300 rounded-full appearance-none cursor-pointer peer bg-gray-700 checked:bg-green-500  peer-checked:border-gray-900 peer-checked:before:bg-blue-500"
-                            defaultChecked />
+                            className="absolute w-8 h-4 transition-colors duration-300 rounded-full appearance-none cursor-pointer peer bg-gray-500 checked:bg-green-500  peer-checked:border-gray-900 peer-checked:before:bg-blue-500"
+                             />
                     <label htmlFor="listing-active"
                             // slider marker size/colour
                             className="before:content[''] absolute top-2/4 -left-1 h-5 w-5 -translate-y-2/4 cursor-pointer rounded-full border border-blue-gray-100 bg-white shadow-md transition-all duration-300 before:absolute before:top-2/4 before:left-2/4 before:block before:h-10 before:w-10 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10 peer-checked:translate-x-full peer-checked:border-gray-900 peer-checked:before:bg-gray-900">
