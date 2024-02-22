@@ -39,6 +39,15 @@ const UserSearch = () => {
             }
         },
         {
+            name: "Sigma Ligma",
+            role: "Senior Developer",
+            department: "Information Technology",
+            aboutMe: {
+                text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                careerDevelopment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+            }
+        },
+        {
             name: "James Turner",
             role: "CEO",
             department: "Board",
@@ -72,10 +81,10 @@ const UserSearch = () => {
 
     {/* Div for second grid row */}
     <div className="flex lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
-    {/* Department Dropdown */}
+    {/* Department List */}
     <div className="w-1/2 flex flex-col justify-center items-center max-w-xl mx-auto mt-10 px-5 lg:mb-10">
-        <h2 className="text-3xl font-bold mb">Available Departments</h2>
-        <div className="flex flex-wrap gap-2 items-center space-x-0.5 max-w-xl mx-auto mt-10 px-5">
+        <h2 className="text-3xl font-bold mb text-center">Available Departments</h2>
+        <div className="flex flex-wrap gap-2 items-center justify-center space-x-0.5 max-w-xl mx-auto mt-10 px-5 ">
             {/* Enumerate over each skill, creating a span for each one. */}
             {company.departments.map((department, index) => (
                 <span key={index} className="bg-blue-500 text-white px-4 py-2 rounded-md text-sm font-medium">
