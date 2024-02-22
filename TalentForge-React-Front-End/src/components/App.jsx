@@ -33,6 +33,7 @@ function App() {
                 <Route path='/user-search' element={<UserSearch />} />
                 {/* temp route to view page in development */}
                 <Route path='/listing-temp' element={<ViewListing />} />
+                <Route path='/listing-new' element={<ViewListing />} />
               </Routes>
             </div>
           <Footer />
