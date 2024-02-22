@@ -48,8 +48,8 @@ const JobListing = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mx-auto max-w-screen-lg">
-      <div className="md:col-span-1">
-        <div className="mr-8">
+      <div className="md:col-span-1 flex flex-col justify-start items-center md:items-start">
+        <div className="w-80">
           <label htmlFor="department" className="block text-gray-700">Filter by Department:</label>
           <select id="department" value={selectedDepartment} onChange={handleDepartmentChange} className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             <option value="All">All Departments</option>
@@ -59,18 +59,19 @@ const JobListing = () => {
             {/* Add more departments as needed */}
           </select>
         </div>
-        <div className="mt-4 mr-8">
+        {/* search bar */}
+        <div className="mt-4 w-80">
           <input type="text" placeholder="Search jobs..." value={searchQuery} onChange={handleSearchChange} className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
         </div>
       </div>
-      <div className="md:col-span-2">
-        <div className="grid grid-cols-1 gap-6">
+      <div className="md:col-span-2 mb-8">
+        <div className="grid grid-cols-1 gap-6 mx-auto max-w-screen-lg"> {/* Center and limit width */}
           {filteredJobs.map(job => (
             <div key={job.id} className="bg-white overflow-hidden shadow rounded-lg">
               <div className="p-4">
                 <h2 className="text-xl text-center font-medium text-gray-900">{job.title}</h2>
                 <p className="text-base text-center">{job.department}</p>
-                <p className="text-sm  mt-2">Location: {job.location}</p>
+                <p className="text-sm mt-2">Location: {job.location}</p>
                 <p className="text-sm -2">Salary: {job.salary}</p>
                 <p className="text-sm -2">Posted Date: {job.postedDate}</p>
                 <p className="text-sm -2">Job Description: {job.jobDescription}</p>
@@ -82,6 +83,9 @@ const JobListing = () => {
       </div>
     </div>
   );
+  
+  
+  
 };
 
 export default JobListing;
