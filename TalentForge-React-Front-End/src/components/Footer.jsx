@@ -25,8 +25,8 @@ const Footer = () => {
                 </div> */}
             <div>
               {/* follow us */}
-              <h2 className="mb-6 text-sm font-medium text-white uppercase dark:text-white">Follow us</h2>
-              <ul className="text-white dark:text-gray-400 font-medium">
+              <h2 className="mb-6 text-sm font-custom text-white uppercase dark:text-white">Follow us</h2>
+              <ul className="text-white dark:text-gray-400 font-custom">
                 <li className="mb-4">
                   <a href="https://github.com/themesberg/flowbite" className="hover:underline hover:text-grey">
                     Github
@@ -41,8 +41,8 @@ const Footer = () => {
             </div>
             <div>
               {/* legal heading */}
-              <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Legal</h2>
-              <ul className="text-white dark:text-gray-400 font-medium">
+              <h2 className="mb-6 text-sm font-custom text-white uppercase dark:text-white">Legal</h2>
+              <ul className="text-white dark:text-gray-400 font-custom">
                 <li className="mb-4">
                   <a href="#" className="hover:underline hover:text-grey">
                     Privacy Policy
@@ -59,7 +59,7 @@ const Footer = () => {
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-white sm:text-center dark:text-gray-400">
+          <span className="text-sm font-custom text-white sm:text-center dark:text-gray-400">
             © 2023{" "}
             <a href="/" className="hover:underline hover:text-grey">
               TalentForge™

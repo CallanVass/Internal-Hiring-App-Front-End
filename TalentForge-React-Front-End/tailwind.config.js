@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'custom': ['Inter', 'sans-serif'],
+      },
       colors: {
         // Custom colors
         'grey': '#c1c2be', // Example primary color
