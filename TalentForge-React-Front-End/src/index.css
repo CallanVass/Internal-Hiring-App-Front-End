@@ -3,17 +3,29 @@
 @tailwind utilities;
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-    background-color: #c1c2be;
+  background-color: #c1c2be;
 }
 
 footer {
   bottom: 0;
   left: 0;
   width: 100%;
+}
+
+h2 {
+  color: black;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+p {
+  color: black;
+  font-family: "Roboto Flex", sans-serif;
+  font-weight: 300;
 }
