@@ -1,46 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Fuse from 'fuse.js'; // Import Fuse.js library
+// Import MongoDB related modules if needed
 
 const JobListing = () => {
   // Sample job data
   const [jobs, setJobs] = useState([
-    { id: 1, title: 'Software Engineer', department: 'Engineering' },
-    { id: 2, title: 'Marketing Manager', department: 'Marketing' },
-    { id: 3, title: 'HR Specialist', department: 'Human Resources' },
+    { id: 1, title: 'Software Engineer', department: 'Engineering', location: 'Location A', salary: '$100,000', postedDate: '2024-02-22', jobDescription: 'We are looking for a software engineer to join our team.'},
+    { id: 2, title: 'Marketing Manager', department: 'Marketing', location: 'Location B', salary: '$80,000', postedDate: '2024-02-21', jobDescription: 'We are looking for a marketing manager to join our team.'},
+    { id: 3, title: 'HR Specialist', department: 'Human Resources', location: 'Location C', salary: '$70,000', postedDate: '2024-02-20', jobDescription: 'We are looking for an HR specialist to join our team.'},
     // Add more sample job data as needed
   ]);
 
   const [selectedDepartment, setSelectedDepartment] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [filteredJobs, setFilteredJobs] = useState([...jobs]); // State for filtered jobs
 
   // Function to handle department selection
   const handleDepartmentChange = (event) => {
     setSelectedDepartment(event.target.value);
   };
 
-  // Define Fuse options for searching
-  const fuseOptions = {
-    keys: ['title', 'department'], // Search in 'title' and 'department' fields
-    includeScore: true,
-  };
-
-  // Create a new instance of Fuse with the job data and options
-  const fuse = new Fuse(jobs, fuseOptions);
-
   // Function to handle search input change
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
 
-  // Filter jobs based on selected department and search query
-  let filteredJobs = [...jobs];
-  if (selectedDepartment !== 'All') {
-    filteredJobs = filteredJobs.filter(job => job.department === selectedDepartment);
-  }
-  if (searchQuery.trim() !== '') {
-    const searchResult = fuse.search(searchQuery.trim());
-    filteredJobs = searchResult.map(result => result.item);
-  }
+  // Effect to update filtered jobs when searchQuery or selectedDepartment changes
+  useEffect(() => {
+    let newFilteredJobs = [...jobs];
+
+    if (selectedDepartment !== 'All') {
+      newFilteredJobs = newFilteredJobs.filter(job => job.department === selectedDepartment);
+    }
+
+    if (searchQuery.trim() !== '') {
+      const fuseOptions = {
+        keys: ['title', 'department'], // Search in 'title' and 'department' fields
+        includeScore: true,
+      };
+      const fuse = new Fuse(newFilteredJobs, fuseOptions);
+      const searchResult = fuse.search(searchQuery.trim());
+      newFilteredJobs = searchResult.map(result => result.item);
+    }
+
+    setFilteredJobs(newFilteredJobs);
+  }, [searchQuery, selectedDepartment, jobs]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mx-auto max-w-screen-lg">
@@ -60,21 +64,21 @@ const JobListing = () => {
         </div>
       </div>
       <div className="md:col-span-2">
-      <div className="grid grid-cols-1 gap-6">
-  {filteredJobs.map(job => (
-    <div key={job.id} className="bg-white overflow-hidden shadow rounded-lg">
-      <div className="p-4">
-        <h2 className="text-xl text-center font-medium text-gray-900">{job.title}</h2>
-        <p className="text-base text-center text-gray-500">{job.department}</p>
-        <p className="text-sm text-gray-600 mt-2">Location: {job.location}</p>
-        <p className="text-sm text-gray-600 mt-2">Salary: {job.salary}</p>
-        <p className="text-sm text-gray-600 mt-2">Posted Date: {job.postedDate}</p>
-        {/* Add more job details as needed */}
-      </div>
-    </div>
-  ))}
-</div>
-
+        <div className="grid grid-cols-1 gap-6">
+          {filteredJobs.map(job => (
+            <div key={job.id} className="bg-white overflow-hidden shadow rounded-lg">
+              <div className="p-4">
+                <h2 className="text-xl text-center font-medium text-gray-900">{job.title}</h2>
+                <p className="text-base text-center">{job.department}</p>
+                <p className="text-sm  mt-2">Location: {job.location}</p>
+                <p className="text-sm -2">Salary: {job.salary}</p>
+                <p className="text-sm -2">Posted Date: {job.postedDate}</p>
+                <p className="text-sm -2">Job Description: {job.jobDescription}</p>
+                {/* Add more job details as needed */}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
