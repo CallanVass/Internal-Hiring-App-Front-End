@@ -51,20 +51,27 @@ const UserSearch = () => {
 
   return (
     <>
-    {/* Heading / Company Name */}
-    <div className="flex flex-col sm:items-center sm:justify-center items-center max-w-lg mx-auto mt-10 px-5
-        md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 
-        lg:max-w-xl lg:mt-10 lg:px-5 lg:mx-auto ">
-        <h2 className="text-6xl font-bold mb-2">{company.name}</h2>
-    </div>
+    {/* Div for grid effect */}
+    <div className="max-w-7xl mx-auto mt-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
+        {/* Div for first grid row */}
+        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+            {/* Heading / Company Name */}
+            <div className="flex flex-col sm:items-center sm:justify-center items-center max-w-lg mx-auto mt-10 px-5
+                md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 
+                lg:max-w-xl lg:mt-10 lg:px-5 lg:mx-auto ">
+                <h2 className="text-6xl font-bold mb-2">{company.name}</h2>
+            </div>
 
-    {/* Divider */}
-    <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md lg:hidden"/>
-    
-    <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5 lg:mb-10">
-        <p className="text-center">{company.description}</p>
-    </div>
+            {/* Divider */}
+            <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md lg:hidden"/>
+            
+            <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5 lg:mb-10">
+                <p className="text-center">{company.description}</p>
+            </div>
+        </div>
 
+    {/* Div for second grid row */}
+    <div className="flex lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
     {/* Department Dropdown */}
     <div className="w-1/2 flex flex-col justify-center items-center max-w-xl mx-auto mt-10 px-5 lg:mb-10">
         <h2 className="text-3xl font-bold mb">Available Departments</h2>
@@ -77,12 +84,17 @@ const UserSearch = () => {
             ))}
                 </div>
     </div>
+    </div>
 
     {/* Search Bar */}
     <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-6 px-5 lg:mb-10">
-    <SearchBar users={users}></SearchBar>
+        <p className="mb-1">Search Users</p>
+        <SearchBar users={users}></SearchBar>
     </div>
 
+    {/* End of grid encapuslation div */}
+    </div>
+    
   </>
   )
 }

@@ -314,7 +314,7 @@ const Profile = () => {
         </div>
         {/* END OF THIRD COLUMN DIV */}
         </div>
-        {/* End of div encapsulating/creating griod effect */}
+        {/* End of div encapsulating/creating grid effect */}
         </div>
             </>
         
