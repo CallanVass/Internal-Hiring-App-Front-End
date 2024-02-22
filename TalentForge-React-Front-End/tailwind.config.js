@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+const path = require('path');
+
 export default {
+
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -28,5 +31,8 @@ export default {
       }
     }
   },
-  plugins: [],
-}
+    plugins: [
+      path.join(path.dirname(require.resolve('@tailwindcss/forms')), '**/*.js'),
+    ],
+  }
+

@@ -8,12 +8,15 @@ const NewListing = () => {
         <div className='flex justify-center pt-4 lg:pt-10 lg:pb-4'>
             <h1 className='text-4xl md:text-6xl lg:text-8xl font-bold'>Create new listing</h1>
         </div>
-        {/* Form */}
+        {/* Form
+        <input type="date" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+
+        */}
             <div className='py-2 md:py-2 lg:py-2'>
                 <form className='text-lg md:text-lg lg:text-lg'>
                     <div className='py-3 md:py-6 lg:py-6'>
                         <label htmlFor="role-input">Role: </label>
-                        <input type="text" id="role-input" name="role" />
+                        <input type="text" id="role-input" name="role" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
                     </div>
                     <div className='py-3 md:py-6 lg:py-6'>
                         <label htmlFor="dept-input">Department: </label>
@@ -21,7 +24,7 @@ const NewListing = () => {
                     </div>
                     <div className='py-3 md:py-6 lg:py-6'>
                         <label htmlFor="closing-date-input">Closing Date: </label>
-                        <input type="date" id="closing-date-input" name="closing-date" />
+                        <input type="date" id="closing-date-input" name="closing-date" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                     </div>
                 </form>
             </div>
@@ -83,7 +86,7 @@ const NewListing = () => {
                             <input type="radio" id="hybrid-input" name="location" />
 
                             <label htmlFor="other-input">Other: </label>
-                            <input type="radio" id="other-input" name="location" />
+                            <input type="radio" id="other-input" name="location" className='' />
                         </div>
                     </fieldset>
                 </form>
