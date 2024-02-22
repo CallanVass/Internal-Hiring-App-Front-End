@@ -60,17 +60,21 @@ const JobListing = () => {
         </div>
       </div>
       <div className="md:col-span-2">
-        <div className="grid grid-cols-1 gap-6">
-          {filteredJobs.map(job => (
-            <div key={job.id} className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-4">
-                <h2 className="text-xl text-center font-medium text-gray-900">{job.title}</h2>
-                <p className="text-base text-center text-gray-500">{job.department}</p>
-                {/* Add more job details as needed */}
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 gap-6">
+  {filteredJobs.map(job => (
+    <div key={job.id} className="bg-white overflow-hidden shadow rounded-lg">
+      <div className="p-4">
+        <h2 className="text-xl text-center font-medium text-gray-900">{job.title}</h2>
+        <p className="text-base text-center text-gray-500">{job.department}</p>
+        <p className="text-sm text-gray-600 mt-2">Location: {job.location}</p>
+        <p className="text-sm text-gray-600 mt-2">Salary: {job.salary}</p>
+        <p className="text-sm text-gray-600 mt-2">Posted Date: {job.postedDate}</p>
+        {/* Add more job details as needed */}
+      </div>
+    </div>
+  ))}
+</div>
+
       </div>
     </div>
   );

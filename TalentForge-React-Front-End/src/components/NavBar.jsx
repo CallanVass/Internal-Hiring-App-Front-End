@@ -37,13 +37,13 @@ export default function navBar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center justify-center">
-                  {/* logo image */}
+                  {/* logo image
                   <img
                     className="h-12 w-auto"
                     // KD: changed this to the correct path (transparent logo is the same colour as the background!)
                     src="src/assets/logos/talent_forge_logo.jpg"
                     alt="Talent Forge Logo"
-                  />
+                  /> */}
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4 justify-center">
