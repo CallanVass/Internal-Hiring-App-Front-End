@@ -54,7 +54,7 @@ const handleSearch = (e) => {
                     {/* DATABASE PROFILE PICTURE GOES HERE */}
                     <img href=""></img>
                     {/* Linking profile */}
-                    <a href="http://localhost:5173/profile">
+                    <a href="http://localhost:5173/profile-page">
                     <span className="block text-center mb-3 text-2xl">{result.item.name}</span>
                     <span className="block text-center mb-3 text-l">{result.item.role}, {result.item.department}</span>
                     <div className="m-5">{result.item.aboutMe.text}</div></a>
