@@ -67,7 +67,7 @@ const Footer = () => {
             . All Rights Reserved.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
-            <a href="#" className="text-white hover:text-grey dark:hover:text-white">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white" aria-label="Facebook page">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -83,7 +83,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Facebook page</span>
             </a>
-            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5" aria-label="Discord Page">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -95,7 +95,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Discord community</span>
             </a>
-            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5" aria-label="Twitter Profile">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
@@ -111,7 +111,7 @@ const Footer = () => {
               </svg>
               <span className="sr-only">Twitter page</span>
             </a>
-            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5">
+            <a href="#" className="text-white hover:text-grey dark:hover:text-white ms-5" aria-label="Github Page">
               <svg
                 className="w-4 h-4"
                 aria-hidden="true"
