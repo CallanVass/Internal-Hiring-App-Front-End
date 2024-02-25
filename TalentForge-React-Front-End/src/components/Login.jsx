@@ -44,7 +44,14 @@ const Login = () => {
             alert("Please enter an email and password");
         }
 
+
+      // else:
+      // If username and password do not match, alert user
+    } else {
+      e.preventDefault();
+      alert("Please enter a username and password");
     }
+
 
     return (
         <>
@@ -77,6 +84,8 @@ const Login = () => {
             <p>department to be set up</p>
           </div>
         </>
+
       );
     };
+
 export default Login;
