@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom"
 import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 import { createMemoryHistory } from 'history'
-import { MemoryRouter as Router, Route } from 'react-router-dom';
+import { MemoryRouter as Router } from 'react-router-dom';
 import { describe, expect, it, beforeEach, test } from "vitest"
 import Footer from "../components/Footer"
 
