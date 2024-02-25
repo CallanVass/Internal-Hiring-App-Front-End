@@ -1,4 +1,4 @@
-import { describe, expect, it, beforeEach, test } from "vitest"
+import { describe, expect, it, beforeEach } from "vitest"
 import { render, screen } from "@testing-library/react";
 import HomePage from "../components/HomePage";
 import '@testing-library/jest-dom';
