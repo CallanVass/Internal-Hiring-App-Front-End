@@ -30,27 +30,24 @@ const Login = () => {
                 },
                 body: JSON.stringify(loginCredentials)
             });
-            const response = await res.json() // This will be the token
+            const response = await res.json() // This is token or server response
             // If token is present in the response, redirect to homepage
             if (response.token) {
-                nav(`/home`)
+                nav(`/home`) // Add token to local storage??
             } else {
-                // navigate to error page...
-                console.log(response)
+                // Obtain status code from server response
+                // Display message on login screen 'email or password is incorrect'
+
+                console.log({"Server response code": await res.statusCode})
             }
 
         } else {
+            // Alert is shown if username or password is not entered
             e.preventDefault();
             alert("Please enter an email and password");
         }
-
-
-      // else:
-      // If username and password do not match, alert user
-    } else {
-      e.preventDefault();
-      alert("Please enter a username and password");
     }
+
 
 
     return (
