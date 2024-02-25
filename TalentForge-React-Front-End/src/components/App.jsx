@@ -8,7 +8,6 @@ import HomePage from './HomePage'; // Import the 'HomePage' component
 import Profile from './Profile'; // Import the 'Profile' component
 import Opportunities from './Opportunities'; // Import the 'Opportunities' component
 import UserSearch from './UserSearch'; // Import the 'UserSearch' component
-import Network from './Network';
 import ViewListing from './ViewListing';
 import NewListing from './NewListing'; // Import the 'NewListing' component
 
@@ -30,7 +29,7 @@ function App() {
                             <Route path='/' element={<Login />} />
                             <Route path='/home' element={<HomePage />} />
                             <Route path='/profile' element={<Profile />} />
-                            <Route path='/network' element={<Network />} />
+                            {/* <Route path='/network' element={<Network />} /> */}
                             <Route path='/opportunities' element={<Opportunities />} />
                             <Route path='/user-search' element={<UserSearch />} />
                             {/* temp route to view page in development */}
