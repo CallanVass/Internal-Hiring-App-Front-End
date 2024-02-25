@@ -37,7 +37,6 @@ const Login = () => {
 
     return (
         <>
-<h3>Hello, World</h3>
             <div className="flex-col text-center">
 
                 <img className="m-2 inline" src="src/assets/logos/talent_forge_logo.jpg" alt="talent forge logo" width="200" height="200"/>

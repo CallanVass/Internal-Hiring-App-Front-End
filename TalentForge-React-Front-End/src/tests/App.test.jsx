@@ -14,8 +14,7 @@ describe('Login Component', () => {
     })
 
     it('renders the Home component', () => {
-        expect(container.querySelector('h3')).toHaveTextContent('Hello, World')
-
+        expect(container.querySelector('div')).toBeInTheDocument()
         expect(container.querySelector('form')).toBeInTheDocument()
         expect(container.querySelector('form')).toHaveTextContent('Username: ')
         expect(container.querySelector('form')).toHaveTextContent('Password: ')
