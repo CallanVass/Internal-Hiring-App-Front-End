@@ -33,6 +33,9 @@ const Login = () => {
             const response = await res.json() // This is token or server response
             // If token is present in the response, redirect to homepage
             if (response.token) {
+                // Store the token in sessionStorage
+                sessionStorage.setItem('token', response.token)
+
                 nav(`/home`) // Add token to local storage??
             } else {
                 // Obtain status code from server response
