@@ -32,6 +32,8 @@ function App() {
                             {/* <Route path='/network' element={<Network />} /> */}
                             <Route path='/opportunities' element={<Opportunities />} />
                             <Route path='/user-search' element={<UserSearch />} />
+                            <Route path='*' element={<h3>Page not found</h3>}/>
+
                             {/* temp route to view page in development */}
                             <Route path='/listing-temp' element={<ViewListing />} />
                             <Route path='/listing-new' element={<NewListing />} />
