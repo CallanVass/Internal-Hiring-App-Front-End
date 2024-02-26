@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
 const Profile = () => {
   // Skills Dummy Data
@@ -124,13 +124,13 @@ const Profile = () => {
                     maxLength="30"
                     placeholder="(30 characters max)"
                     type="text"
-                    value={profileData.name}
+                    value={editableProfile.name}
                     onChange={(e) => handleInputChange(e, "name")}
                     className="text-input-class"
                   />
                 </div>
               ) : (
-                <h2 className="text-3xl font-bold mb-2">{}</h2>
+                <h2 className="text-3xl font-bold mb-2">{editableProfile.name}</h2>
               )}
 
               {/* Edit Role */}
