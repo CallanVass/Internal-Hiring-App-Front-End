@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Fuse from 'fuse.js'
 
 // Recieve users props to SearchBar from UserSearch
@@ -9,33 +9,31 @@ const [query, setQuery] = useState('')
 // Set result state to empty list
 const [results, setResults] = useState([])
 
-// Create Fuse object, including keys for items that can be found
-const fuse = new Fuse(users, {
-    keys: [
-        "department",
-        "name",
-        "role",
-        "aboutMe.text",
-        "aboutMe.careerDevelopment"
-    ],
-    includeScore: true,
-})
+// Create Fuse object
+useEffect(() => {
+    const fuse = new Fuse(users, {
+        // Item keys to be rendered later
+        keys: [
+            "department",
+            "lastName",
+            "firstName",
+            "role",
+            "aboutMe"
+        ],
+        includeScore: true,
+    });
 
-// handleSearch function
-const handleSearch = (e) => {
-    // Set state to typed value
-    setQuery(e.target.value)
-    // If value > 2
-    if (e.target.value.length > 2) {
-      // Create result variable from typed variable
-      const result = fuse.search(e.target.value)
-      // Rerender component with result variable
-      setResults(result)
-    } else {
-      // Else set results to empty list
-      setResults([])
+    // Perform search if query is already present
+    if (query.length > 2) {
+        const result = fuse.search(query)
+        setResults(result)
     }
-  }
+}, [users, query]) // Depend on users and query so Fuse updates as needed
+
+const handleSearch = (e) => {
+    const value = e.target.value
+    setQuery(value)
+}
 
   return (
     <div>
@@ -55,9 +53,9 @@ const handleSearch = (e) => {
                     <img href=""></img>
                     {/* Linking profile */}
                     <a href="http://localhost:5173/profile-page">
-                    <span className="block text-center mb-3 text-2xl">{result.item.name}</span>
+                    <span className="block text-center mb-3 text-2xl">{result.item.firstName + " " + result.item.lastName}</span>
                     <span className="block text-center mb-3 text-l">{result.item.role}, {result.item.department}</span>
-                    <div className="m-5">{result.item.aboutMe.text}</div></a>
+                    <div className="m-5">{result.item.aboutMe}</div></a>
                 </div>
             ))}
         </div>
