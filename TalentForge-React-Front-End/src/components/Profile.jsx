@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"
 
 const Profile = () => {
   // Skills Dummy Data
@@ -14,14 +14,14 @@ const Profile = () => {
       text: "About Me placeholder text",
       careerDevelopment: "Career Development placeholder text",
     },
-  };
+  }
   // Checkboxes Dummy Data
   const statuses = [
     "Looking for a new job!",
     "Happy where I am!",
     "Might be willing to move!",
     "Unsure how I feel about it!",
-  ];
+  ]
 
   // Applications Dummy Data
 
@@ -46,35 +46,35 @@ const Profile = () => {
       jobSalary: "52,000",
       jobDescription: "Sorry about that one.",
     },
-  };
+  }
 
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false)
 
-  const [profileImage, setProfileImage] = useState("path-to-your-image.jpg");
+  const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
 
-  const [skills, setSkills] = useState(["Edit Profile to add skills!"]);
+  const [skills, setSkills] = useState(["Edit Profile to add skills!"])
 
-  const [newSkill, setNewSkill] = useState("");
+  const [newSkill, setNewSkill] = useState("")
 
   const addSkill = () => {
     if (newSkill) {
-      setSkills([...skills, newSkill]);
-      setNewSkill(""); // Clear input after adding
+      setSkills([...skills, newSkill])
+      setNewSkill("") // Clear input after adding
     }
-  };
+  }
 
   const removeSkill = (indexToRemove) => {
-    setSkills(skills.filter((_, index) => index !== indexToRemove));
-  };
+    setSkills(skills.filter((_, index) => index !== indexToRemove))
+  }
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file) {
       // Create a URL for the new image file
-      const imageUrl = URL.createObjectURL(file);
-      setProfileImage(imageUrl);
+      const imageUrl = URL.createObjectURL(file)
+      setProfileImage(imageUrl)
     }
-  };
+  }
 
   const [editableProfile, setEditableProfile] = useState({
     name: profileAdam.name,
@@ -82,13 +82,13 @@ const Profile = () => {
     department: profileAdam.department,
     aboutMe: profileAdam.aboutMe.text,
     careerDevelopment: profileAdam.aboutMe.careerDevelopment,
-  });
+  })
 
-  const toggleEditMode = () => setIsEditMode(!isEditMode);
+  const toggleEditMode = () => setIsEditMode(!isEditMode)
 
   const handleInputChange = (e, field) => {
-    setEditableProfile({ ...editableProfile, [field]: e.target.value });
-  };
+    setEditableProfile({ ...editableProfile, [field]: e.target.value })
+  }
 
   return (
     <>
@@ -124,13 +124,13 @@ const Profile = () => {
                     maxLength="30"
                     placeholder="(30 characters max)"
                     type="text"
-                    value={editableProfile.name}
+                    value={profileData.name}
                     onChange={(e) => handleInputChange(e, "name")}
                     className="text-input-class"
                   />
                 </div>
               ) : (
-                <h2 className="text-3xl font-bold mb-2">{editableProfile.name}</h2>
+                <h2 className="text-3xl font-bold mb-2">{}</h2>
               )}
 
               {/* Edit Role */}
@@ -318,7 +318,7 @@ const Profile = () => {
         {/* End of div encapsulating/creating grid effect */}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile
