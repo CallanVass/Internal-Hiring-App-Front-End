@@ -95,7 +95,7 @@ const Profile = () => {
       {/* Div encapsulating/creating grid effect */}
       <div className="max-w-7xl mx-auto mt-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
         {/* Div for first grid row */}
-        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+        <div className="flex justify-center items-center flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
           {/* First Column: Profile Image, Role, & Department */}
           <div
             className="flex flex-col sm:items-center sm:justify-center items-center max-w-lg mx-auto mt-10 px-5
@@ -106,19 +106,18 @@ const Profile = () => {
             {isEditMode ? (
               <div>
                 {" "}
-                <p className="text-xs">Click To Select Image</p>
                 <label htmlFor="image-upload" className="cursor-pointer">
-                  <img src={profileImage} alt="Profile" className="w-3/3" />
+                  <img src={profileImage} alt="Click to upload image" className="w-3/3 mb-3" />
                 </label>
                 <input id="image-upload" type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
               </div>
             ) : (
               <img src={profileImage} alt="Profile Picture" className="w-28 sm:w-48 md:w-64 lg:w-96" />
             )}
-            <div className="flex-1">
+            <div className="flex-1 ">
               {/* Edit Name */}
               {isEditMode ? (
-                <div className="flex items-center">
+                <div className="flex items-center mb-4">
                   <div className="mr-2">Name:</div>
                   <input
                     maxLength="30"
@@ -126,7 +125,7 @@ const Profile = () => {
                     type="text"
                     value={editableProfile.name}
                     onChange={(e) => handleInputChange(e, "name")}
-                    className="text-input-class"
+                    className="text-input-class border border-gray-300"
                   />
                 </div>
               ) : (
@@ -135,7 +134,7 @@ const Profile = () => {
 
               {/* Edit Role */}
               {isEditMode ? (
-                <div className="flex items-center">
+                <div className="flex items-center mb-4">
                   <div className="mr-2">Role:</div>
                   <input
                     type="text"
@@ -143,7 +142,7 @@ const Profile = () => {
                     placeholder="(20 character max)"
                     value={editableProfile.role}
                     onChange={(e) => handleInputChange(e, "role")}
-                    className="text-input-class flex-1"
+                    className="text-input-class flex-1 border border-gray-300"
                   />
                 </div>
               ) : (
@@ -152,7 +151,7 @@ const Profile = () => {
 
               {/* Edit Department */}
               {isEditMode ? (
-                <div className="flex items-center">
+                <div className="flex items-center mb-4">
                   <div className="mr-2">Department: </div>
                   <input
                     type="text"
@@ -160,7 +159,7 @@ const Profile = () => {
                     placeholder="(25 character max)"
                     value={editableProfile.department}
                     onChange={(e) => handleInputChange(e, "department")}
-                    className="text-input-class"
+                    className="text-input-class border border-gray-300"
                   />
                 </div>
               ) : (
@@ -257,7 +256,7 @@ const Profile = () => {
                     value={status}
                     checked={editableProfile.status === status}
                     onChange={(e) => handleInputChange(e, "status")}
-                    className="form-radio h-5 w-5 text-blue-600"
+                    className="form-radio h-5 w-5 text-black"
                   />
                   <span>{status}</span>
                 </label>
@@ -272,18 +271,18 @@ const Profile = () => {
 
           {/* Career Development Description */}
           {isEditMode ? (
-            <div className="flex flex-col max-w-lg mx-auto mt-10 px-5">
-              <label htmlFor="aboutMe" className="text-center mb-3 text-xl">
-                Career Development:
-              </label>
-              <textarea
-                maxLength="220"
-                placeholder="(220 character max)"
-                value={editableProfile.careerDevelopment}
-                onChange={(e) => handleInputChange(e, "careerDevelopment")}
-                className="text-input-class w-full h-32 p-2 border rounded-md" // Tailwind classes to adjust width and height
-              />
-            </div>
+           <div className="flex flex-col max-w-lg mx-auto mt-10 px-5">
+           <label htmlFor="aboutMe" className="text-center mb-3 text-xl font-bold">
+               Career Development:
+           </label>
+           <textarea
+               maxLength="220"
+               placeholder="(220 character max)"
+               value={editableProfile.careerDevelopment}
+               onChange={(e) => handleInputChange(e, "careerDevelopment")}
+               className="text-input-class w-full h-32 p-2 border rounded-md" // Tailwind classes to adjust width and height
+           />
+       </div>
           ) : (
             <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
               <h2 className="text-center mb-3 text-xl">Career Development</h2>
@@ -293,25 +292,25 @@ const Profile = () => {
           {/* END OF SECOND COLUMN DIV */}
         </div>
         {/* Div for third grid row */}
-        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 mb-10 px-5 bg-white">
+        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 mb-10 px-5 ">
           {/* List of Applications */}
-          <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5 bg-white">
+          <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5 ">
             {Object.entries(applications).map(([key, value]) => (
-              <div key={key} className="bg-washed-blue text-white p-4 rounded-lg shadow-md">
-                <a className="text-lg font-semibold" href="">
+              <div key={key} className="bg-washed-blue text-white p-4 rounded-lg shadow-md border border-gray-300">
+              <a className="text-lg font-semibold" href="">
                   {value.jobName}
-                </a>
-                <p className="text-sm">Salary: ${value.jobSalary}</p>
-                <p className="text-sm">{value.jobDescription}</p>
-              </div>
+              </a>
+              <p className="text-sm">Salary: ${value.jobSalary}</p>
+              <p className="text-sm">{value.jobDescription}</p>
+          </div>
             ))}
           </div>
 
           {/* Edit Button */}
           <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
-            <button onClick={toggleEditMode} className="bg-washed-blue text-white p-4 rounded-lg shadow-md">
-              {isEditMode ? "Save Changes" : "Edit Profile"}
-            </button>
+          <button onClick={toggleEditMode} className="bg-washed-blue text-white p-4 rounded-lg shadow-md hover:bg-dark-blue">
+    {isEditMode ? "Save Changes" : "Edit Profile"}
+</button>
           </div>
           {/* END OF THIRD COLUMN DIV */}
         </div>
