@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/Login.css';
+import { AuthContext } from "./AuthProvider";
 
 
 
 const Login = () => {
     const [username, setUsername] = useState(""); // Note: username is an email
     const [password, setPassword] = useState("");
+    const { token, login, logout } = useContext(AuthContext)
 
     const nav = useNavigate();
 
@@ -34,7 +36,8 @@ const Login = () => {
             // If token is present in the response, redirect to homepage
             if (response.token) {
                 // Store the token in sessionStorage
-                sessionStorage.setItem('token', response.token)
+                // sessionStorage.setItem('token', response.token)
+                login(response.token)
 
                 nav(`/home`) // Add token to local storage??
             } else {

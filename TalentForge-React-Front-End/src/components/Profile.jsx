@@ -1,6 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { AuthContext } from "./AuthProvider"
 
-const Profile = () => {
+
+
+const Profile =  () => {
+  const {token, login, logout} = useContext(AuthContext)
+
+  console.log(token)
   // Skills Dummy Data
   // const skills = [
   //     "Speech", "Excel", "Microsoft Office", "Admin", "Coding"
@@ -99,7 +105,7 @@ const Profile = () => {
           {/* First Column: Profile Image, Role, & Department */}
           <div
             className="flex flex-col sm:items-center sm:justify-center items-center max-w-lg mx-auto mt-10 px-5
-        md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 
+        md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5
         lg:max-w-xl lg:mx-0 lg:mt-10 lg:px-5 "
           >
             {/* Edit Profile Picture */}
