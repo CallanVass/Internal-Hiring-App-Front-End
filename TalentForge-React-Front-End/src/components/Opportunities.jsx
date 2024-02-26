@@ -3,6 +3,16 @@ import Fuse from "fuse.js"; // Import Fuse.js library
 // Import MongoDB related modules if needed
 
 const JobListing = () => {
+  const [listings, setListings] = useState([])
+
+  useEffect (() => {
+    fetch('http://localhost:8003/listings')
+    .then(res => res.json())
+    .then (data => setListings(data))
+  }, [])
+
+
+
   // Sample job data
   const [jobs, setJobs] = useState([
     {
@@ -37,7 +47,7 @@ const JobListing = () => {
 
   const [selectedDepartment, setSelectedDepartment] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredJobs, setFilteredJobs] = useState([...jobs]); // State for filtered jobs
+  const [filteredListings, setFilteredListings] = useState([...listings]); // State for filtered listings
 
   // Function to handle department selection
   const handleDepartmentChange = (event) => {
@@ -49,12 +59,12 @@ const JobListing = () => {
     setSearchQuery(event.target.value);
   };
 
-  // Effect to update filtered jobs when searchQuery or selectedDepartment changes
+  // Effect to update filtered listings when searchQuery or selectedDepartment changes
   useEffect(() => {
-    let newFilteredJobs = [...jobs];
+    let newFilteredListings = [...listings];
 
     if (selectedDepartment !== "All") {
-      newFilteredJobs = newFilteredJobs.filter((job) => job.department === selectedDepartment);
+      newFilteredListings = newFilteredListings.filter((listing) => listing.department === selectedDepartment);
     }
 
     if (searchQuery.trim() !== "") {
@@ -62,13 +72,13 @@ const JobListing = () => {
         keys: ["title", "department"], // Search in 'title' and 'department' fields
         includeScore: true,
       };
-      const fuse = new Fuse(newFilteredJobs, fuseOptions);
+      const fuse = new Fuse(newFilteredListings, fuseOptions);
       const searchResult = fuse.search(searchQuery.trim());
-      newFilteredJobs = searchResult.map((result) => result.item);
+      newFilteredListings = searchResult.map((result) => result.item);
     }
 
-    setFilteredJobs(newFilteredJobs);
-  }, [searchQuery, selectedDepartment, jobs]);
+    setFilteredListings(newFilteredListings);
+  }, [searchQuery, selectedDepartment, listings]);
 
   return (
     <div className="mx-auto max-w-screen-lg">
@@ -106,15 +116,16 @@ const JobListing = () => {
         </div>
         <div className="md:col-span-2 mb-8">
           <div className="grid grid-cols-1 gap-6">
-            {filteredJobs.map((job) => (
-              <div key={job.id} className="bg-white overflow-hidden shadow rounded-lg">
+            {filteredListings.map((listings) => (
+              <div key={listings.id} className="bg-white overflow-hidden shadow rounded-lg">
                 <div className="p-4">
-                  <h2 className="text-xl text-center font-medium text-gray-900">{job.title}</h2>
-                  <p className="text-base text-center">{job.department}</p>
-                  <p className="text-base mt-2">Location: {job.location}</p>
-                  <p className="text-base -2">Salary: {job.salary}</p>
-                  <p className="text-base -2">Posted Date: {job.postedDate}</p>
-                  <p className="text-base -2">Job Description: {job.jobDescription}</p>
+                  <h2 className="text-xl text-center font-medium text-gray-900">{listings.title}</h2>
+                  <p className="text-base text-center">{listings.department}</p>
+                  <p className="text-base mt-2">{listings.roleType}</p>
+                  <p className="text-base mt-2">{listings.location}</p>
+                  <p className="text-base mt-2">Salary: {`$${listings.salary}`}</p>   {/* Look at currency formatting: $100,000*/}
+                  <p className="text-base mt-2">Posted Date: {listings.datePosted}</p> {/* Date/time formatting */}
+                  <p className="text-base mt-2">Job Description: {listings.description.text}</p>
                   <div className="flex justify-center">
                     <button className="bg-dark-blue hover:bg-washed-blue text-white font-bold py-2 px-4 rounded mt-4">
                       Apply Now
