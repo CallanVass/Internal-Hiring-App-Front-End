@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import '../assets/css/App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar'; // Import the 'NavBar' component
@@ -10,14 +10,35 @@ import Opportunities from './Opportunities'; // Import the 'Opportunities' compo
 import UserSearch from './UserSearch'; // Import the 'UserSearch' component
 import ViewListing from './ViewListing';
 import NewListing from './NewListing'; // Import the 'NewListing' component
-
+import { AuthContext, AuthProvider } from './AuthProvider'
 
 // This will be where components are configured before being sent to main.jsx
 
 
-function App() {
+const App = () => {
   // eslint-disable-next-line no-unused-vars
   const [count, setCount] = useState(0)
+  // const { token, login, logout } = useContext(AuthContext)
+  const token = useContext(AuthContext)
+  console.log(token)
+
+
+
+  function ProfileWrapper() {
+    if (token) {
+      console.log(token)
+      try {
+        const payload = token.split('.')[1]
+      const decodedPayload = atob(payload)
+      const user = JSON.parse(decodedPayload)
+      console.log(user._id)
+      return <AuthProvider value={{token: token}}><Profile id={user._id} /></AuthProvider>
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 
   return (
     <>
@@ -26,9 +47,9 @@ function App() {
           <NavBar />
                         <div className='flex-grow'>
                           <Routes>
-                            <Route path='/' element={<Login />} />
-                            <Route path='/home' element={<HomePage />} />
-                            <Route path='/profile' element={<Profile />} />
+                            <Route path='/' element={<AuthProvider><Login /></AuthProvider>} />
+                            <Route path='/home' element={<AuthProvider value={{token: token}}><HomePage /></AuthProvider>} />
+                            <Route path='/profile/:id' element={<ProfileWrapper />} />
                             {/* <Route path='/network' element={<Network />} /> */}
                             <Route path='/opportunities' element={<Opportunities />} />
                             <Route path='/user-search' element={<UserSearch />} />
