@@ -1,7 +1,6 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import Profile from "../components/Profile";
-import { act } from "react-dom/test-utils";
-import { test, describe, expect, it, beforeEach } from "vitest";
+import {  describe, expect, it } from "vitest";
 
 describe("Profile Component", () => {
   it("should render without crashing", () => {

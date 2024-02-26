@@ -1,7 +1,7 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import SearchBar from "../components/SearchBar";
 import { act } from "react-dom/test-utils";
-import { test, describe, expect, it, beforeEach } from "vitest";
+import { describe, expect, it } from "vitest";
 
 describe("SearchBar Component", () => {
   const mockUsers = [

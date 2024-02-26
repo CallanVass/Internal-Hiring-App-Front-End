@@ -1,6 +1,6 @@
 import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import UserSearch from "../components/UserSearch";
-import { test, describe, expect, it, beforeEach } from "vitest";
+import { test, describe, expect, beforeEach } from "vitest";
 
 describe("UserSearch Component", () => {
   beforeEach(() => {
