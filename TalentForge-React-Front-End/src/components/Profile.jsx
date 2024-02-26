@@ -293,11 +293,11 @@ const Profile = () => {
           {/* END OF SECOND COLUMN DIV */}
         </div>
         {/* Div for third grid row */}
-        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 mb-10 px-5 bg-white">
           {/* List of Applications */}
-          <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5">
+          <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5 bg-white">
             {Object.entries(applications).map(([key, value]) => (
-              <div key={key} className="bg-blue-500 text-white p-4 rounded-lg shadow-md">
+              <div key={key} className="bg-washed-blue text-white p-4 rounded-lg shadow-md">
                 <a className="text-lg font-semibold" href="">
                   {value.jobName}
                 </a>
@@ -309,7 +309,7 @@ const Profile = () => {
 
           {/* Edit Button */}
           <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
-            <button onClick={toggleEditMode} className="bg-blue-800 text-white p-4 rounded-lg shadow-md">
+            <button onClick={toggleEditMode} className="bg-washed-blue text-white p-4 rounded-lg shadow-md">
               {isEditMode ? "Save Changes" : "Edit Profile"}
             </button>
           </div>
