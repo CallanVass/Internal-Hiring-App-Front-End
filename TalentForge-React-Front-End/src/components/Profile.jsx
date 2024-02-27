@@ -183,7 +183,7 @@ const Profile = () => {
                   <div key={index} className="flex items-center flex-col">
                     {" "}
                     {/* Changed class to flex-col */}
-                    <span className="bg-dark-blue text-white px-4 py-2 rounded-md mb-2 font-medium">{skill}</span>
+                    <span className="bg-dark-green text-white px-4 py-2 rounded-md mb-2 font-medium">{skill}</span>
                     <button
                       onClick={() => removeSkill(index)}
                       className="bg-red-500 text-white ml-2 px-2 py-1 rounded-md mb-2"
