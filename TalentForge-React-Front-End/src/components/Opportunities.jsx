@@ -47,7 +47,7 @@ const JobListing = () => {
 
   const [selectedDepartment, setSelectedDepartment] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredListings, setFilteredListings] = useState([...listings]); // State for filtered listings
+  const [filteredListings, setFilteredListings] = useState([...listings]);
 
   // Function to handle department selection
   const handleDepartmentChange = (event) => {
