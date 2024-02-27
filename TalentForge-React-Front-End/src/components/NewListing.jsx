@@ -3,11 +3,11 @@ import React from "react";
 const NewListing = () => {
   return (
     <>
-      <div className="bg-white mx-auto md:mx-6 lg:mx-12 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16">
+      <div className="bg-white md:mx-6 lg:mx-96 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16">
         <div className="flex flex-col items-center md:items-start lg:items-center">
           {/* Title */}
           <div className="flex justify-center lg:justify-start pb-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">Create new listing</h1>
+            <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold">Create new listing</h1>
           </div>
           {/* Form: job title/dept/date */}
           <div className="w-full md:w-4/5 lg:w-3/4 xl:w-1/2">
