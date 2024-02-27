@@ -3,12 +3,11 @@ import React from "react";
 const NewListing = () => {
   return (
     <>
-      <div className="bg-white mx-56">
-        <div className="flex flex-col items m-3 md:m-5 mx-8 md:mx-16 lg:mx-36 lg:my-2">
+      <div className="bg-white mx-96 my-6">
+        <div className="flex flex-col items m-3 md:m-5 mx-8 md:mx-16 lg:mx-52 lg:my-2">
           {/* Title */}
-
           <div className="flex justify-center pt-4 lg:pt-10 lg:pb-4">
-            <h1 className="text-4xl md:text-6xl lg:text-4xl font-bold">Create new listing</h1>
+            <h1 className="text-4xl md:text-6xl lg:text-5xl font-bold">Create new listing</h1>
           </div>
           {/* Form: job title/dept/date */}
           <div className="flex justify-center pt-10 pb-4 md:pt-10 lg:pt-10 lg:pb-4">
@@ -203,15 +202,15 @@ const NewListing = () => {
               <textarea
                 name="job-description"
                 id="job-desc-input"
-                className="form-input text-xl md:text-2xl lg:text-3xl w-full h-80 md:h-80 lg:h-80 block overflow-y-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 placeholder='Full Description' placeholder-gray-400 placeholder-shown:text-sm placeholder-shown:leading-[3.75] "
+                className="form-input text-xl md:text-2xl lg:text-2xl w-full h-80 md:h-80 lg:h-80 block overflow-y-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 placeholder='Full Description' placeholder-gray-400 placeholder-shown:text-sm placeholder-shown:leading-[3.75] "
               ></textarea>
               <textarea className="w-full h-16 overflow-y-auto"></textarea>
             </form>
           </div>
 
           {/* On/Off Slider */}
-          <div className="inline-flex items-center justify-end my-3 md:my-3 lg:my-3">
-            <label htmlFor="listing-active" className="mt-px mb-0 mr-10 text-lg md:text-2xl lg:text-3xl">
+          <div className="inline-flex items-center justify-center my-3 md:my-3 lg:my-3">
+            <label htmlFor="listing-active" className="mt-px mb-0 mr-10 text-lg md:text-2xl lg:text-xl">
               Active on site:
             </label>
             <div className="relative inline-block w-28 h-4 content-center rounded-full cursor-pointer">
@@ -224,23 +223,22 @@ const NewListing = () => {
               <label
                 htmlFor="listing-active"
                 // slider marker size/colour
-                className="before:content[''] absolute top-2/4 -left-1 h-5 w-5 -translate-y-2/4 cursor-pointer rounded-full border border-blue-gray-100 bg-white shadow-md transition-all duration-300 before:absolute before:top-2/4 before:left-2/4 before:block before:h-10 before:w-10 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10 peer-checked:translate-x-full peer-checked:border-gray-900 peer-checked:before:bg-gray-900"
+                className="before:content[''] absolute top-2/4 -left-1 h-5 w-5 -translate-y-2/4 cursor-pointer rounded-full border border-blue-gray-100 bg-dark-green shadow-md transition-all duration-300 before:absolute before:top-2/4 before:left-2/4 before:block before:h-10 before:w-10 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10 peer-checked:translate-x-full peer-checked:border-gray-900 peer-checked:before:bg-gray-900"
               ></label>
             </div>
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-center">
+          <div className="flex justify-center mb-6">
             <div className="flex flex-col">
               <button
                 type="submit"
-                className='className="bg-white hover:bg-dark-blue text-dark-blue font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-72 max-w-screen border border-blue-500 hover:border-transparent rounded'
-              >
-                Save
+                className="bg-dark-green hover:bg-dark-blue text-white font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-72 max-w-screen border border-blue-500 hover:border-transparent rounded"
+              >Save
               </button>
               <button
                 type="submit"
-                className='className="bg-white hover:bg-dark-blue text-dark-blue font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-72 max-w-screen border border-blue-500 hover:border-transparent rounded'
+                className="bg-dark-green hover:bg-dark-blue text-white font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-72 max-w-screen border border-blue-500 hover:border-transparent rounded"
               >
                 Close
               </button>
