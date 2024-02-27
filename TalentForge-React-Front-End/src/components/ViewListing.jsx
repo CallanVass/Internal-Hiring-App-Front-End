@@ -19,26 +19,38 @@ const ViewListing = ({ listing }) => {
           <div className="flex justify-center items-center flex-col sm:flex-col md:flex-col lg:flex-row">
             {/* Listing top level info */}
             <div className="top-level-info mx-2 sm:mx-4 md:mx-4 lg:mx-4 my-2 md:my-4 lg:my-4">
-              <div className="info-item flex justify-start pt-2">
-                <h4 className="info-title text-lg md:text-3xl lg:text-3xl">&#39;listing.datePosted&#39;</h4>
-              </div>
-              <div className="info-item flex justify-start pt-2">
-                <h4 className="info-title text-lg md:text-3xl lg:text-3xl">&#39;listing.location&#39;</h4>
-                <p className="info-description text-sm italic text-indigo-500">e.g. Hybrid, On Site</p>
-              </div>
-              <div className="info-item flex justify-start pt-2">
-                <h4 className="info-title text-lg md:text-3xl lg:text-3xl">&#39;listing.roleType&#39;</h4>
-                <p className="info-description text-sm italic text-indigo-500">e.g. Full time, part time</p>
-              </div>
-              <div className="info-item flex justify-start pt-2">
-                <h4 className="info-title text-lg md:text-3xl lg:text-3xl">&#39;listing.roleDuration&#39;</h4>
-                <p className="info-description text-sm italic text-indigo-500">e.g. Temporary, Contract</p>
-              </div>
+              <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
+                &#39;listing.datePosted&#39;
+              </h4>
+              <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
+                e.g. Hybrid, On Site
+              </p>
+
+              <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
+                &#39;listing.location&#39;
+              </h4>
+              <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
+                e.g. Hybrid, On Site
+              </p>
+
+              <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
+                &#39;listing.roleType&#39;
+              </h4>
+              <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
+                e.g. Full time, part time
+              </p>
+
+              <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
+                &#39;listing.roleDuration&#39;
+              </h4>
+              <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
+                e.g. Temporary, Contract
+              </p>
             </div>
 
             {/* Job points */}
             <div className="job-points mx-7 md:mx-11 lg:mx-11 my-2 md:my-4 lg:my-4">
-              <div className="list-disc list-inside text-lg md:text-3xl lg:text-2xl">
+              <div className="list-disc list-inside text-lg md:text-3xl lg:text-3xl">
                 <li>Job point 1</li>
                 <li>Job point 2</li>
                 <li>Job point 3</li>
