@@ -1,3 +1,4 @@
+
 import React, { useState, useContext } from "react"
 import { AuthContext } from "./AuthProvider"
 
@@ -20,14 +21,14 @@ const Profile =  () => {
       text: "About Me placeholder text",
       careerDevelopment: "Career Development placeholder text",
     },
-  }
+  };
   // Checkboxes Dummy Data
   const statuses = [
     "Looking for a new job!",
     "Happy where I am!",
     "Might be willing to move!",
     "Unsure how I feel about it!",
-  ]
+  ];
 
   // Applications Dummy Data
 
@@ -52,35 +53,35 @@ const Profile =  () => {
       jobSalary: "52,000",
       jobDescription: "Sorry about that one.",
     },
-  }
+  };
 
-  const [isEditMode, setIsEditMode] = useState(false)
+  const [isEditMode, setIsEditMode] = useState(false);
 
-  const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
+  const [profileImage, setProfileImage] = useState("path-to-your-image.jpg");
 
-  const [skills, setSkills] = useState(["Edit Profile to add skills!"])
+  const [skills, setSkills] = useState(["Edit Profile to add skills!"]);
 
-  const [newSkill, setNewSkill] = useState("")
+  const [newSkill, setNewSkill] = useState("");
 
   const addSkill = () => {
     if (newSkill) {
-      setSkills([...skills, newSkill])
-      setNewSkill("") // Clear input after adding
+      setSkills([...skills, newSkill]);
+      setNewSkill(""); // Clear input after adding
     }
-  }
+  };
 
   const removeSkill = (indexToRemove) => {
-    setSkills(skills.filter((_, index) => index !== indexToRemove))
-  }
+    setSkills(skills.filter((_, index) => index !== indexToRemove));
+  };
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     if (file) {
       // Create a URL for the new image file
-      const imageUrl = URL.createObjectURL(file)
-      setProfileImage(imageUrl)
+      const imageUrl = URL.createObjectURL(file);
+      setProfileImage(imageUrl);
     }
-  }
+  };
 
   const [editableProfile, setEditableProfile] = useState({
     name: profileAdam.name,
@@ -88,20 +89,20 @@ const Profile =  () => {
     department: profileAdam.department,
     aboutMe: profileAdam.aboutMe.text,
     careerDevelopment: profileAdam.aboutMe.careerDevelopment,
-  })
+  });
 
-  const toggleEditMode = () => setIsEditMode(!isEditMode)
+  const toggleEditMode = () => setIsEditMode(!isEditMode);
 
   const handleInputChange = (e, field) => {
-    setEditableProfile({ ...editableProfile, [field]: e.target.value })
-  }
+    setEditableProfile({ ...editableProfile, [field]: e.target.value });
+  };
 
   return (
     <>
       {/* Div encapsulating/creating grid effect */}
       <div className="max-w-7xl mx-auto mt-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
         {/* Div for first grid row */}
-        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+        <div className="flex justify-center items-center flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
           {/* First Column: Profile Image, Role, & Department */}
           <div
             className="flex flex-col sm:items-center sm:justify-center items-center max-w-lg mx-auto mt-10 px-5
@@ -112,19 +113,20 @@ const Profile =  () => {
             {isEditMode ? (
               <div>
                 {" "}
-                <p className="text-xs">Click To Select Image</p>
                 <label htmlFor="image-upload" className="cursor-pointer">
-                  <img src={profileImage} alt="Profile" className="w-3/3" />
+                  <img src={profileImage} alt="Click to upload image" className="mb-3" />
                 </label>
                 <input id="image-upload" type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
               </div>
             ) : (
-              <img src={profileImage} alt="Profile Picture" className="w-28 sm:w-48 md:w-64 lg:w-96" />
+              <div className="flex justify-center">
+                <img src={profileImage} alt="Profile Picture" className="text-center mb-4 sm:w-48 md:w-64 lg:w-96" />
+              </div>
             )}
-            <div className="flex-1">
+            <div className="flex-1 ">
               {/* Edit Name */}
               {isEditMode ? (
-                <div className="flex items-center">
+                <div className="flex items-center mb-4 w-full">
                   <div className="mr-2">Name:</div>
                   <input
                     maxLength="30"
@@ -132,7 +134,7 @@ const Profile =  () => {
                     type="text"
                     value={editableProfile.name}
                     onChange={(e) => handleInputChange(e, "name")}
-                    className="text-input-class"
+                    className="text-input-class border border-gray-300 w-full"
                   />
                 </div>
               ) : (
@@ -141,7 +143,7 @@ const Profile =  () => {
 
               {/* Edit Role */}
               {isEditMode ? (
-                <div className="flex items-center">
+                <div className="flex items-center mb-4">
                   <div className="mr-2">Role:</div>
                   <input
                     type="text"
@@ -149,7 +151,7 @@ const Profile =  () => {
                     placeholder="(20 character max)"
                     value={editableProfile.role}
                     onChange={(e) => handleInputChange(e, "role")}
-                    className="text-input-class flex-1"
+                    className="text-input-class flex-1 border border-gray-300"
                   />
                 </div>
               ) : (
@@ -158,7 +160,7 @@ const Profile =  () => {
 
               {/* Edit Department */}
               {isEditMode ? (
-                <div className="flex items-center">
+                <div className="flex items-center mb-4">
                   <div className="mr-2">Department: </div>
                   <input
                     type="text"
@@ -166,7 +168,7 @@ const Profile =  () => {
                     placeholder="(25 character max)"
                     value={editableProfile.department}
                     onChange={(e) => handleInputChange(e, "department")}
-                    className="text-input-class"
+                    className="text-input-class border border-gray-300"
                   />
                 </div>
               ) : (
@@ -178,14 +180,20 @@ const Profile =  () => {
           {/* Skills list */}
           {isEditMode ? (
             // If isEditMode is true, then display edit options
-            <div className="flex items-center max-w-lg mx-auto mt-10 px-5">
-              <div className="flex flex-wrap gap-2 items-center space-x-0.5 mt-10 px-5">
+            <div className="flex justify-center items-center max-w-lg mx-auto px-5 flex-col">
+              {" "}
+              {/* Changed class to flex-col */}
+              <div className="flex flex-wrap gap-2 items-center space-x-0.5 mt-10 px-5 flex-col">
+                {" "}
+                {/* Changed class to flex-col */}
                 {skills.map((skill, index) => (
-                  <div key={index} className="flex items-center">
-                    <span className="bg-blue-500 text-white px-4 py-2 rounded-md text-sm font-medium">{skill}</span>
+                  <div key={index} className="flex items-center flex-col">
+                    {" "}
+                    {/* Changed class to flex-col */}
+                    <span className="bg-dark-green text-white px-4 py-2 rounded-md mb-2 font-medium">{skill}</span>
                     <button
                       onClick={() => removeSkill(index)}
-                      className="bg-red-500 text-white ml-2 px-2 py-1 rounded-md text-sm"
+                      className="bg-red-500 text-white ml-2 px-2 py-1 rounded-md mb-2"
                     >
                       Delete
                     </button>
@@ -193,19 +201,20 @@ const Profile =  () => {
                 ))}
               </div>
               {/* Add new skill */}
-              <div className="max-w-lg mx-auto mt-10 px-5">
+              <div className="flex justify-center items-center max-w-lg mx-auto mt-10 px-5 flex-col"> {/* Added flex class */}
                 <input
                   maxLength="15"
                   placeholder="(15 character max)"
                   type="text"
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
-                  className="border p-2 rounded-md"
+                  className="border p-2 rounded-md w-full"
                 />
                 <button
                   onClick={addSkill}
                   data-testid="add-skill-button"
-                  className="bg-blue-500 text-white  px-4 py-2 rounded-md mt-2"
+                  className="bg-dark-green text-white shadow shadow-gray-300 px-4 py-2 rounded-md mt-2 self-center"
+                  
                 >
                   Add Skill
                 </button>
@@ -263,7 +272,7 @@ const Profile =  () => {
                     value={status}
                     checked={editableProfile.status === status}
                     onChange={(e) => handleInputChange(e, "status")}
-                    className="form-radio h-5 w-5 text-blue-600"
+                    className="form-radio h-5 w-5 text-black"
                   />
                   <span>{status}</span>
                 </label>
@@ -279,7 +288,7 @@ const Profile =  () => {
           {/* Career Development Description */}
           {isEditMode ? (
             <div className="flex flex-col max-w-lg mx-auto mt-10 px-5">
-              <label htmlFor="aboutMe" className="text-center mb-3 text-xl">
+              <label htmlFor="aboutMe" className="text-center mb-3 text-xl font-bold">
                 Career Development:
               </label>
               <textarea
@@ -299,11 +308,11 @@ const Profile =  () => {
           {/* END OF SECOND COLUMN DIV */}
         </div>
         {/* Div for third grid row */}
-        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 mb-10 px-5 ">
           {/* List of Applications */}
-          <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5">
+          <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5 ">
             {Object.entries(applications).map(([key, value]) => (
-              <div key={key} className="bg-blue-500 text-white p-4 rounded-lg shadow-md">
+              <div key={key} className="bg-washed-blue text-white p-4 rounded-lg shadow-md border border-gray-300">
                 <a className="text-lg font-semibold" href="">
                   {value.jobName}
                 </a>
@@ -315,7 +324,10 @@ const Profile =  () => {
 
           {/* Edit Button */}
           <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
-            <button onClick={toggleEditMode} className="bg-blue-800 text-white p-4 rounded-lg shadow-md">
+            <button
+              onClick={toggleEditMode}
+              className="bg-washed-blue text-white p-4 rounded-lg shadow-md hover:bg-dark-blue"
+            >
               {isEditMode ? "Save Changes" : "Edit Profile"}
             </button>
           </div>
@@ -324,7 +336,7 @@ const Profile =  () => {
         {/* End of div encapsulating/creating grid effect */}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
