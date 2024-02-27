@@ -8,7 +8,7 @@ const HomePage = () => {
       {/* Main container */}
       <div className="flex-col m-auto max-h-max">
       {/* Background image -- can be changed... */}
-        <div className="bg-hero bg-cover bg-bottom">
+        <div className="bg-hero bg-cover bg-bottom min-h-screen">
 
         {/* Text content */}
         <div className="flex justify-center p-2 ">
