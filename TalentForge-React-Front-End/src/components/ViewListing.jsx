@@ -6,7 +6,7 @@ const ViewListing = ({ listing }) => {
 
   return (
     <>
-      <div className="flex m-1 md:m-5 lg:my-2 lg:mx-80 ">
+      <div className="flex justify-center p-4 md:p-8 lg:p-4 xl:p-12 bg-grey">
         <div className="bg-white border border-gray-300 mt-6 mb-6">
           {/* Listing header */}
           <div className="flex justify-center pt-4 lg:pt-10 lg:pb-4">

@@ -3,10 +3,10 @@ import React from "react";
 const NewListing = () => {
   return (
     <>
-      <div className="bg-white md:mx-6 lg:mx-96 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16">
+      <div className="bg-white mx-6 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16 xl:mx-96">
         <div className="flex flex-col items-center md:items-start lg:items-center">
           {/* Title */}
-          <div className="flex justify-center items-center lg:justify-start pb-4">
+          <div className="flex justify-center lg:justify-start pb-4">
             <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold">Create new listing</h1>
           </div>
           {/* Form: job title/dept/date */}
@@ -49,7 +49,7 @@ const NewListing = () => {
           </div>
 
           {/* div controlling radio elements  */}
-          <div className="w-full md:flex md:w-4/5 lg:w-3/4 xl:w-1/2 mt-8 justify-between">
+          <div className="w-full md:w-4/5 lg:w-3/4 xl:w-1/2 mt-8 md:flex md:justify-between">
             {/*Hours Type - Fulltime/parttime  */}
             <div className="py-2 md:w-1/3">
               <ul className="space-y-2 text-lg md:text-xl lg:text-lg">
