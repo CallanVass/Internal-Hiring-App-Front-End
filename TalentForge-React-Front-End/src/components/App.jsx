@@ -6,6 +6,7 @@ import Footer from './Footer' // Import the 'Footer' component
 import Login from './Login' // Import the 'Login' component
 import HomePage from './HomePage' // Import the 'HomePage' component
 import Profile from './Profile' // Import the 'Profile' component
+import Profile_Matt from './Profile_Matt'
 import Opportunities from './Opportunities' // Import the 'Opportunities' component
 import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
@@ -19,47 +20,49 @@ import { UserContext, UserProvider } from './UserContext'
 
 const App = () => {
   // eslint-disable-next-line no-unused-vars
-  let { users } = useContext(UserContext)
+  // let { users } = useContext(UserContext)
 
 
 
   // const { token, login, logout } = useContext(AuthContext)
-  const token = useContext(AuthContext)
+  // const token = useContext(AuthContext)
   // console.log(token)
-  console.log(users)
+  // console.log(users)
 
 
 
-  function ProfileWrapper() {
-    if (token) {
-      console.log(token)
-      try {
-        const payload = token.split('.')[1]
-      const decodedPayload = atob(payload)
-      const user = JSON.parse(decodedPayload)
-      console.log(user._id)
-      return <AuthProvider value={{token: token}}><Profile id={user._id} /></AuthProvider>
-    } catch (error) {
-      console.log(error)
-    }
-  }
-}
+//   function ProfileWrapper() {
+//     if (token) {
+//       console.log(token)
+//       try {
+//         const payload = token.split('.')[1]
+//       const decodedPayload = atob(payload)
+//       const user = JSON.parse(decodedPayload)
+//       console.log(user._id)
+//       return <AuthProvider value={{token: token}}><Profile id={user._id} /></AuthProvider>
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
+
 // Temporary function to return user object from user id
-  function TempProfileWrapper() {
-    const {id} = useParams()
-    console.log(id)
-    console.log(users)
+  // function TempProfileWrapper() {
+  //   const {id} = useParams()
+  //   console.log(id)
+  //   console.log(users)
 
-    try{
-      let user = users.find(user => user._id === id)
-      console.log(user)
+  //   try{
+  //     let user = users.find(user => user._id === id)
+  //     console.log(user)
 
-      return user? <UserProvider value={{ userArray: users }}><Profile user={user} /></UserProvider> : <p>User not found</p>
+  //     return user? <UserProvider value={{ userArray: users }}><Profile user={user} /></UserProvider> : <p>User not found</p>
 
-    } catch (error) {
-        console.log(error)
-    }
-  }
+  //   } catch (error) {
+  //       console.log(error)
+  //   }
+  // }
 
 
 // Layout component from conditional Header render
@@ -92,9 +95,10 @@ return (
             <Layout>
               {/* Nested Routes for pages that include NavBar */}
               <Routes>
-                <Route path='/home' element={<AuthProvider value={{token: token}}><HomePage /></AuthProvider>} />
+                <Route path='/home' element={<AuthProvider value={{token: 'token'}}><HomePage /></AuthProvider>} />
                 {/* <Route path='/profile/:id' element={<ProfileWrapper token={token} />} /> */}
-                <Route path='/profile/:id' element={<TempProfileWrapper  />} />
+                <Route path='/profile/matt-profile-page' element={<Profile_Matt  />} />
+                {/* <Route path='/profile/:id' element={<TempProfileWrapper  />} /> */}
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
                 <Route path='/listing-temp' element={<ViewListing />} />

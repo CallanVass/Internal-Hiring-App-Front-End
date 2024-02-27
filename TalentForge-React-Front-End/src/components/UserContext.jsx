@@ -2,7 +2,7 @@ import { useState, useEffect, createContext, useContext } from 'react'
 // import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom'
 
 
-export const UserContext = createContext()
+export const UserContext = createContext(null)
 
 export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([])
