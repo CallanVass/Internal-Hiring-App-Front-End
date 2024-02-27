@@ -1,27 +1,13 @@
-
 import React, { useState, useContext } from "react"
 import { AuthContext } from "./AuthProvider"
 
 
 
-const Profile =  () => {
+const Profile =  ( user ) => {
   const {token, login, logout} = useContext(AuthContext)
 
   console.log(token)
-  // Skills Dummy Data
-  // const skills = [
-  //     "Speech", "Excel", "Microsoft Office", "Admin", "Coding"
-  // ]
-  // Profile Dummy Data
-  const profileAdam = {
-    name: "Adam Hunter",
-    role: "Developer",
-    department: "Information Technology",
-    aboutMe: {
-      text: "About Me placeholder text",
-      careerDevelopment: "Career Development placeholder text",
-    },
-  };
+
   // Checkboxes Dummy Data
   const statuses = [
     "Looking for a new job!",
@@ -84,11 +70,13 @@ const Profile =  () => {
   };
 
   const [editableProfile, setEditableProfile] = useState({
-    name: profileAdam.name,
-    role: profileAdam.role,
-    department: profileAdam.department,
-    aboutMe: profileAdam.aboutMe.text,
-    careerDevelopment: profileAdam.aboutMe.careerDevelopment,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    role: user.role,
+    department: user.department,
+    aboutMe: user.aboutMe.text,
+    careerDevelopment: user.aboutMe.careerDevelopment,
+
   });
 
   const toggleEditMode = () => setIsEditMode(!isEditMode);
@@ -132,13 +120,13 @@ const Profile =  () => {
                     maxLength="30"
                     placeholder="(30 characters max)"
                     type="text"
-                    value={editableProfile.name}
+                    value={`${editableProfile.firstName} ${" "} ${editableProfile.lastName}`}
                     onChange={(e) => handleInputChange(e, "name")}
                     className="text-input-class border border-gray-300 w-full"
                   />
                 </div>
               ) : (
-                <h2 className="text-3xl font-bold mb-2">{editableProfile.name}</h2>
+                <h2 className="text-3xl font-bold mb-2">{`${editableProfile.firstName} ${" "} ${editableProfile.lastName}`}</h2>
               )}
 
               {/* Edit Role */}
@@ -214,7 +202,7 @@ const Profile =  () => {
                   onClick={addSkill}
                   data-testid="add-skill-button"
                   className="bg-dark-green text-white shadow shadow-gray-300 px-4 py-2 rounded-md mt-2 self-center"
-                  
+
                 >
                   Add Skill
                 </button>
@@ -309,7 +297,7 @@ const Profile =  () => {
         </div>
         {/* Div for third grid row */}
         <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 mb-10 px-5 ">
-          {/* List of Applications */}
+          {/* List of Applications Can applications be rendered using opportunities.jsx ? */}
           <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5 ">
             {Object.entries(applications).map(([key, value]) => (
               <div key={key} className="bg-washed-blue text-white p-4 rounded-lg shadow-md border border-gray-300">

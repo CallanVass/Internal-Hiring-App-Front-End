@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import '../assets/css/App.css'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom'
 import NavBar from './NavBar' // Import the 'NavBar' component
 import Footer from './Footer' // Import the 'Footer' component
 import Login from './Login' // Import the 'Login' component
@@ -38,6 +38,13 @@ const App = () => {
     }
   }
 }
+// Temporary function to return user object from user id
+  function TempProfileWrapper() {
+    const {id} = useParams()
+
+    return <Profile user={id} />
+  }
+
 
 // Layout component from conditional Header render
 const Layout = ({ children }) => {
@@ -70,7 +77,8 @@ return (
               {/* Nested Routes for pages that include NavBar */}
               <Routes>
                 <Route path='/home' element={<AuthProvider value={{token: token}}><HomePage /></AuthProvider>} />
-                <Route path='/profile/:id' element={<ProfileWrapper token={token} />} />
+                {/* <Route path='/profile/:id' element={<ProfileWrapper token={token} />} /> */}
+                <Route path='/profile/:id' element={<TempProfileWrapper  />} />
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
                 <Route path='/listing-temp' element={<ViewListing />} />
