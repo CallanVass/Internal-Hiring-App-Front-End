@@ -1,10 +1,14 @@
 import React, { useState, useContext } from "react"
 import { AuthContext } from "./AuthProvider"
+import { UserContext, UserProvider } from './UserContext'
 
 
 
-const Profile =  ( user ) => {
+
+const Profile =  ({ user }) => {
   const {token, login, logout} = useContext(AuthContext)
+
+  
 
   console.log(token)
 
@@ -74,8 +78,8 @@ const Profile =  ( user ) => {
     lastName: user.lastName,
     role: user.role,
     department: user.department,
-    aboutMe: user.aboutMe.text,
-    careerDevelopment: user.aboutMe.careerDevelopment,
+    // aboutMe: user.aboutMe.text,
+    // careerDevelopment: user.aboutMe.careerDevelopment,
 
   });
 

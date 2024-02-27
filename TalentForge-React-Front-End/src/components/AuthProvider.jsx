@@ -18,20 +18,20 @@ export const AuthProvider = ({ children }) => {
     // End test
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token');
+        const token = sessionStorage.getItem('token')
         if (token) {
-            setToken(token);
+            setToken(token)
         }
-    }, []);
+    }, [])
 
     const login = (newToken) => {
-        sessionStorage.setItem('token', newToken);
-        setToken(newToken);
-      };
+        sessionStorage.setItem('token', newToken)
+        setToken(newToken)
+      }
 
     const logout = () => {
-        sessionStorage.removeItem('token');
-        setToken(null);
+        sessionStorage.removeItem('token')
+        setToken(null)
     };
 
     return (
