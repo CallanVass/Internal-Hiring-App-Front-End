@@ -1,14 +1,16 @@
-import React, { useState, useContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/Login.css';
-import { AuthContext } from "./AuthProvider";
+import HomePage from './HomePage' // Import the 'HomePage' component
+import { AuthContext, AuthProvider } from "./AuthProvider";
 
+// const AuthContext = createContext()
 
 
 const Login = () => {
     const [username, setUsername] = useState(""); // Note: username is an email
     const [password, setPassword] = useState("");
-    const { token, login, logout } = useContext(AuthContext)
+
 
     const nav = useNavigate();
 
@@ -37,9 +39,12 @@ const Login = () => {
             if (response.token) {
                 // Store the token in sessionStorage
                 // sessionStorage.setItem('token', response.token)
-                login(response.token)
-
-                nav(`/home`) // Add token to local storage??
+                // Sets the token in context using AuthProvider
+                // AuthProvider.login(response.token)
+                {/* nav(`/home`) // Add token to local storage?? */}
+                return <AuthContext.Provider value={{ token: response.token }}>
+                        <HomePage />
+                      </AuthContext.Provider>
             } else {
                 // Obtain status code from server response
                 // Display message on login screen 'email or password is incorrect'

@@ -24,11 +24,13 @@ export const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    // eslint-disable-next-line no-unused-vars
     const login = (newToken) => {
         sessionStorage.setItem('token', newToken)
         setToken(newToken)
       }
 
+    // eslint-disable-next-line no-unused-vars
     const logout = () => {
         sessionStorage.removeItem('token')
         setToken(null)

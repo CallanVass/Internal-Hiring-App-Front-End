@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useContext } from "react"
 import { AuthContext } from "./AuthProvider"
-import { UserContext, UserProvider } from './UserContext'
+
 
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
 

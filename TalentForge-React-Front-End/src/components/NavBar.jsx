@@ -1,6 +1,8 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { AuthContext, AuthProvider } from './AuthProvider'
 
 
 const navigation = [
@@ -15,7 +17,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function navBar() {
+export default function NavBar() {
+  const token = useContext(AuthContext)
+  const nav = useNavigate();
+
+  const showProfile = () => {
+    if (token) {
+      const payload = token.split('.')[1]
+      const decodedPayload = atob(payload)
+      const userId = JSON.parse(decodedPayload)
+      nav(`/profile/${userId}`)
+    }
+  }
+
   return (
     <Disclosure as="nav" className="bg-dark-blue">
       {({ open }) => (
@@ -92,7 +106,8 @@ export default function navBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="/profile"
+                          onClick={showProfile}
+                          // href="/profile"
                             className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
                           >
                             Your Profile
