@@ -16,27 +16,28 @@ const ViewListing = ({ listing }) => {
           <div className="flex justify-center">
             <h2 className="text-2xl md:text-4xl lg:text-4xl">&#39;listing.department&#39;</h2>
           </div>
-          {/* Listing top level info */}
-          <div className="flex flex-row justify-center items-center">
-            <div className="mx-2 md:mx-4 lg:mx-4 my-4 md:my-8 lg:my-8">
-              <div className="flex justify-start pt-2">
-                <h4 className="text-lg md:text-3xl lg:text-3xl">&#39;listing.datePosted&#39;</h4>
+          <div className="flex justify-center items-center flex-col sm:flex-col md:flex-col lg:flex-row">
+            {/* Listing top level info */}
+            <div className="top-level-info mx-2 sm:mx-4 md:mx-4 lg:mx-4 my-2 md:my-4 lg:my-4">
+              <div className="info-item flex justify-start pt-2">
+                <h4 className="info-title text-lg md:text-3xl lg:text-3xl">&#39;listing.datePosted&#39;</h4>
               </div>
-              <div className="flex justify-start pt-2">
-                <h4 className="text-lg md:text-3xl lg:text-3xl">&#39;listing.location&#39;</h4>
-                <p className="text-sm italic text-indigo-500">e.g. Hybrid, On Site</p>
+              <div className="info-item flex justify-start pt-2">
+                <h4 className="info-title text-lg md:text-3xl lg:text-3xl">&#39;listing.location&#39;</h4>
+                <p className="info-description text-sm italic text-indigo-500">e.g. Hybrid, On Site</p>
               </div>
-              <div className="flex justify-start pt-2">
-                <h4 className="text-lg md:text-3xl lg:text-3xl">&#39;listing.roleType&#39;</h4>
-                <p className="text-sm italic text-indigo-500">e.g. Full time, part time</p>
+              <div className="info-item flex justify-start pt-2">
+                <h4 className="info-title text-lg md:text-3xl lg:text-3xl">&#39;listing.roleType&#39;</h4>
+                <p className="info-description text-sm italic text-indigo-500">e.g. Full time, part time</p>
               </div>
-              <div className="flex justify-start pt-2">
-                <h4 className="text-lg md:text-3xl lg:text-3xl">&#39;listing.roleDuration&#39;</h4>
-                <p className="text-sm italic text-indigo-500">e.g. Temporary, Contract</p>
+              <div className="info-item flex justify-start pt-2">
+                <h4 className="info-title text-lg md:text-3xl lg:text-3xl">&#39;listing.roleDuration&#39;</h4>
+                <p className="info-description text-sm italic text-indigo-500">e.g. Temporary, Contract</p>
               </div>
             </div>
 
-            <div className="mx-7 md:mx-11 lg:mx-11 my-4 md:my-8 lg:my-8">
+            {/* Job points */}
+            <div className="job-points mx-7 md:mx-11 lg:mx-11 my-2 md:my-4 lg:my-4">
               <div className="list-disc list-inside text-lg md:text-3xl lg:text-2xl">
                 <li>Job point 1</li>
                 <li>Job point 2</li>
@@ -46,23 +47,10 @@ const ViewListing = ({ listing }) => {
             </div>
           </div>
 
-          <div className="flex flex-col justify-start mx-8 md:mx-12 lg:mx-12 my-4 md:my-8 lg:my-8">
-            {/* List job bullet points */}
-            <div className="hidden list-disc list-inside text-lg md:text-3xl lg:text-3xl">
-              {/* {listing.description.points.map(point => {
-                                    <li>{point}</li>
-                                })
-                            } */}
-              <li>Job point 1</li>
-              <li>Job point 2</li>
-              <li>Job point 3</li>
-              <li>Job point 4</li>
-            </div>
-
+          <div className="flex flex-col justify-center mx-2 md:mx-4 lg:mx-4 my-4 md:my-6 lg:my-6">
             {/* Full job description */}
-            <div className="flex-wrap my-4 md:my-6 lg:my-6">
-              {/* <p>&#39;listing.description.text&#39;<br/></p> */}
-              <p className="text-xl md:text-4xl lg:text-2xl" id="para">
+            <div className="my-2 md:my-4 lg:my-4">
+              <p className=" text-center md:text-4xl lg:text-2xl" id="para">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias laudantium, aut distinctio impedit esse
                 eos unde, quasi voluptates officiis rem ex iste nemo debitis soluta ut earum! Sed numquam doloremque quo
                 magnam ullam? Rem quod vel repellendus fugit beatae quaerat.
