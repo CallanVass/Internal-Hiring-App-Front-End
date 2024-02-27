@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, createContext, useContext } from 'react'
 import '../assets/css/App.css'
 import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom'
 import NavBar from './NavBar' // Import the 'NavBar' component
@@ -11,16 +11,22 @@ import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import { AuthContext, AuthProvider } from './AuthProvider'
+import { UserContext, UserProvider } from './UserContext'
 
 // This will be where components are configured before being sent to main.jsx
 
 
+
 const App = () => {
   // eslint-disable-next-line no-unused-vars
-  const [count, setCount] = useState(0)
+  let { users } = useContext(UserContext)
+
+
+
   // const { token, login, logout } = useContext(AuthContext)
   const token = useContext(AuthContext)
-  console.log(token)
+  // console.log(token)
+  console.log(users)
 
 
 
@@ -41,8 +47,18 @@ const App = () => {
 // Temporary function to return user object from user id
   function TempProfileWrapper() {
     const {id} = useParams()
+    console.log(id)
+    console.log(users)
 
-    return <Profile user={id} />
+    try{
+      let user = users.find(user => user._id === id)
+      console.log(user)
+
+      return user? <UserProvider value={{ userArray: users }}><Profile user={user} /></UserProvider> : <p>User not found</p>
+
+    } catch (error) {
+        console.log(error)
+    }
   }
 
 
