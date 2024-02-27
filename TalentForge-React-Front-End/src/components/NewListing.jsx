@@ -6,7 +6,7 @@ const NewListing = () => {
       <div className="bg-white md:mx-6 lg:mx-96 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16">
         <div className="flex flex-col items-center md:items-start lg:items-center">
           {/* Title */}
-          <div className="flex justify-center lg:justify-start pb-4">
+          <div className="flex justify-center items-center lg:justify-start pb-4">
             <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold">Create new listing</h1>
           </div>
           {/* Form: job title/dept/date */}
@@ -49,9 +49,9 @@ const NewListing = () => {
           </div>
 
           {/* div controlling radio elements  */}
-          <div className="w-full md:w-4/5 lg:w-3/4 xl:w-1/2 mt-8">
+          <div className="w-full md:flex md:w-4/5 lg:w-3/4 xl:w-1/2 mt-8 justify-between">
             {/*Hours Type - Fulltime/parttime  */}
-            <div className="py-2">
+            <div className="py-2 md:w-1/3">
               <ul className="space-y-2 text-lg md:text-xl lg:text-lg">
                 <legend className="text-xl lg:text-2xl font-bold">Role Basis:</legend>
                 <div>
@@ -78,7 +78,7 @@ const NewListing = () => {
             </div>
 
             {/* Permanent/contract etc */}
-            <div className="py-3 border-t-2 border-dotted">
+            <div className="py-3 border-t-2 border-dotted md:w-1/3">
               <ul className="space-y-2 text-lg md:text-xl lg:text-lg">
                 <legend className="text-xl lg:text-2xl font-bold">Role type:</legend>
                 <div>
@@ -117,7 +117,7 @@ const NewListing = () => {
             </div>
 
             {/*Location: on site etc */}
-            <div className="py-3 border-t-2 border-dotted">
+            <div className="py-3 border-t-2 border-dotted md:w-1/3">
               <ul className="space-y-2 text-lg md:text-xl lg:text-lg">
                 <legend className="text-xl lg:text-2xl font-bold">Role location:</legend>
                 <div>
