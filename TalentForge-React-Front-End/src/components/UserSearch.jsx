@@ -40,7 +40,7 @@ const UserSearch = () => {
     <>
       <div className="bg-white max-w-7xl mx-auto my-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
         {/* Company Details */}
-        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5 lg:mt-0">
+        <div className="flex flex-col justify-center items-center lg:items-start lg:space-y-4 max-w-6xl mx-auto mt-10 px-5 lg:mt-0">
           <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
             <h2 className="text-4xl lg:text-6xl font-bold mb-2 text-center">{company.name}</h2>
             <hr className="border-b border-gray-900 my-6 w-2/3 mx-auto max-w-md lg:hidden" />
@@ -49,7 +49,7 @@ const UserSearch = () => {
         </div>
 
         {/* Available Departments */}
-        <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+        <div className="flex flex-col justify-center items-center lg:items-start lg:space-y-4 max-w-6xl mx-auto mt-10 px-5">
           <div className="w-full lg:w-auto flex flex-col items-center max-w-xl mx-auto mt-10 px-5">
             <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-center">Available Departments</h2>
             <div className="flex flex-col gap-2 justify-center max-w-xl mx-auto">
@@ -66,7 +66,7 @@ const UserSearch = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="flex flex-col lg:col-span-3">
+        <div className="flex flex-col justify-center items-center lg:col-span-1 lg:items-start">
           <div className="flex justify-center items-center max-w-lg mx-auto mt-6 px-5">
             <p className="mb-1 text-center">Search Users</p>
           </div>
