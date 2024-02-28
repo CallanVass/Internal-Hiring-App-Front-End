@@ -10,7 +10,7 @@ import Opportunities from './Opportunities' // Import the 'Opportunities' compon
 import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
-import { AuthProvider } from '../authentication/AuthContext'
+import { AuthContext, AuthProvider } from '../authentication/AuthContext'
 import { UserContext } from '../authentication/UserContext'
 import decoder from '../authentication/decoder'
 
@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     try {
-      fetch('http://localhost:8003/users')
+      fetch('/users')
       .then(res => res.json())
       .then(data => setUsers(data))
     } catch (error) {
@@ -98,7 +98,7 @@ const Layout = ({ children }) => {
 
 
 return (
-    <BrowserRouter>
+  <AuthProvider><BrowserRouter>
       <div className='flex flex-col min-h-screen'>
         <Routes>
           <Route path='/' element={<Login />} />
@@ -123,6 +123,7 @@ return (
         <div className='flex-grow'></div><Footer />
       </div>
     </BrowserRouter>
+</AuthProvider>
   )
 }
 
