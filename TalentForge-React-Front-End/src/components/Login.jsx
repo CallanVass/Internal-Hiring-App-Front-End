@@ -28,7 +28,7 @@ const Login = () => {
         if (username && password) {
             e.preventDefault();
 
-            const res = await fetch('http://localhost:8003/login/', {
+            const res = await fetch('http://localhost:8002/login/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

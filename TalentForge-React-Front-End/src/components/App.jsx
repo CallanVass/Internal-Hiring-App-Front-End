@@ -25,7 +25,7 @@ const App = () => {
   // const token = useContext(AuthContext)
 
   useEffect(() => {
-    fetch('http://localhost:8003/users')
+    fetch('http://localhost:8002/users')
     .then(res => res.json())
     .then(data => setUsers(data))
   }, [])

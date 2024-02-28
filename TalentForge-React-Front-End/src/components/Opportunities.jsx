@@ -6,7 +6,7 @@ const JobListing = () => {
   const [listings, setListings] = useState([])
 
   useEffect (() => {
-    fetch('http://localhost:8003/listings')
+    fetch('http://localhost:8002/listings')
     .then(res => res.json())
     .then (data => setListings(data))
   }, [])
