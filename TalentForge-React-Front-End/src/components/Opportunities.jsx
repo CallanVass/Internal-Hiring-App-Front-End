@@ -7,7 +7,7 @@ const JobListing = () => {
 
   useEffect (() => {
     try {
-      fetch('http://localhost:8003/listings')
+      fetch('/listings')
       .then(res => res.json())
       .then(data => setListings(data))
     } catch (error) {
