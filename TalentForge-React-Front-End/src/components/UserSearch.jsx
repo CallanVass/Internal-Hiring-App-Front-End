@@ -16,7 +16,7 @@ const UserSearch = () => {
     const fetchUsers = async () => {
       try {
         try{
-            const response = await fetch('/users')
+            const response = await fetch('http://localhost:8002/users')
             const data = await response.json()
             console.log(data)
             setUsers(data)
