@@ -7,15 +7,15 @@ const HomePage = () => {
       {/* Main container */}
       <div className="flex-col m-auto max-h-max">
         {/* Background image -- can be changed... */}
-        <div className="bg-hero bg-cover bg-bottom min-h-screen">
+        <div className="bg-hero bg-cover bg-bottom min-h-screen pb-20">
           {/* Text content */}
           <div className="flex justify-center p-2">
             <div className="flex flex-col justify-center items-center my-20">
               <h1 className="text-dark-blue text-5xl md:text-6xl lg:text-6xl inset-y-28 h-fit md:inset-y-44 max-w-full md:max-w-lg lg:max-w-3xl px-10">
                 Welcome &#39;user.name&#39; to
               </h1>
-              <img src="src/assets/logos/transplogoslogan.png" alt="Talent Forge Logo" className="h-auto w-9/12" />
-              <h2 className="text-dark-blue text-3xl lg:text-4xl inset-y-72 md:inset-y-96 h-fit max-w-full md:max-w-lg lg:max-w-3xl px-10 mb-5">
+              <img src="src/assets/logos/transplogoslogan.png" alt="Talent Forge Logo" className="h-auto w-3/6" />
+              <h2 className="text-dark-blue text-3xl lg:text-4xl inset-y-72 md:inset-y-96 h-fit max-w-full md:max-w-lg lg:max-w-3xl px-10">
                 This is your home of....explore, interact, opportunities, develop...mission statement/blurb/ intro to
                 let users know about the site and all of the benefits they can expect from it...
                 <br />
@@ -30,19 +30,19 @@ const HomePage = () => {
             <div className="flex flex-col">
               <button
                 type="submit"
-                className="bg-white hover:bg-dark-blue text-dark-blue font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-64 max-w-80 border border-blue-500 hover:border-transparent rounded"
+                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-64 max-w-80 border border-grey-500 hover:border-transparent rounded"
               >
                 Latest Jobs
               </button>
               <button
                 type="submit"
-                className="bg-white hover:bg-dark-blue text-dark-blue font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12 min-w-64 max-w-80 border border-blue-500 hover:border-transparent rounded"
+                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12 min-w-64 max-w-80 border border-grey-500 hover:border-transparent rounded"
               >
                 My Profile
               </button>
               <button
                 type="submit"
-                className="bg-white hover:bg-dark-blue text-dark-blue font-semibold text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12 min-w-64 max-w-80 border border-blue-500 hover:border-transparent rounded"
+                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12 min-w-64 max-w-80 border border-grey-500 hover:border-transparent rounded"
               >
                 Company Network
               </button>
