@@ -15,8 +15,6 @@ const UserSearch = () => {
   // Function to fetch users from the backend
   const fetchUsers = async () => {
     try {
-      try {
-
         try{
             const response = await fetch('http://localhost:8002/users')
             const data = await response.json()
@@ -28,17 +26,11 @@ const UserSearch = () => {
             console.log(data)
             setUsers(data)
         }
-
-      } catch (error) {
-        const response = await fetch("http://172.31.190.165:8003/users");
-        const data = await response.json();
-        console.log(data);
-        setUsers(data);
-      }
     } catch (error) {
       console.error("Failed to fetch users", error);
     }
-  };
+
+  }
 
   // Use useEffect to fetch users when the component mounts
   useEffect(() => {
@@ -54,6 +46,7 @@ const UserSearch = () => {
             <h2 className="text-4xl lg:text-6xl font-bold mb-2 text-center">{company.name}</h2>
             <hr className="border-b border-gray-900 my-6 w-2/3 mx-auto max-w-md lg:hidden" />
             <p className="text-center text-2xl">{company.description}</p>
+
           </div>
         </div>
 
@@ -74,6 +67,8 @@ const UserSearch = () => {
           </div>
         </div>
 
+
+
         {/* Search Bar */}
         <div className="flex flex-col justify-center items-center lg:col-span-1 lg:items-start">
           <div className="flex justify-center items-center max-w-lg mx-auto mt-6 px-5">
@@ -87,5 +82,6 @@ const UserSearch = () => {
     </>
   );
 };
+
 
 export default UserSearch;
