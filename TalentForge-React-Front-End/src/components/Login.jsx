@@ -75,30 +75,38 @@ const Login = () => {
                 // Display message on login screen 'email or password is incorrect'
                 // Set username and password fields to blank
                 console.log(userNotFound)
+                console.log(username)
+                const stringLength = username.length + password.length
                 setUserNotFound('yes')
-                IncorrectCredentials()
-                setUsername("")
-                setPassword("")
+                IncorrectCredentials(stringLength)
                 console.log({"Server response code": await res.statusCode})
             }
 
         } else {
             // Alert is shown if username or password is not entered
             e.preventDefault();
-            alert("Please enter an email and password");
+            setUserNotFound('yes')
+            IncorrectCredentials()
         }
+        // setUsername("")
+        // setPassword("")
+
     }
 
-    function IncorrectCredentials() {
+    function IncorrectCredentials(stringLength=0) {
       console.log(userNotFound)
+      console.log(username)
 
       if (userNotFound === 'yes') {
-        return <p className="text-red-600 text-base">Incorrect username or password <br/>- please try again</p>
-      }
+        if (stringLength > 0) {
+          return <p className="text-red-600 text-base">Incorrect username or password <br/>- please try again</p>
 
-      if (userNotFound === 'no') {
+        } else {
+          return <p className="text-red-600 text-base">Please enter your email and password</p>
+        }
+      } else {
         null
-      }
+        }
     }
 
 
@@ -130,10 +138,11 @@ const Login = () => {
                 Login
               </button>
             </form>
+
+            <div className="pt-2 pb-4 h-12 ">
             <IncorrectCredentials />
-            <div className="py-4 h-12 ">
-              {/* <p className="text-red-600 text-base">Incorrect username or password <br/>- please try again</p> */}
             </div>
+
             <div className="py-6">
                 <p>Not registered? Contact your HR<br/>department to be set up</p>
 
