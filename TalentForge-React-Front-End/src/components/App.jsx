@@ -10,7 +10,8 @@ import Opportunities from './Opportunities' // Import the 'Opportunities' compon
 import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
-import { AuthProvider } from './AuthContext'
+import { AuthProvider } from '../authentication/AuthContext'
+import decoder from '../authentication/decoder'
 
 
 // This will be where components are configured before being sent to main.jsx
@@ -49,9 +50,7 @@ Authorise user process:
 
     try {
       if (tokenId) {
-        const payload = tokenId.split('.')[1]
-        const decodedPayload = atob(payload)
-        id = JSON.parse(decodedPayload)
+        id = decoder(tokenId)
       }
     } catch (error) {
       console.log(error)

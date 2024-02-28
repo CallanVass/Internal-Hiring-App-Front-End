@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from "react"
-import { AuthContext } from "./AuthContext"
+import { AuthContext } from "../authentication/AuthContext"
 
 
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
@@ -52,6 +52,8 @@ const Profile =  ({ user }) => {
   // The user profile is required to conditionally render the edit button and job applications
   // We know the userId and that there is a valid token
   // If the ID of the user and the ID from the token match or it is an admin, then the edit button/applications are rendered
+  // Profile will call a method passing the userId of the profile and the userId from the token
+
 
 
   const addSkill = () => {
