@@ -30,7 +30,7 @@ const UserSearch = () => {
   }, []);
 
   return (
-    <div className="bg-white max-w-7xl mx-auto my-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
+    <div className="bg-white max-w-7xl max-h-6xl mx-auto my-60 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
       {/* Company Details */}
       <div className="flex flex-col justify-center items-center lg:space-x-4 max-w-6xl mx-auto mt-10 px-5 lg:mt-0">
         <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
@@ -41,7 +41,7 @@ const UserSearch = () => {
       </div>
 
       {/* Available Departments */}
-      <div className="flex flex-col justify-center items-center lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+      <div className="flex flex-col justify-center items-center lg:space-x-4 max-w-6xl mx-auto mt-10 px-5 py-5">
         <div className="w-full lg:w-auto flex flex-col items-center max-w-xl mx-auto mt-10 px-5">
           <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-center">Available Departments</h2>
           <div className="flex flex-col gap-2 justify-center max-w-xl mx-auto">
