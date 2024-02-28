@@ -87,8 +87,8 @@ export default function NavBar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
-                        src="./src/assets/logos/profile-pic.jpg"
+                        className="h-12 w-12 border-0"
+                        src="src/assets/logos/anonymous_avatars_grey_circles.png"
                         alt=""
                       />
                     </Menu.Button>
