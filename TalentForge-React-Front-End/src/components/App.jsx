@@ -10,16 +10,18 @@ import Opportunities from './Opportunities' // Import the 'Opportunities' compon
 import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
-import { AuthProvider } from './AuthProvider'
+import { AuthProvider } from '../authentication/AuthContext'
+import { UserContext } from '../authentication/UserContext'
+import decoder from '../authentication/decoder'
 
 
 // This will be where components are configured before being sent to main.jsx
 
-const UserContext = createContext()
+export const ProfileContext = createContext()
 
 
 const App = () => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]) // This state object is for ALL users
   // const token = useContext(AuthContext)
 
   useEffect(() => {
@@ -30,42 +32,41 @@ const App = () => {
 
 
 
+  /*
+Authorise user process:
+1. User logs in (token is generated)
+2. User is redirected to home page
+3. User navigates to profile page
+  - User id is extracted from token and placed in the URL
+4. Profile page is rendered with user details
+  - Conditional rendering of edit button if user id matches token id
+  - Conditional rendering of job applications if user id matches token id
+*/
 
 
-
-
-  // const { token, login, logout } = useContext(AuthContext)
-  // console.log(token)
-  // console.log(users)
-
-
-
-  // function ProfileWrapper() {
-  //   if (token) {
-  //     console.log(token)
-  //     // try {
-  //     const payload = token.split('.')[1]
-  //     const decodedPayload = atob(payload)
-  //     const userId = JSON.parse(decodedPayload)
-  //     console.log(userId)
-  //     return <AuthContext.Provider value={ token }><Profile id={userId} /></AuthContext.Provider>
-    // } catch (error) {
-      // console.log(error)
-    // }
-//   }
-// }
 
 
 // Temporary function to render Profile page with user id in the URL
 // Required to view profile until we are able to get user id out of the decoded token
-  function TempProfileWrapper() {
-    const {id} = useParams()
+  function ProfileWrapper(tokenId) {
+    let {id} = useParams()
+
+    try {
+      if (tokenId) {
+        id = decoder(tokenId)
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
     let user = users?.find(user => user._id === id)
+    // AssignUser(user) // Assign user to context
+    // setCurrentUser(user) // Assign user to state
 
-    return user? <UserContext.Provider value={ user }>
+    // This return statement sets the Profile context to be the user in the URL
+    return user? <ProfileContext.Provider value={ user }>
                     <Profile user={user} />
-                  </UserContext.Provider>
+                  </ProfileContext.Provider>
               : <p>User not found</p>
   }
 
@@ -94,14 +95,14 @@ return (
     <BrowserRouter>
       <div className='flex flex-col min-h-screen'>
         <Routes>
-          <Route path='/' element={<AuthProvider><Login /></AuthProvider>} />
+          <Route path='/' element={<Login />} />
           {/* Catch-all route for other pages */}
           <Route path='*' element={
             <Layout>
               {/* Nested Routes for pages that include NavBar */}
               <Routes>
-                <Route path='/home' element={<AuthProvider value={{token: 'token'}}><HomePage /></AuthProvider>} />
-                <Route path='/profile/:id' element={<TempProfileWrapper  />} />
+                <Route path='/home' element={<HomePage />} />
+                <Route path='/profile/:id' element={<ProfileWrapper  />} />
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
                 <Route path='/listing-temp' element={<ViewListing />} />
