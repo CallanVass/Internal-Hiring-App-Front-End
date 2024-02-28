@@ -8,7 +8,8 @@ import decoder from '../authentication/decoder'
 
 
 const Login = () => {
-    const [username, setUsername] = useState(""); // Note: username is an email
+  const [user, setUser] = useState([])
+  const [username, setUsername] = useState(""); // Note: username is an email
     const [password, setPassword] = useState("");
     const { login } = useContext(AuthContext)
 
@@ -57,12 +58,11 @@ const Login = () => {
                 // AuthProvider.login(response.token)
                 login(response.token)
                 console.log(response.token)
-                let user = decoder(response.token)
-                user = createContext(UserContext)
+                let tempUser = decoder(response.token)
+                console.log(tempUser)
+                setUser(decoder(response.token))
+                console.log(user)
                 nav('/home')
-                // return <AuthContext.Provider value={{ token: response.token }}>
-                //         <HomePage />
-                //       </AuthContext.Provider>
             } else {
                 // Obtain status code from server response
                 // Display message on login screen 'email or password is incorrect'

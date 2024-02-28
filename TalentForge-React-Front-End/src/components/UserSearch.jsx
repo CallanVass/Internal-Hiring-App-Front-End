@@ -16,10 +16,19 @@ const UserSearch = () => {
   const fetchUsers = async () => {
     try {
       try {
-        const response = await fetch("/users");
-        const data = await response.json();
-        console.log(data);
-        setUsers(data);
+
+        try{
+            const response = await fetch('http://localhost:8002/users')
+            const data = await response.json()
+            console.log(data)
+            setUsers(data)
+        } catch (error) {
+            const response = await fetch('http://172.31.190.165:8003/users')
+            const data = await response.json()
+            console.log(data)
+            setUsers(data)
+        }
+
       } catch (error) {
         const response = await fetch("http://172.31.190.165:8003/users");
         const data = await response.json();

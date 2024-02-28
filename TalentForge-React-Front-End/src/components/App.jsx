@@ -11,8 +11,8 @@ import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import { AuthContext, AuthProvider } from '../authentication/AuthContext'
-import { UserContext } from '../authentication/UserContext'
-import decoder from '../authentication/decoder'
+// import { UserContext } from '../authentication/UserContext'
+// import decoder from '../authentication/decoder'
 
 
 // This will be where components are configured before being sent to main.jsx
@@ -26,13 +26,13 @@ const App = () => {
 
   useEffect(() => {
     try {
-      fetch('/users')
-      .then(res => res.json())
-      .then(data => setUsers(data))
+      fetch('http://localhost:8002/users')
+        .then(res => res.json())
+        .then(data => setUsers(data))
     } catch (error) {
       fetch('http://172.31.190.165:8003/users')
-      .then(res => res.json())
-      .then(data => setUsers(data))
+        .then(res => res.json())
+        .then(data => setUsers(data))
     }
   }, [])
 
@@ -52,18 +52,10 @@ Authorise user process:
 
 
 
-// Temporary function to render Profile page with user id in the URL
+// Function to render Profile page with user id in the URL
 // Required to view profile until we are able to get user id out of the decoded token
-  function ProfileWrapper(tokenId) {
+  function ProfileWrapper() {
     let {id} = useParams()
-
-    try {
-      if (tokenId) {
-        id = decoder(tokenId)
-      }
-    } catch (error) {
-      console.log(error)
-    }
 
     let user = users?.find(user => user._id === id)
     // AssignUser(user) // Assign user to context
