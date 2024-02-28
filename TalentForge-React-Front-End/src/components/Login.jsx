@@ -1,8 +1,11 @@
-import React, { useState, createContext, useContext } from "react";
-import { useNavigate } from 'react-router-dom';
-import '../assets/css/Login.css';
+import React, { useState, createContext, useContext } from "react"
+import { useNavigate } from 'react-router-dom'
+import '../assets/css/Login.css'
 import HomePage from './HomePage' // Import the 'HomePage' component
-import { AuthContext, AuthProvider } from "../authentication/AuthContext";
+import { AuthContext, AuthProvider } from "../authentication/AuthContext"
+import { UserContext } from '../authentication/UserContext'
+import decoder from '../authentication/decoder'
+
 
 // const AuthContext = createContext()
 
@@ -10,6 +13,7 @@ import { AuthContext, AuthProvider } from "../authentication/AuthContext";
 const Login = () => {
     const [username, setUsername] = useState(""); // Note: username is an email
     const [password, setPassword] = useState("");
+    const { login } = useContext(AuthContext)
 
 
     const nav = useNavigate();
@@ -37,11 +41,15 @@ const Login = () => {
             const response = await res.json() // This is token or server response
             // If token is present in the response, redirect to homepage
             if (response.token) {
-                // Store the token in sessionStorage
+                // Store the token in sessionStorage (AuthContext manages this)
+                // Store user in UserContext
                 // sessionStorage.setItem('token', response.token)
                 // Sets the token in context using AuthProvider
                 // AuthProvider.login(response.token)
-                {/* nav(`/home`) // Add token to local storage?? */}
+                login(response.token)
+                let user = decoder(response.token)
+                user = createContext(UserContext)
+
                 return <AuthContext.Provider value={{ token: response.token }}>
                         <HomePage />
                       </AuthContext.Provider>

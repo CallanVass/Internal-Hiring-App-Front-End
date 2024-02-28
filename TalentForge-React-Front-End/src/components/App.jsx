@@ -11,16 +11,17 @@ import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import { AuthProvider } from '../authentication/AuthContext'
+import { UserContext } from '../authentication/UserContext'
 import decoder from '../authentication/decoder'
 
 
 // This will be where components are configured before being sent to main.jsx
 
-const UserContext = createContext()
+export const ProfileContext = createContext()
 
 
 const App = () => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]) // This state object is for ALL users
   // const token = useContext(AuthContext)
 
   useEffect(() => {
@@ -28,6 +29,8 @@ const App = () => {
     .then(res => res.json())
     .then(data => setUsers(data))
   }, [])
+
+
 
   /*
 Authorise user process:
@@ -57,10 +60,13 @@ Authorise user process:
     }
 
     let user = users?.find(user => user._id === id)
+    // AssignUser(user) // Assign user to context
+    // setCurrentUser(user) // Assign user to state
 
-    return user? <UserContext.Provider value={ user }>
+    // This return statement sets the Profile context to be the user in the URL
+    return user? <ProfileContext.Provider value={ user }>
                     <Profile user={user} />
-                  </UserContext.Provider>
+                  </ProfileContext.Provider>
               : <p>User not found</p>
   }
 
