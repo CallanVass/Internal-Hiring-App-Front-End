@@ -21,7 +21,7 @@ export default {
         'washed-blue': '#455f6e',
       },
       backgroundImage: {
-        'hero' : "url('src/assets/backgrounds/hi-tech-concepts-on-blue-background-hero-header.jpg')",
+        'hero' : "url('src/assets/backgrounds/greybackground.jpg')",
       },
       screens: {
         // // Breakpoints for screen sizes
