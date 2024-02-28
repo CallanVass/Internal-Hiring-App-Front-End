@@ -8,9 +8,12 @@ import decoder from '../authentication/decoder'
 // Fake changes to file!
 
 const Login = () => {
+
     const [username, setUsername] = useState("") // Note: username is an email
     const [password, setPassword] = useState("")
     const [userNotFound, setUserNotFound] = useState('no')
+
+  const [user, setUser] = useState([])
     const { login } = useContext(AuthContext)
     const nav = useNavigate()
     IncorrectCredentials(false)
@@ -28,24 +31,45 @@ const Login = () => {
         if (username && password) {
             e.preventDefault();
 
-            const res = await fetch('http://localhost:8002/login/', {
+            let res;
+            try {
+              res = await fetch('http://localhost:8002/login/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                  'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(loginCredentials)
             })
+
+                } catch (error) {
+                  console.error('Failed to connect to port 8003, trying alternative port...', error);
+                  res = await fetch('http://172.31.190.165:8003/login/', {
+                  method: 'POST',
+                  headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginCredentials)
+              });
+            }
+
             const response = await res.json() // This is token or server response
             // If token is present in the response, redirect to homepage
             if (response.token) {
                 // Store the token in sessionStorage (AuthContext manages this)
                 login(response.token)
                 console.log(response.token)
+
                 // decoder function returns user id from token
                 let user = decoder(response.token)
                 // Store user in UserContext
                 user = createContext(UserContext)
                 // Redirect to homepage
+
+                let tempUser = decoder(response.token)
+                console.log(tempUser)
+                setUser(decoder(response.token))
+                console.log(user)
+
                 nav('/home')
             } else {
                 // Display message on login screen 'email or password is incorrect'

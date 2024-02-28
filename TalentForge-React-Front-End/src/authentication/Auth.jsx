@@ -11,9 +11,9 @@ export default function Auth(profileUserId) {
   const currentUser = useContext(UserContext)
 
   const tokenDecode = decoder(token)
-  // console.log(currentUser)
-  // console.log(tokenDecode)
-  // console.log(profileUserId)
+  console.log(currentUser)
+  console.log(tokenDecode)
+  console.log(profileUserId)
 
   let match
 
