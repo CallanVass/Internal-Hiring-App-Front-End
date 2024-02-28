@@ -15,7 +15,7 @@ const HomePage = () => {
               <h1 className="text-dark-blue text-5xl md:text-6xl lg:text-6xl inset-y-28 h-fit md:inset-y-44 max-w-full md:max-w-lg lg:max-w-3xl px-10">
                 Welcome &#39;user.name&#39; to
               </h1>
-              <img src="src/assets/logos/transplogoslogan.png" alt="Talent Forge Logo" className="h-auto w-3/6" />
+              <img src="src/assets/logos/transplogoslogan.png" alt="Talent Forge Logo" className="h-auto lg:w-3/6" />
               <h2 className="text-dark-blue text-3xl lg:text-4xl inset-y-72 md:inset-y-96 h-fit max-w-full md:max-w-lg lg:max-w-3xl px-10">
                 This is your home of....explore, interact, opportunities, develop...mission statement/blurb/ intro to
                 let users know about the site and all of the benefits they can expect from it...
