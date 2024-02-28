@@ -34,11 +34,11 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         sessionStorage.removeItem('token')
         setToken(null)
-    };
+    }
 
     return (
         <AuthContext.Provider value={{ token, login, logout }}>
             {children}
         </AuthContext.Provider>
-    );
-};
+    )
+}
