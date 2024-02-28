@@ -8,18 +8,18 @@ import decoder from '../authentication/decoder'
 
 
 const Login = () => {
-    const [username, setUsername] = useState(""); // Note: username is an email
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("") // Note: username is an email
+    const [password, setPassword] = useState("")
+    const [userNotFound, setUserNotFound] = useState('no')
     const { login } = useContext(AuthContext)
+    const nav = useNavigate()
+    IncorrectCredentials(false)
 
 
-    const nav = useNavigate();
 
     // Get username and password from form
-
-
     async function checkCredentials(e) {
-
+      IncorrectCredentials(false)
         const loginCredentials = {
             email: username,
             password: password
@@ -34,27 +34,25 @@ const Login = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(loginCredentials)
-            });
+            })
             const response = await res.json() // This is token or server response
             // If token is present in the response, redirect to homepage
             if (response.token) {
                 // Store the token in sessionStorage (AuthContext manages this)
-                // Store user in UserContext
-                // sessionStorage.setItem('token', response.token)
-                // Sets the token in context using AuthProvider
-                // AuthProvider.login(response.token)
                 login(response.token)
                 console.log(response.token)
+                // decoder function returns user id from token
                 let user = decoder(response.token)
+                // Store user in UserContext
                 user = createContext(UserContext)
+                // Redirect to homepage
                 nav('/home')
-                // return <AuthContext.Provider value={{ token: response.token }}>
-                //         <HomePage />
-                //       </AuthContext.Provider>
             } else {
-                // Obtain status code from server response
                 // Display message on login screen 'email or password is incorrect'
                 // Set username and password fields to blank
+                console.log(userNotFound)
+                setUserNotFound('yes')
+                IncorrectCredentials()
                 setUsername("")
                 setPassword("")
                 console.log({"Server response code": await res.statusCode})
@@ -65,6 +63,18 @@ const Login = () => {
             e.preventDefault();
             alert("Please enter an email and password");
         }
+    }
+
+    function IncorrectCredentials() {
+      console.log(userNotFound)
+
+      if (userNotFound === 'yes') {
+        return <p className="text-red-600 text-base">Incorrect username or password <br/>- please try again</p>
+      }
+
+      if (userNotFound === 'no') {
+        null
+      }
     }
 
 
@@ -79,7 +89,7 @@ const Login = () => {
               width="200"
               height="200"
             />
-            <form onSubmit={checkCredentials}>
+            <form onSubmit={checkCredentials} onChange={() => setUserNotFound('no')}>
               <span className="block m-3">
                 <label htmlFor="username" className="">Username: </label>
                 <input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -96,8 +106,15 @@ const Login = () => {
                 Login
               </button>
             </form>
-            <p className="pt-6">Not registered? Contact your HR </p>
-            <p>department to be set up</p>
+            <IncorrectCredentials />
+            <div className="py-4 h-12 ">
+              {/* <p className="text-red-600 text-base">Incorrect username or password <br/>- please try again</p> */}
+            </div>
+            <div className="py-6">
+                <p>Not registered? Contact your HR<br/>department to be set up</p>
+
+            </div>
+
           </div>
         </>
 
