@@ -15,15 +15,22 @@ const UserSearch = () => {
     // Function to fetch users from the backend
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:8003/users')
-        const data = await response.json()
-        console.log(data)
-        setUsers(data)
+        try{
+            const response = await fetch('http://localhost:8003/users')
+            const data = await response.json()
+            console.log(data)
+            setUsers(data)
+        } catch (error) {
+            const response = await fetch('http://172.31.190.165:8003/users')
+            const data = await response.json()
+            console.log(data)
+            setUsers(data)
+        }
       } catch (error) {
         console.error("Failed to fetch users", error)
       }
     }
-  
+
     // Use useEffect to fetch users when the component mounts
     useEffect(() => {
       fetchUsers()
@@ -37,14 +44,14 @@ return (
       <div className="flex flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
           {/* Heading / Company Name */}
           <div className="flex flex-col sm:items-center sm:justify-center items-center max-w-lg mx-auto mt-10 px-5
-              md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5 
+              md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5
               lg:max-w-xl lg:mt-10 lg:px-5 lg:mx-auto ">
               <h2 className="text-6xl font-bold mb-2">{company.name}</h2>
           </div>
 
           {/* Divider */}
           <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md lg:hidden"/>
-          
+
           <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5 lg:mb-10">
               <p className="text-center">{company.description}</p>
           </div>
@@ -74,7 +81,7 @@ return (
 
   {/* End of grid encapuslation div */}
   </div>
-  
+
 </>
 )
 }
