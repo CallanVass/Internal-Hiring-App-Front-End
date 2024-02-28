@@ -6,9 +6,15 @@ const JobListing = () => {
   const [listings, setListings] = useState([])
 
   useEffect (() => {
-    fetch('http://localhost:8003/listings')
-    .then(res => res.json())
-    .then (data => setListings(data))
+    try {
+      fetch('http://localhost:8003/listings')
+      .then(res => res.json())
+      .then(data => setListings(data))
+    } catch (error) {
+      fetch('http://172.31.190.165:8003/listings')
+      .then(res => res.json())
+      .then(data => setListings(data))
+    }
   }, [])
 
 

@@ -28,13 +28,25 @@ const Login = () => {
         if (username && password) {
             e.preventDefault();
 
-            const res = await fetch('http://localhost:8003/login/', {
+            let res;
+            try {
+              res = await fetch('http://localhost:8003/login/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                  'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(loginCredentials)
-            });
+              });
+            } catch (error) {
+              console.error('Failed to connect to port 8003, trying alternative port...', error);
+              res = await fetch('http://172.31.190.165:8003/login/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginCredentials)
+              });
+            }
             const response = await res.json() // This is token or server response
             // If token is present in the response, redirect to homepage
             if (response.token) {
