@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from "react"
-import { AuthContext } from "../authentication/AuthContext"
+import  Auth  from "../authentication/Auth"
+import { ProfileContext } from "./App"
 
 
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
 
 
 const Profile =  ({ user }) => {
-  // const {token, login, logout} = useContext(AuthContext)
   const [isEditMode, setIsEditMode] = useState(false)
   const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
   const [skills, setSkills] = useState(["Edit Profile to add skills!"])
   const [newSkill, setNewSkill] = useState("")
-
+  const profile = useContext(ProfileContext) // Provides access to the whose profile is currently being viewed
 
   // console.log(token)
 
@@ -54,7 +54,27 @@ const Profile =  ({ user }) => {
   // If the ID of the user and the ID from the token match or it is an admin, then the edit button/applications are rendered
   // Profile will call a method passing the userId of the profile and the userId from the token
 
-
+  function EditButtonRender({Auth}) {
+    // console.log(Auth)
+    // const profile = useContext(ProfileContext)
+    // console.log(profile)
+  return (
+    <div className="editButtonRender">
+      { Auth ?
+      (
+        <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
+          <button
+            onClick={toggleEditMode}
+            className="bg-washed-blue text-white p-4 rounded-lg shadow-md hover:bg-dark-blue"
+          >
+            {isEditMode ? "Save Changes" : "Edit Profile"}
+          </button>
+        </div>
+      )
+      : null
+      }
+    </div>
+  )}
 
   const addSkill = () => {
     if (newSkill) {
@@ -318,14 +338,15 @@ const Profile =  ({ user }) => {
           </div>
 
           {/* Edit Button */}
-          <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
+          <EditButtonRender Auth={Auth(profile._id)}/>
+          {/* <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
             <button
               onClick={toggleEditMode}
               className="bg-washed-blue text-white p-4 rounded-lg shadow-md hover:bg-dark-blue"
             >
               {isEditMode ? "Save Changes" : "Edit Profile"}
             </button>
-          </div>
+          </div> */}
           {/* END OF THIRD COLUMN DIV */}
         </div>
         {/* End of div encapsulating/creating grid effect */}

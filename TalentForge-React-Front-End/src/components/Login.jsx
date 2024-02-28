@@ -7,9 +7,6 @@ import { UserContext } from '../authentication/UserContext'
 import decoder from '../authentication/decoder'
 
 
-// const AuthContext = createContext()
-
-
 const Login = () => {
     const [username, setUsername] = useState(""); // Note: username is an email
     const [password, setPassword] = useState("");
@@ -47,16 +44,19 @@ const Login = () => {
                 // Sets the token in context using AuthProvider
                 // AuthProvider.login(response.token)
                 login(response.token)
+                console.log(response.token)
                 let user = decoder(response.token)
                 user = createContext(UserContext)
-
-                return <AuthContext.Provider value={{ token: response.token }}>
-                        <HomePage />
-                      </AuthContext.Provider>
+                nav('/home')
+                // return <AuthContext.Provider value={{ token: response.token }}>
+                //         <HomePage />
+                //       </AuthContext.Provider>
             } else {
                 // Obtain status code from server response
                 // Display message on login screen 'email or password is incorrect'
-
+                // Set username and password fields to blank
+                setUsername("")
+                setPassword("")
                 console.log({"Server response code": await res.statusCode})
             }
 

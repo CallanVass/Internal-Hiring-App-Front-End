@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { AuthContext, AuthProvider } from '../authentication/AuthContext'
+import decoder from '../authentication/decoder'
 
 
 const navigation = [
@@ -14,19 +15,17 @@ const navigation = [
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(" ")
 }
 
 export default function NavBar() {
-  const token = useContext(AuthContext)
-  const nav = useNavigate();
+  const {token} = useContext(AuthContext)
+  const nav = useNavigate()
 
   const showProfile = () => {
     if (token) {
-      const payload = token.split('.')[1]
-      const decodedPayload = atob(payload)
-      const userId = JSON.parse(decodedPayload)
-      nav(`/profile/${userId}`)
+      const user = decoder(token)
+      nav(`/profile/${user._id}`)
     }
   }
 

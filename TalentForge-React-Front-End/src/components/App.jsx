@@ -95,13 +95,13 @@ return (
     <BrowserRouter>
       <div className='flex flex-col min-h-screen'>
         <Routes>
-          <Route path='/' element={<AuthProvider><Login /></AuthProvider>} />
+          <Route path='/' element={<Login />} />
           {/* Catch-all route for other pages */}
           <Route path='*' element={
             <Layout>
               {/* Nested Routes for pages that include NavBar */}
               <Routes>
-                <Route path='/home' element={<AuthProvider value={{token: 'token'}}><HomePage /></AuthProvider>} />
+                <Route path='/home' element={<HomePage />} />
                 <Route path='/profile/:id' element={<ProfileWrapper  />} />
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
