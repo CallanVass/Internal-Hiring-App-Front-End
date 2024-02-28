@@ -2,11 +2,10 @@ import React, { createContext, useState, useEffect } from 'react'
 
 export  const UserContext = createContext()
 
-// export function AssignUser(newUser) {
-//     const [user, setUser] = useState(null)
-//     setUser(newUser)
-// }
+export function UserContextProvider() {
+    const [user, setUser] = useState(null)
 
-export const UserProvider = ({ children }) => {
+
+    return <UserContext.Provider value={ user }></UserContext.Provider>
 
 }

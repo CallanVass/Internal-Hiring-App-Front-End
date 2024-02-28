@@ -1,3 +1,6 @@
+// AuthContext allows access based on a valid token being present
+// The login/logout functions are used to set and remove the token from sessionStorage
+// It can also return the token to the caller
 import React, { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
