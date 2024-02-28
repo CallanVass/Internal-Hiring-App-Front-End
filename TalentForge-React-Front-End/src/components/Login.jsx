@@ -5,7 +5,7 @@ import HomePage from './HomePage' // Import the 'HomePage' component
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
 import { UserContext } from '../authentication/UserContext'
 import decoder from '../authentication/decoder'
-
+// Fake changes to file!
 
 const Login = () => {
     const [username, setUsername] = useState("") // Note: username is an email
