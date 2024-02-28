@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "../assets/css/HomePage.css";
 
 const HomePage = () => {
@@ -26,30 +27,31 @@ const HomePage = () => {
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-center p-2">
+          <div className="flex justify-center items-center p-2">
             <div className="flex flex-col">
-              <button
-                type="submit"
-                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-64 max-w-80 border border-grey-500 hover:border-transparent rounded"
+              <NavLink
+                to="/opportunities"
+                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-64 max-w-80 border-2 border-grey-500 hover:border-transparent rounded-md flex items-center justify-center"
               >
                 Latest Jobs
-              </button>
-              <button
-                type="submit"
-                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12 min-w-64 max-w-80 border border-grey-500 hover:border-transparent rounded"
+              </NavLink>
+              <NavLink
+                to="/profile/:id"
+                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-64 max-w-80 border-2 border-grey-500 hover:border-transparent rounded-md flex items-center justify-center"
               >
                 My Profile
-              </button>
-              <button
-                type="submit"
-                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12 min-w-64 max-w-80 border border-grey-500 hover:border-transparent rounded"
+              </NavLink>
+              <NavLink
+                to="/user-search"
+                className="bg-dark-blue hover:bg-dark-blue text-white text-2xl md:text-3xl hover:text-white m-2 py-1 px-5 h-12  min-w-64 max-w-80 border-2 border-grey-500 hover:border-transparent rounded-md flex items-center justify-center"
               >
                 Company Network
-              </button>
+              </NavLink>
             </div>
           </div>
         </div>
       </div>
+      
     </>
   );
 };
