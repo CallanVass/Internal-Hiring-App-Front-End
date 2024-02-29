@@ -99,7 +99,7 @@ const JobListing = () => {
   }, [searchQuery, selectedDepartment, listings]);
 
   return (
-    <div className="mx-auto max-w-screen-lg">
+    <div className="bg-white mx-6 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16 xl:mx-96">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-3 flex items-center justify-center">
           <h2 className="text-3xl font-semibold mt-8 mb-4">Internal Opportunities</h2>
