@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../assets/css/Login.css'
 import HomePage from './HomePage' // Import the 'HomePage' component
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
+import App from "./App"
 
 
 
