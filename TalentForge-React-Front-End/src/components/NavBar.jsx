@@ -28,6 +28,12 @@ export default function NavBar() {
       nav(`/profile/${user._id}`)
     }
   }
+  const { logout } = useContext(AuthContext)
+
+  const handleLogout = () => {
+    logout()
+    nav('/')
+}
 
   return (
     <Disclosure as="nav" className="bg-dark-blue">
@@ -126,7 +132,7 @@ export default function NavBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            onClick={handleLogout}
                             className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
                           >
                             Sign out
