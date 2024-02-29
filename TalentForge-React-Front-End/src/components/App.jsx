@@ -94,23 +94,6 @@ function ProfileWrapper() {
             : <p>User not found</p>
 }
 
-// const CurrentUser = (() => {
-//   const token = decoder(sessionStorage.getItem('token'))
-//   console.log(sessionStorage.getItem('token'))
-//   console.log(token)
-
-//   // Get all users in DB
-
-//   setCurrentUser(users.find(user => user._id === token))
-
-
-//     return (
-//       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-//         {/* rest of your app */}
-//       </CurrentUserContext.Provider>
-//     )
-// })
-
 
 
 // Layout component from conditional Header render
