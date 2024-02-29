@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from "react"
 import  Auth  from "../authentication/Auth"
-import { ProfileContext } from "./App"
+import App, { CurrentUserContext, ProfileContext } from "./App"
 
 
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
@@ -12,9 +12,12 @@ const Profile =  ({ user }) => {
   const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
   const [skills, setSkills] = useState(["Edit Profile to add skills!"])
   const [newSkill, setNewSkill] = useState("")
-  const profile = useContext(ProfileContext) // Provides access to the whose profile is currently being viewed
+  let currentUser = useContext(CurrentUserContext).currentUser // Provides access to the user who is currently signed in
+  const profile = useContext(ProfileContext) // Provides access to user whose profile is currently being viewed
 
-  // console.log(token)
+
+  console.log(currentUser)
+  console.log(profile)
 
   // Checkboxes Dummy Data
   const statuses = [
@@ -55,6 +58,7 @@ const Profile =  ({ user }) => {
   // Profile will call a method passing the userId of the profile and the userId from the token
 
   function EditButtonRender({Auth}) {
+    // currentUser
     // console.log(Auth)
     // const profile = useContext(ProfileContext)
     // console.log(profile)
@@ -338,15 +342,7 @@ const Profile =  ({ user }) => {
           </div>
 
           {/* Edit Button */}
-          <EditButtonRender Auth={Auth(profile._id)}/>
-          {/* <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
-            <button
-              onClick={toggleEditMode}
-              className="bg-washed-blue text-white p-4 rounded-lg shadow-md hover:bg-dark-blue"
-            >
-              {isEditMode ? "Save Changes" : "Edit Profile"}
-            </button>
-          </div> */}
+          <EditButtonRender Auth={Auth(profile._id, currentUser)}/>
           {/* END OF THIRD COLUMN DIV */}
         </div>
         {/* End of div encapsulating/creating grid effect */}

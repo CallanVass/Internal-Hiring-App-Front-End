@@ -12,17 +12,20 @@ import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import NewUser from './NewUser' // Import the 'NewUser' component
 import { AuthContext, AuthProvider } from '../authentication/AuthContext'
-import CurrentUser from '../authentication/CurrentUser'
+import decoder from '../authentication/decoder'
+
 
 
 
 // This will be where components are configured before being sent to main.jsx
 
 export const ProfileContext = createContext()
+export const CurrentUserContext = createContext()
 
 
 const App = () => {
   const [users, setUsers] = useState([]) // This state object is for ALL users
+  const [currentUser, setCurrentUser] = useState([]) // This state object is for the signed in user
   // const token = useContext(AuthContext)
 
   useEffect(() => {
@@ -67,17 +70,47 @@ Authorise user process:
 // Required to view profile until we are able to get user id out of the decoded token
 function ProfileWrapper() {
   let {id} = useParams()
-
   let user = users?.find(user => user._id === id)
-  // AssignUser(user) // Assign user to context
-  // setCurrentUser(user) // Assign user to state
+
+
+  console.log(user)
+  console.log(users)
+
+  const token = decoder(sessionStorage.getItem('token'))
+  console.log(sessionStorage.getItem('token'))
+  console.log(token)
+  let tempUser = users.find(user => user._id === token._id)
+  console.log(tempUser)
+
+  setCurrentUser(users.find(user => user._id === token._id))
+
 
   // This return statement sets the Profile context to be the user in the URL
   return user? <ProfileContext.Provider value={ user }>
-                  <Profile user={user} />
+                  <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+                    <Profile user={user} /*currentUser = {{currentUser}}*/ />
+                  </CurrentUserContext.Provider>
                 </ProfileContext.Provider>
             : <p>User not found</p>
 }
+
+// const CurrentUser = (() => {
+//   const token = decoder(sessionStorage.getItem('token'))
+//   console.log(sessionStorage.getItem('token'))
+//   console.log(token)
+
+//   // Get all users in DB
+
+//   setCurrentUser(users.find(user => user._id === token))
+
+
+//     return (
+//       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+//         {/* rest of your app */}
+//       </CurrentUserContext.Provider>
+//     )
+// })
+
 
 
 // Layout component from conditional Header render
@@ -117,7 +150,6 @@ return (
                 <Route path='/listing-temp' element={<ViewListing />} />
               <Route path='/listing-new' element={<NewListing />} />
               <Route path='/user-new' element={<NewUser />} />
-
                 {/* Fallback route for unmatched paths */}
                 <Route path='*' element={<h3>Page not found</h3>} />
               </Routes>
