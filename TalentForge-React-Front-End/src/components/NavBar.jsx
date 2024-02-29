@@ -86,7 +86,7 @@ export default function NavBar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex rounded-full text-sm focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
@@ -111,7 +111,7 @@ export default function NavBar() {
                           <a
                             onClick={showProfile}
                             // href="/profile"
-                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700", "cursor-pointer")}
+                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-lg text-black", "cursor-pointer")}
                           >
                             Your Profile
                           </a>
@@ -131,7 +131,7 @@ export default function NavBar() {
                         {({ active }) => (
                           <a
                             onClick={handleLogout}
-                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700", "cursor-pointer")}
+                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-lg text-black", "cursor-pointer")}
                           >
                             Sign out
                           </a>
