@@ -22,7 +22,7 @@ const NewEmployee = () => {
                   type="text"
                   id="role-input"
                   name="role"
-                  className="form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="pl-2 form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
               <div className="flex flex-col md:flex-row md:items-center">
@@ -33,7 +33,7 @@ const NewEmployee = () => {
                   type="text"
                   id="dept-input"
                   name="dept"
-                  className="form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="pl-2 form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
               <div className="flex flex-col md:flex-row md:items-center">
@@ -44,7 +44,7 @@ const NewEmployee = () => {
                   type="text"
                   id="email-input"
                   name="email"
-                  className="form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="pl-2 form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
               <div className="flex flex-col md:flex-row md:items-center">
@@ -57,9 +57,9 @@ const NewEmployee = () => {
                       type={showPassword ? "text" : "password"}
                       id="password-input"
                       name="password"
-                      className="form-input w-full block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mb-3"
+                      className="pl-2 form-input w-full block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mb-3"
                     />
-                    <label htmlFor="show-password-checkbox" className="cursor-pointer">
+                    <label htmlFor="show-password-checkbox" className="cursor-pointer flex items-center pl-2">
                       <input
                         type="checkbox"
                         id="show-password-checkbox"
@@ -79,7 +79,7 @@ const NewEmployee = () => {
                   type="text"
                   id="role-input"
                   name="role"
-                  className="form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="pl-2 form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
               <div className="flex flex-col md:flex-row md:items-center">
@@ -90,7 +90,7 @@ const NewEmployee = () => {
                   type="text"
                   id="department-input"
                   name="department"
-                  className="form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="pl-2 form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
             </form>
