@@ -57,7 +57,7 @@ const NewEmployee = () => {
                       type={showPassword ? "text" : "password"}
                       id="password-input"
                       name="password"
-                      className="form-input w-full block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                      className="form-input w-full block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mb-3"
                     />
                     <label htmlFor="show-password-checkbox" className="cursor-pointer">
                       <input
