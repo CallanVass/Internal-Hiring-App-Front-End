@@ -10,6 +10,7 @@ import Opportunities from './Opportunities' // Import the 'Opportunities' compon
 import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
+import NewUser from './NewUser' // Import the 'NewUser' component
 import { AuthContext, AuthProvider } from '../authentication/AuthContext'
 import CurrentUser from '../authentication/CurrentUser'
 
@@ -114,7 +115,9 @@ return (
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
                 <Route path='/listing-temp' element={<ViewListing />} />
-                <Route path='/listing-new' element={<NewListing />} />
+              <Route path='/listing-new' element={<NewListing />} />
+              <Route path='/user-new' element={<NewUser />} />
+                
                 {/* Fallback route for unmatched paths */}
                 <Route path='*' element={<h3>Page not found</h3>} />
               </Routes>
