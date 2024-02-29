@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
-import Fuse from "fuse.js"; // Import Fuse.js library
-// Import MongoDB related modules if needed
+import React, { useState, useEffect, createContext } from "react"
+import ViewListing from "./ViewListing"
+import { useNavigate } from 'react-router-dom'
+import Fuse from "fuse.js" // Import Fuse.js library
+
+
+export const ListingContext = createContext()
+
 
 const JobListing = () => {
   const [listings, setListings] = useState([])
+  const nav = useNavigate()
 
   useEffect (() => {
     try {
@@ -29,74 +35,90 @@ const JobListing = () => {
     }
   }, [])
 
-
+  console.log(listings)
 
   // Sample job data
-  const [jobs, setJobs] = useState([
-    {
-      id: 1,
-      title: "Software Engineer",
-      department: "Engineering",
-      location: "Location A",
-      salary: "$100,000",
-      postedDate: "2024-02-22",
-      jobDescription: "We are looking for a software engineer to join our team.",
-    },
-    {
-      id: 2,
-      title: "Marketing Manager",
-      department: "Marketing",
-      location: "Location B",
-      salary: "$80,000",
-      postedDate: "2024-02-21",
-      jobDescription: "We are looking for a marketing manager to join our team.",
-    },
-    {
-      id: 3,
-      title: "HR Specialist",
-      department: "Human Resources",
-      location: "Location C",
-      salary: "$70,000",
-      postedDate: "2024-02-20",
-      jobDescription: "We are looking for an HR specialist to join our team.",
-    },
-    // Add more sample job data as needed
-  ]);
+  // const [jobs, setJobs] = useState([
+  //   {
+  //     id: 1,
+  //     title: "Software Engineer",
+  //     department: "Engineering",
+  //     location: "Location A",
+  //     salary: "$100,000",
+  //     postedDate: "2024-02-22",
+  //     jobDescription: "We are looking for a software engineer to join our team.",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Marketing Manager",
+  //     department: "Marketing",
+  //     location: "Location B",
+  //     salary: "$80,000",
+  //     postedDate: "2024-02-21",
+  //     jobDescription: "We are looking for a marketing manager to join our team.",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "HR Specialist",
+  //     department: "Human Resources",
+  //     location: "Location C",
+  //     salary: "$70,000",
+  //     postedDate: "2024-02-20",
+  //     jobDescription: "We are looking for an HR specialist to join our team.",
+  //   },
+  //   // Add more sample job data as needed
+  // ]);
 
-  const [selectedDepartment, setSelectedDepartment] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredListings, setFilteredListings] = useState([...listings]);
+  const [selectedDepartment, setSelectedDepartment] = useState("All")
+  const [searchQuery, setSearchQuery] = useState("")
+  const [filteredListings, setFilteredListings] = useState([...listings])
 
   // Function to handle department selection
   const handleDepartmentChange = (event) => {
-    setSelectedDepartment(event.target.value);
+    setSelectedDepartment(event.target.value)
   };
 
   // Function to handle search input change
   const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
+    setSearchQuery(event.target.value)
   };
 
   // Effect to update filtered listings when searchQuery or selectedDepartment changes
   useEffect(() => {
-    let newFilteredListings = [...listings];
+    let newFilteredListings = [...listings]
 
     if (selectedDepartment !== "All") {
-      newFilteredListings = newFilteredListings.filter((listing) => listing.department === selectedDepartment);
+      newFilteredListings = newFilteredListings.filter((listing) => listing.department === selectedDepartment)
     }
 
     if (searchQuery.trim() !== "") {
       const fuseOptions = {
         keys: ["title", "department"], // Search in 'title' and 'department' fields
         includeScore: true,
-      };
-      const fuse = new Fuse(newFilteredListings, fuseOptions);
-      const searchResult = fuse.search(searchQuery.trim());
-      newFilteredListings = searchResult.map((result) => result.item);
+      }
+      const fuse = new Fuse(newFilteredListings, fuseOptions)
+      const searchResult = fuse.search(searchQuery.trim())
+      newFilteredListings = searchResult.map((result) => result.item)
     }
 
-    setFilteredListings(newFilteredListings);
-  }, [searchQuery, selectedDepartment, listings]);
+    setFilteredListings(newFilteredListings)
+  }, [searchQuery, selectedDepartment, listings])
+
+
+// export const ListingContext = createContext()
+// <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+function listingClick(listing) {
+  nav(`/listings/${listing._id}`)
+  console.log(listing)
+  console.log(listing._id)
+
+  return (<ListingContext.Provider value={ listing }>{console.log(listing)}
+            {/* <ViewListing listing={listing} /> */}
+            <ViewListing listing={listing} />
+          </ListingContext.Provider>)
+}
+
+
 
   return (
     <div className="bg-white mx-6 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16 xl:mx-96">
@@ -134,16 +156,23 @@ const JobListing = () => {
         </div>
         <div className="md:col-span-2 mb-8">
           <div className="grid grid-cols-1 gap-6">
-            {filteredListings.map((listings) => (
-              <div key={listings.id} className="bg-white overflow-hidden shadow rounded-lg">
-                <div className="p-4">
-                  <h2 className="text-xl text-center font-medium text-gray-900">{listings.title}</h2>
-                  <p className="text-base text-center">{listings.department}</p>
-                  <p className="text-base mt-2">{listings.roleType}</p>
-                  <p className="text-base mt-2">{listings.location}</p>
-                  <p className="text-base mt-2">Salary: {`$${listings.salary}`}</p>   {/* Look at currency formatting: $100,000*/}
-                  <p className="text-base mt-2">Posted Date: {listings.datePosted}</p> {/* Date/time formatting */}
-                  <p className="text-base mt-2">Job Description: {listings.description.text}</p>
+            {filteredListings.map((listing) => (
+              <div key={listing._id} className="bg-white overflow-hidden shadow rounded-lg">
+                <div className="p-4"
+                  onClick={() => {
+                    listingClick(listing)
+                    // nav(`/listings/${listing._id}`)
+                    // console.log(listing)
+                    // console.log(listing._id)
+                    // App.getCurrentListing(listing)
+                    }}>
+                  <h2 className="text-xl text-center font-medium text-gray-900">{listing.title}</h2>
+                  <p className="text-base text-center">{listing.department}</p>
+                  <p className="text-base mt-2">{listing.roleType}</p>
+                  <p className="text-base mt-2">{listing.location}</p>
+                  <p className="text-base mt-2">Salary: {`$${listing.salary}`}</p>   {/* Look at currency formatting: $100,000*/}
+                  <p className="text-base mt-2">Posted Date: {listing.datePosted}</p> {/* Date/time formatting */}
+                  <p className="text-base mt-2">Job Description: {listing.description.text}</p>
                   <div className="flex justify-center">
                     <button className="bg-dark-blue hover:bg-washed-blue text-white font-bold py-2 px-4 rounded mt-4">
                       Apply Now

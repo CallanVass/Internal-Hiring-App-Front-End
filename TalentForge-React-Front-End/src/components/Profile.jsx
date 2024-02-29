@@ -58,10 +58,6 @@ const Profile =  ({ user }) => {
   // Profile will call a method passing the userId of the profile and the userId from the token
 
   function EditButtonRender({Auth}) {
-    // currentUser
-    // console.log(Auth)
-    // const profile = useContext(ProfileContext)
-    // console.log(profile)
   return (
     <div className="editButtonRender">
       { Auth ?

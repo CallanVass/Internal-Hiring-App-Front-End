@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import '../assets/css/App.css'
 import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom'
 import NavBar from './NavBar' // Import the 'NavBar' component
@@ -12,6 +12,7 @@ import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import NewUser from './NewUser' // Import the 'NewUser' component
 import { AuthContext, AuthProvider } from '../authentication/AuthContext'
+import { ListingContext } from "./Opportunities"
 import decoder from '../authentication/decoder'
 
 
@@ -26,8 +27,8 @@ export const CurrentUserContext = createContext()
 const App = () => {
   const [users, setUsers] = useState([]) // This state object is for ALL users
   const [currentUser, setCurrentUser] = useState([]) // This state object is for the signed in user
+  const currentListing = useContext(ListingContext)
   // const token = useContext(AuthContext)
-
   useEffect(() => {
 
     try {
@@ -94,23 +95,6 @@ function ProfileWrapper() {
             : <p>User not found</p>
 }
 
-// const CurrentUser = (() => {
-//   const token = decoder(sessionStorage.getItem('token'))
-//   console.log(sessionStorage.getItem('token'))
-//   console.log(token)
-
-//   // Get all users in DB
-
-//   setCurrentUser(users.find(user => user._id === token))
-
-
-//     return (
-//       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-//         {/* rest of your app */}
-//       </CurrentUserContext.Provider>
-//     )
-// })
-
 
 
 // Layout component from conditional Header render
@@ -147,7 +131,8 @@ return (
                 <Route path='/profile/:id' element={<ProfileWrapper  />} />
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
-                <Route path='/listing-temp' element={<ViewListing />} />
+
+                <Route path='/listings/:id' element={<ListingContext.Provider value={currentListing}/>} /> {console.log(currentListing)}
               <Route path='/listing-new' element={<NewListing />} />
               <Route path='/user-new' element={<NewUser />} />
                 {/* Fallback route for unmatched paths */}

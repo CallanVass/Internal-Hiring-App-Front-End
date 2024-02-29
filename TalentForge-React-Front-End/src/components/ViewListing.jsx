@@ -1,16 +1,28 @@
-import React from "react";
-import "../assets/css/ViewListing.css";
+/*
+Attempted several methods to get the data to display in the ViewListing component.
+The issue is this: the listing is 'known' in the Opportunities component (it is stored in context) - clicking on a listing
+causes a call to App.jsx (as all routes are in App.jsx) - this means that the identity of the listing needs to be passed from
+Opportunities (where it was clicked) to App (which knows where the data is to render a listing) then from App to ViewListing
+(which actually renders the page and its components). However the ViewListing component, has no visibility of listing - it is 'unknown'.
+*/
+
+
+import React, { useContext } from "react"
+import "../assets/css/ViewListing.css"
+import { ListingContext } from "./Opportunities"
+
 
 const ViewListing = ({ listing }) => {
-  // const listing = { id, title, description, department, location, salary, datePosted, dateClosing, roleType, roleDuration, newListing, listingStatus, applicants }
 
+
+console.log(listing)
   return (
     <>
       <div className="flex justify-center p-4 md:p-8 lg:p-4 xl:p-12 bg-grey">
         <div className="bg-white border border-gray-300 mt-6 mb-6">
           {/* Listing header */}
           <div className="flex justify-center pt-4 lg:pt-10 lg:pb-4">
-            <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold">&#39;listing.title&#39;</h1>
+            <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold">{listing.title}</h1>
           </div>
           {/* Listing subheader */}
           <div className="flex justify-center">
