@@ -117,7 +117,7 @@ return (
                 <Route path='/listing-temp' element={<ViewListing />} />
               <Route path='/listing-new' element={<NewListing />} />
               <Route path='/user-new' element={<NewUser />} />
-                
+
                 {/* Fallback route for unmatched paths */}
                 <Route path='*' element={<h3>Page not found</h3>} />
               </Routes>
