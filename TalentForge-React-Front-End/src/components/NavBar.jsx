@@ -1,10 +1,9 @@
 import { Fragment, useContext } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { AuthContext, AuthProvider } from '../authentication/AuthContext'
-import decoder from '../authentication/decoder'
-
+import { AuthContext, AuthProvider } from "../authentication/AuthContext";
+import decoder from "../authentication/decoder";
 
 const navigation = [
   { name: "Home", href: "/home", current: true },
@@ -15,25 +14,25 @@ const navigation = [
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function NavBar() {
-  const {token} = useContext(AuthContext)
-  const nav = useNavigate()
+  const { token } = useContext(AuthContext);
+  const nav = useNavigate();
 
   const showProfile = () => {
     if (token) {
-      const user = decoder(token)
-      nav(`/profile/${user._id}`)
+      const user = decoder(token);
+      nav(`/profile/${user._id}`);
     }
-  }
-  const { logout } = useContext(AuthContext)
+  };
+  const { logout } = useContext(AuthContext);
 
   const handleLogout = () => {
-    logout()
-    nav('/')
-}
+    logout();
+    nav("/");
+  };
 
   return (
     <Disclosure as="nav" className="bg-dark-blue">
@@ -54,16 +53,15 @@ export default function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex flex-shrink-0 items-center justify-center">
-                  {/* logo image
+              <div className="flex flex-1 items-center justify-center ">
+                {/* <div className="flex flex-shrink-0 items-center justify-center">
                   <img
                     className="h-12 w-auto"
                     // KD: changed this to the correct path (transparent logo is the same colour as the background!)
-                    src="src/assets/logos/talent_forge_logo.jpg"
+                    src="src/assets/logos/whitetransplogo.png"
                     alt="Talent Forge Logo"
-                  /> */}
-                </div>
+                  />
+                </div> */}
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4 justify-center">
                     {navigation.map((item) => (
@@ -71,8 +69,8 @@ export default function NavBar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? "bg-grey text-black" : "text-white hover:bg-grey hover:text-black",
-                          "rounded-md px-3 py-2 text-sm font-custom"
+                          item.current ? "bg-dark-blue text-white border" : "text-white hover:border hover:text-white",
+                          "rounded-md px-8 py-2 text-md font-custom"
                           // interact with fonts here ^^^^
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -111,9 +109,9 @@ export default function NavBar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                          onClick={showProfile}
-                          // href="/profile"
-                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
+                            onClick={showProfile}
+                            // href="/profile"
+                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700", "cursor-pointer")}
                           >
                             Your Profile
                           </a>
@@ -133,7 +131,7 @@ export default function NavBar() {
                         {({ active }) => (
                           <a
                             onClick={handleLogout}
-                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
+                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700", "cursor-pointer")}
                           >
                             Sign out
                           </a>
