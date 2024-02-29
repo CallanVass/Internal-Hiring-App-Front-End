@@ -15,7 +15,8 @@ export default async function CurrentUser () {
   } else {
     user = null
   }
-
-
+    console.log(users)
     console.log(user)
+
+    return user
 }

@@ -6,7 +6,7 @@ import CurrentUser from './CurrentUser'
 
 export default function Auth(profileUserId) {
   const token = sessionStorage.getItem('token')
-  const currentUser = CurrentUser(token) // Returns user object or null
+  const currentUser = CurrentUser() // Returns user object or null
 
   // const tokenDecode = decoder(token)
   console.log(currentUser)
