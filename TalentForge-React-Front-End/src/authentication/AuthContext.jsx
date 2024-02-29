@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
     const login = (newToken) => {
         sessionStorage.setItem('token', newToken)
         setToken(newToken)
+        // console.log(token) // Provides the token
+        // console.log(AuthContext) //Provides the context (ie. an symbol.React object)
       }
 
     // eslint-disable-next-line no-unused-vars

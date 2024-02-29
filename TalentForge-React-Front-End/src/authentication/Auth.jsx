@@ -1,6 +1,7 @@
 // This module provides a function to obtain the user and token and return matching status to the caller
 // If the user is an admin, the function returns true
 // If the profile's user id is the same as the token, the function returns true
+// Needs re-work to not use UserContext
 import { useContext } from 'react'
 import { UserContext } from '../authentication/UserContext'
 import decoder from './decoder'
