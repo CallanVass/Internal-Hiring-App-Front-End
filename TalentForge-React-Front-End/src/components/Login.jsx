@@ -3,26 +3,21 @@ import { useNavigate } from 'react-router-dom'
 import '../assets/css/Login.css'
 import HomePage from './HomePage' // Import the 'HomePage' component
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
-import { UserContext } from '../authentication/UserContext'
-import decoder from '../authentication/decoder'
-// Fake changes to file!
+
+
 
 const Login = () => {
 
     const [username, setUsername] = useState("") // Note: username is an email
     const [password, setPassword] = useState("")
     const [userNotFound, setUserNotFound] = useState('no')
-
-  const [user, setUser] = useState([])
     const { login } = useContext(AuthContext)
     const nav = useNavigate()
-    IncorrectCredentials(false)
-
 
 
     // Get username and password from form
     async function checkCredentials(e) {
-      IncorrectCredentials(false)
+      // IncorrectCredentials(false)
         const loginCredentials = {
             email: username,
             password: password
@@ -55,21 +50,10 @@ const Login = () => {
             const response = await res.json() // This is token or server response
             // If token is present in the response, redirect to homepage
             if (response.token) {
+            // This function needs to set the logged in user in the UserContext
                 // Store the token in sessionStorage (AuthContext manages this)
                 login(response.token)
-                console.log(response.token)
-
-                // decoder function returns user id from token
-                let user = decoder(response.token)
-                // Store user in UserContext
-                user = createContext(UserContext)
                 // Redirect to homepage
-
-                let tempUser = decoder(response.token)
-                console.log(tempUser)
-                setUser(decoder(response.token))
-                console.log(user)
-
                 nav('/home')
             } else {
                 // Display message on login screen 'email or password is incorrect'
@@ -78,6 +62,7 @@ const Login = () => {
                 console.log(username)
                 const stringLength = username.length + password.length
                 setUserNotFound('yes')
+                // "Incorrect username or password - please try again"
                 IncorrectCredentials(stringLength)
                 console.log({"Server response code": await res.statusCode})
             }
@@ -96,7 +81,7 @@ const Login = () => {
     function IncorrectCredentials(stringLength=0) {
       console.log(userNotFound)
       console.log(username)
-
+      console.log(stringLength)
       if (userNotFound === 'yes') {
         if (stringLength > 0) {
           return <p className="text-red-600 text-base">Incorrect username or password <br/>- please try again</p>
@@ -108,7 +93,6 @@ const Login = () => {
         null
         }
     }
-
 
 
     return (
