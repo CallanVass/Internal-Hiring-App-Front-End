@@ -9,7 +9,7 @@ const NewEmployee = () => {
         <div className="flex flex-col items-center md:items-start lg:items-center">
           {/* Title */}
           <div className="flex justify-center lg:justify-start pb-4">
-            <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold">Create User</h1>
+            <h1 className="text-center text-4xl md:text-3xl lg:text-5xl font-bold">Create User</h1>
           </div>
           {/* Form: job title/dept/date */}
           <div className="w-full md:w-4/5 lg:w-3/4 xl:w-1/2">
