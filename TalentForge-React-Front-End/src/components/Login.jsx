@@ -97,7 +97,7 @@ const Login = () => {
 
     return (
         <>
-          <div className="flex-col text-center">
+          <div className="flex-col text-center mt-24 lg:mt-40">
             <img
               className="m-2 inline"
               src="src/assets/logos/talent_forge_logo.jpg"
@@ -108,16 +108,16 @@ const Login = () => {
             <form onSubmit={checkCredentials} onChange={() => setUserNotFound('no')}>
               <span className="block m-3">
                 <label htmlFor="username" className="">Username: </label>
-                <input id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input className="pl-2 form-input rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
               </span>
               <span className="block m-5">
                 <label htmlFor="password" className="m-1">Password: </label>
-                <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input className="pl-2 form-input rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
               </span>
               <button
                 type="submit"
                 title="login-btn"
-                className="bg-grey hover:bg-dark-blue text-dark-blue font-semibold hover:text-white m-2 py-1 px-5 border border-blue-500 hover:border-transparent rounded"
+                className="bg-dark-blue hover:bg-dark-green text-white font-semibold hover:text-white m-2 py-1 px-5 border border-grey-500 hover:border-transparent rounded"
               >
                 Login
               </button>
