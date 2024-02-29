@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const NewEmployee = () => {
   const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault()
   
-    const formData = new FormData(event.target);
-    const formDataObj = Object.fromEntries(formData.entries());
+    const formData = new FormData(event.target)
+    const formDataObj = Object.fromEntries(formData.entries())
   
-    // formDataObj is now an object with properties like { firstName: 'John', lastName: 'Doe', ... }
+
   
     try {
-      const response = await fetch('http://localhost:8003/users', {
+      const response = await fetch('http://localhost:8002/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,15 +24,15 @@ const NewEmployee = () => {
       });
   
       if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`)
       }
   
       const result = await response.json();
-      console.log(result); // Process success response
-      // e.g., redirect or show a success message
+      console.log(result)
+      navigate("/home")
+      
     } catch (error) {
-      console.error('Failed to create new employee:', error);
-      // Process error response
+      console.error('Failed to create new employee:', error)
     }
   }
 
@@ -132,25 +134,6 @@ const NewEmployee = () => {
             
           </div>
 
-          {/* On/Off Slider */}
-          <div className="inline-flex items-center justify-center my-3">
-            <label htmlFor="admin-checkbox" className="mr-4 text-lg md:text-xl lg:text-lg">
-              Admin User
-            </label>
-            <div className="relative inline-block w-28 h-4 content-center rounded-full cursor-pointer">
-              <input
-                id="admin-checkbox"
-                type="checkbox"
-                name="admin"
-                className="absolute w-8 h-4 transition-colors duration-300 rounded-full appearance-none cursor-pointer peer bg-gray-500 checked:bg-green-500  peer-checked:border-gray-900 peer-checked:before:bg-blue-500"
-              />
-              <label
-                htmlFor="admin-checkbox"
-                className="before:content[''] absolute top-2/4 -left-1 h-5 w-5 -translate-y-2/4 cursor-pointer rounded-full border border-blue-gray-100 bg-dark-green shadow-md transition-all duration-300 before:absolute before:top-2/4 before:left-2/4 before:block before:h-10 before:w-10 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity hover:before:opacity-10 peer-checked:translate-x-full peer-checked:border-gray-900 peer-checked:before:bg-gray-900"
-              ></label>
-            </div>
-          </div>
-
           {/* Buttons */}
           <div className="flex justify-center mt-6">
             <div className="flex flex-col">
@@ -159,12 +142,6 @@ const NewEmployee = () => {
                     className="bg-dark-green hover:bg-dark-blue text-white font-semibold text-lg md:text-xl lg:text-lg hover:text-white m-2 py-2 md:py-3 lg:py-4 px-5 md:px-6 lg:px-8 min-w-[8rem] border border-blue-500 hover:border-transparent rounded"
                   >
                     Save
-                  </button>
-                  <button
-                    type="button" // Correctly set as type="button" for non-submit actions
-                    className="bg-dark-green hover:bg-dark-blue text-white font-semibold text-lg md:text-xl lg:text-lg hover:text-white m-2 py-2 md:py-3 lg:py-4 px-5 md:px-6 lg:px-8 min-w-[8rem] border border-blue-500 hover:border-transparent rounded"
-                  >
-                    Close
                   </button>
             </div>
           </div>
