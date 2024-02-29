@@ -111,7 +111,7 @@ export default function NavBar() {
                           <a
                             onClick={showProfile}
                             // href="/profile"
-                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
+                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700", "cursor-pointer")}
                           >
                             Your Profile
                           </a>
@@ -131,7 +131,7 @@ export default function NavBar() {
                         {({ active }) => (
                           <a
                             onClick={handleLogout}
-                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
+                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700", "cursor-pointer")}
                           >
                             Sign out
                           </a>

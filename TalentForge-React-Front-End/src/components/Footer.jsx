@@ -28,12 +28,12 @@ const Footer = () => {
               <h2 className="mb-6 text-sm font-custom text-white uppercase dark:text-white">Follow us</h2>
               <ul className="text-white dark:text-gray-400 font-custom">
                 <li className="mb-4">
-                  <a href="https://github.com/themesberg/flowbite" className="hover:underline hover:text-grey">
+                  <a href="#" className="hover:underline hover:text-grey">
                     Github
                   </a>
                 </li>
                 <li>
-                  <a href="https://discord.gg/4eeurUVvTy" className="hover:underline hover:text-grey">
+                  <a href="#" className="hover:underline hover:text-grey">
                     Discord
                   </a>
                 </li>
@@ -61,7 +61,7 @@ const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm font-custom text-white sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <a href="/" className="hover:underline hover:text-grey">
+            <a href="#" className="hover:underline hover:text-grey">
               TalentForge™
             </a>
             . All Rights Reserved.
