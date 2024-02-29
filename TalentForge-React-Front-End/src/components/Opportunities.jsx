@@ -7,11 +7,23 @@ const JobListing = () => {
 
   useEffect (() => {
     try {
-      fetch('http://localhost:8002/listings')
+      fetch('http://localhost:8002/listings', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+      })
       .then(res => res.json())
       .then(data => setListings(data))
     } catch (error) {
-      fetch('http://172.31.190.165:8003/listings')
+      fetch('http://172.31.190.165:8003/listings', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+      })
       .then(res => res.json())
       .then(data => setListings(data))
     }

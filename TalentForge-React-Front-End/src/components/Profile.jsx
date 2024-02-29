@@ -101,8 +101,8 @@ const Profile =  ({ user }) => {
     lastName: user.lastName,
     role: user.role,
     department: user.department,
-    aboutMe: user.aboutMe.text,
-    careerDevelopment: user.aboutMe.careerDevelopment,
+    // aboutMe: user.aboutMe.text,
+    // careerDevelopment: user.aboutMe.careerDevelopment,
 
   });
 
