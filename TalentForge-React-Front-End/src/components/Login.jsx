@@ -15,7 +15,7 @@ const Login = () => {
     const nav = useNavigate()
 
 
-    // Get username and password from form
+    // Get username and password from form when login button clicked
     async function checkCredentials(e) {
       // IncorrectCredentials(false)
         const loginCredentials = {

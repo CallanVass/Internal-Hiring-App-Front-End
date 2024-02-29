@@ -14,25 +14,25 @@ const navigation = [
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(" ")
 }
 
 export default function NavBar() {
-  const { token } = useContext(AuthContext);
-  const nav = useNavigate();
+  const { token } = useContext(AuthContext)
+  const nav = useNavigate()
 
   const showProfile = () => {
     if (token) {
-      const user = decoder(token);
-      nav(`/profile/${user._id}`);
+      const user = decoder(token)
+      nav(`/profile/${user._id}`)
     }
   };
-  const { logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext)
 
   const handleLogout = () => {
-    logout();
-    nav("/");
-  };
+    logout()
+    nav("/")
+  }
 
   return (
     <Disclosure as="nav" className="bg-dark-blue">
