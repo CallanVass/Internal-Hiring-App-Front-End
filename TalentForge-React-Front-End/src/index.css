@@ -33,4 +33,9 @@ p {
 button {
   font-family: "Inter", sans-serif;
   font-style: normal;
+  background-color: #21336d;
+  transition: transform 0.2s ease-in-out;
+}
+button:hover {
+  transform: scale(1.05);
 }
