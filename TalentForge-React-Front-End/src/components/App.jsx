@@ -22,7 +22,7 @@ import decoder from '../authentication/decoder'
 // This will be where components are configured before being sent to main.jsx
 
 export const ProfileContext = createContext()
-export const CurrentUserContext = createContext()
+export const CurrentUserContext = createContext({})
 export const UserContext = createContext()
 
 
