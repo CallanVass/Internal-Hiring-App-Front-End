@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect, createContext, useContext } from 'react'
 import '../assets/css/App.css'
 import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom'
@@ -25,9 +26,10 @@ export const CurrentUserContext = createContext()
 
 
 const App = () => {
+  // const CurrentUserContext = createContext()
+  // const ProfileContext = createContext()
   const [users, setUsers] = useState([]) // This state object is for ALL users
-  const [currentUser, setCurrentUser] = useState([]) // This state object is for the signed in user
-  const currentListing = useContext(ListingContext)
+  // const currentListing = useContext(ListingContext)
   // const token = useContext(AuthContext)
   useEffect(() => {
 
@@ -54,6 +56,56 @@ const App = () => {
     }
   }, [])
 
+  // const createProvider = ({ children }) => {
+  //   return(
+  //           <NAMEContext.Provider value={/*value*/}>
+  //             {children}
+  //           </NAMEContext.Provider>
+  //   )
+  // }
+
+
+  const CurrentUserProvider = ({ children }) => {
+    // const [currentUser, setCurrentUser] = useState([]) // This state object is for the signed in user
+    let {id} = useParams()
+    let user = users?.find(user => user._id === id)
+
+    console.log(user)
+    console.log(users)
+
+    const token = decoder(sessionStorage.getItem('token'))
+    console.log(sessionStorage.getItem('token'))
+    console.log(token)
+    let tempUser = users.find(user => user._id === token._id)
+    console.log(tempUser)
+
+    // setCurrentUser(users.find(user => user._id === token._id))
+
+  return(
+            <CurrentUserContext.Provider value={ tempUser }>
+              {children}
+            </CurrentUserContext.Provider>
+    )
+  }
+
+
+
+  const ProfileProvider = ({ children }) => {
+    let {id} = useParams()
+    let user = users?.find(user => user._id === id)
+
+    console.log(user)
+    console.log(users)
+
+    return(
+            <ProfileContext.Provider value={ user }>
+              {children}
+            </ProfileContext.Provider>
+    )
+  }
+
+
+
 
   /*
 Authorise user process:
@@ -64,37 +116,41 @@ Authorise user process:
 4. Profile page is rendered with user details
   - Conditional rendering of edit button if user id matches token id
   - Conditional rendering of job applications if user id matches token id
-*/
 
 
 // Function to render Profile page with user id in the URL
 // Required to view profile until we are able to get user id out of the decoded token
-function ProfileWrapper() {
-  let {id} = useParams()
-  let user = users?.find(user => user._id === id)
+// function ProfileWrapper() {
+//   let {id} = useParams()
+//   let user = users?.find(user => user._id === id)
+
+//   console.log(user)
+//   console.log(users)
+
+//   const token = decoder(sessionStorage.getItem('token'))
+//   console.log(sessionStorage.getItem('token'))
+//   console.log(token)
+//   let tempUser = users.find(user => user._id === token._id)
+//   console.log(tempUser)
+
+//   // setCurrentUser(users.find(user => user._id === token._id))
 
 
-  console.log(user)
-  console.log(users)
+//   // This return statement sets the Profile context to be the user in the URL
+//   return user? <ProfileContext.Provider value={ user }>
+//                   <CurrentUserContext.Provider >
+//                     <Profile user={user} /*currentUser = {{currentUser}}*/
+//                   </CurrentUserContext.Provider>
+//                 </ProfileContext.Provider>
+//             : <p>User not found</p>
+// }
 
-  const token = decoder(sessionStorage.getItem('token'))
-  console.log(sessionStorage.getItem('token'))
-  console.log(token)
-  let tempUser = users.find(user => user._id === token._id)
-  console.log(tempUser)
-
-  setCurrentUser(users.find(user => user._id === token._id))
-
-
-  // This return statement sets the Profile context to be the user in the URL
-  return user? <ProfileContext.Provider value={ user }>
-                  <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-                    <Profile user={user} /*currentUser = {{currentUser}}*/ />
-                  </CurrentUserContext.Provider>
-                </ProfileContext.Provider>
-            : <p>User not found</p>
-}
-
+// function HomePageWrapper() {
+//   return (<CurrentUserContext.Provider value={ currentUser }>
+//             <HomePage />
+//           </CurrentUserContext.Provider>
+//   )
+// }
 
 
 // Layout component from conditional Header render
@@ -118,7 +174,11 @@ const Layout = ({ children }) => {
 
 
 return (
-  <AuthProvider><BrowserRouter>
+  <AuthProvider>
+              <CurrentUserProvider>
+
+    <ProfileProvider>
+    <BrowserRouter>
       <div className='flex flex-col min-h-screen'>
         <Routes>
           <Route path='/' element={<Login />} />
@@ -127,12 +187,14 @@ return (
             <Layout>
               {/* Nested Routes for pages that include NavBar */}
               <Routes>
+
                 <Route path='/home' element={<HomePage />} />
-                <Route path='/profile/:id' element={<ProfileWrapper  />} />
+                <Route path='/profile/:id' element={<Profile />} />
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
 
-                <Route path='/listings/:id' element={<ListingContext.Provider value={currentListing}/>} /> {console.log(currentListing)}
+                {/* <Route path='/listings/:id' element={<ListingContext.Provider value={currentListing}/>} /> {console.log(currentListing)} */}
+                <Route path='/listings/:id' element={<ViewListing />} />
               <Route path='/listing-new' element={<NewListing />} />
               <Route path='/user-new' element={<NewUser />} />
                 {/* Fallback route for unmatched paths */}
@@ -145,6 +207,9 @@ return (
         <div className='flex-grow'></div><Footer />
       </div>
     </BrowserRouter>
+    </ProfileProvider>
+    </CurrentUserProvider>
+
 </AuthProvider>
   )
 }

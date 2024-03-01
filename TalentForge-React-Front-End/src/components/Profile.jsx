@@ -1,24 +1,27 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from "react"
 import  Auth  from "../authentication/Auth"
-import App, { CurrentUserContext, ProfileContext } from "./App"
+import { CurrentUserContext, ProfileContext } from "./App"
 
 
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
 
 
-const Profile = ({ user }) => {
-  document.title = "Profile";
+const Profile = () => {
+  let currentUser = useContext(CurrentUserContext) // Provides access to the user who is currently signed in
+  let profileUser = useContext(ProfileContext) // Provides access to the user who is currently signed in
+
+  document.title = "Profile"
   const [isEditMode, setIsEditMode] = useState(false)
   const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
   const [skills, setSkills] = useState(["Edit Profile to add skills!"])
   const [newSkill, setNewSkill] = useState("")
-  let currentUser = useContext(CurrentUserContext).currentUser // Provides access to the user who is currently signed in
-  const profile = useContext(ProfileContext) // Provides access to user whose profile is currently being viewed
+
+
 
 
   console.log(currentUser)
-  console.log(profile)
+  console.log(profileUser)
 
   // Checkboxes Dummy Data
   const statuses = [
@@ -98,12 +101,12 @@ const Profile = ({ user }) => {
   };
 
   const [editableProfile, setEditableProfile] = useState({
-    firstName: user.firstName,
-    lastName: user.lastName,
-    role: user.role,
-    department: user.department,
-    aboutMe: user.aboutMe.text,
-    careerDevelopment: user.aboutMe.careerDevelopment,
+    firstName: profileUser.firstName,
+    lastName: profileUser.lastName,
+    role: profileUser.role,
+    department: profileUser.department,
+    aboutMe: profileUser.aboutMe.text,
+    careerDevelopment: profileUser.aboutMe.careerDevelopment,
 
   });
 
@@ -339,7 +342,7 @@ const Profile = ({ user }) => {
           </div>
 
           {/* Edit Button */}
-          <EditButtonRender Auth={Auth(profile._id, currentUser)}/>
+          <EditButtonRender Auth={Auth(profileUser._id, currentUser)}/>
           {/* END OF THIRD COLUMN DIV */}
         </div>
         {/* End of div encapsulating/creating grid effect */}

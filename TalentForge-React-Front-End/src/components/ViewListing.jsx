@@ -7,15 +7,50 @@ Opportunities (where it was clicked) to App (which knows where the data is to re
 */
 
 
-import React, { useContext } from "react"
+import React, { useState, useEffect } from "react"
 import "../assets/css/ViewListing.css"
-import { ListingContext } from "./Opportunities"
+import { useParams } from "react-router-dom"
+import PropTypes from 'prop-types'
 
 
-const ViewListing = ({ listing }) => {
+const ViewListing = ({ id }) => {
+  const [ listings, setListings ] = useState([])
+  let listing = ''
+  console.log(id)
+  // id = useParams()
+  // const { id } = useParams()
+  // const id = id.id
 
-  document.title = "View Listing";
+  document.title = "View Listing"
+
+useEffect (() => {
+  try {
+    fetch('http://localhost:8002/listings', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => setListings(data))
+  } catch (error) {
+    fetch('http://172.31.190.165:8003/listings', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+      }
+    })
+    .then(res => res.json())
+    .then(data => setListings(data))
+  }
+}, [])
+
+listing = listings.find(listing => listing._id === id)
+
 console.log(listing)
+
   return (
     <>
       <div className="flex justify-center p-4 md:p-8 lg:p-4 xl:p-12 bg-grey">
