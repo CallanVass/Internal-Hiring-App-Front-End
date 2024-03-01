@@ -1,29 +1,29 @@
 import React, { useContext, useState, useEffect } from "react"
-import { NavLink } from "react-router-dom";
-import "../assets/css/HomePage.css";
+import { NavLink } from "react-router-dom"
+import "../assets/css/HomePage.css"
 
 
 const HomePage = () => {
 
-    const [homeUser, setHomeUser] = useState(null); // homeUser is initially null
-    const [isLoading, setIsLoading] = useState(true); // Track loading state
-    const [error, setError] = useState(null); // Track error state
+    const [homeUser, setHomeUser] = useState(null) 
+    const [isLoading, setIsLoading] = useState(true) 
+    const [error, setError] = useState(null) 
   
     useEffect(() => {
         const fetchUserData = async () => {
-          setIsLoading(true);
+          setIsLoading(true)
           try {
-            const token = sessionStorage.getItem('token'); // Retrieve the token
+            const token = sessionStorage.getItem('token') 
             if (!token) {
-              throw new Error('No token found');
+              throw new Error('No token found')
             }
       
             // Decode the JWT to get the user ID
-            const base64Url = token.split('.')[1];
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const base64Url = token.split('.')[1]
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
             const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
-              '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-            const { _id } = JSON.parse(jsonPayload); // Assuming the payload has a userId field
+              '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))
+            const { _id } = JSON.parse(jsonPayload) 
       
             // Fetch user data using the userId
             const response = await fetch(`http://localhost:8002/users/${_id}`, {
@@ -32,23 +32,23 @@ const HomePage = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
               },
-            });
+            })
       
             if (!response.ok) {
-              throw new Error('Failed to fetch user data');
+              throw new Error('Failed to fetch user data')
             }
       
-            const data = await response.json();
-            setHomeUser(data); // Set the user data
+            const data = await response.json()
+            setHomeUser(data) // Set the user data
           } catch (error) {
-            setError(error.message);
+            setError(error.message)
           } finally {
-            setIsLoading(false);
+            setIsLoading(false)
           }
-        };
+        }
       
-        fetchUserData();
-      }, []);
+        fetchUserData()
+      }, [])
       
   return (
     <>
@@ -100,7 +100,7 @@ const HomePage = () => {
       </div>
 
     </>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

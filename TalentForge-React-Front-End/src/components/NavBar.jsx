@@ -1,38 +1,93 @@
-import { Fragment, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { AuthContext, AuthProvider } from "../authentication/AuthContext";
-import decoder from "../authentication/decoder";
+import { Fragment, useContext, useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { Disclosure, Menu, Transition } from "@headlessui/react"
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
+import { AuthContext, AuthProvider } from "../authentication/AuthContext"
+import decoder from "../authentication/decoder"
 
-const navigation = [
-  { name: "Home", href: "/home", current: true },
-  { name: "Company Network", href: "/user-search", current: false },
-  { name: "Opportunities", href: "/opportunities", current: false },
-  // { name: "Training", href: "#", current: false },
-  // { name: "Events", href: "#", current: false },
-];
+
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(" ")
 }
 
 export default function NavBar() {
-  const { token } = useContext(AuthContext);
-  const nav = useNavigate();
+
+    const [homeUser, setHomeUser] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
+  
+    useEffect(() => {
+      const fetchUserData = async () => {
+        setIsLoading(true)
+        try {
+          const token = sessionStorage.getItem('token')
+          if (!token) {
+            throw new Error('No token found')
+          }
+  
+
+          const user = decoder(token)
+  
+          // Fetch user data using the userId
+          const response = await fetch(`http://localhost:8002/users/${user._id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+          })
+  
+          if (!response.ok) {
+            throw new Error('Failed to fetch user data')
+          }
+  
+          const data = await response.json()
+          setHomeUser(data) // Set the user data
+        } catch (error) {
+          setError(error.message)
+        } finally {
+          setIsLoading(false)
+        }
+      }
+  
+      fetchUserData()
+    }, [])
+  
+    // Define adminRender here to access homeUser
+    const adminRender = () => {
+      if (homeUser && homeUser.admin) {
+        return [
+          { name: "Create User", href: "/user-new", current: false },
+          { name: "Create Listing", href: "/listing-new", current: false }
+        ]
+      }
+      return []
+    }
+    
+    // Nav rendered conditionally based on homeUser.admin status
+    const navigation = [
+      { name: "Home", href: "/home", current: true },
+      { name: "Company Network", href: "/user-search", current: false },
+      { name: "Opportunities", href: "/opportunities", current: false },
+      ...adminRender()
+    ]
+
+  const { token } = useContext(AuthContext)
+  const nav = useNavigate()
 
   const showProfile = () => {
     if (token) {
-      const user = decoder(token);
-      nav(`/profile/${user._id}`);
+      const user = decoder(token)
+      nav(`/profile/${user._id}`)
     }
-  };
-  const { logout } = useContext(AuthContext);
+  }
+  const { logout } = useContext(AuthContext)
 
   const handleLogout = () => {
-    logout();
-    nav("/");
-  };
+    logout()
+    nav("/")
+  }
 
   return (
     <Disclosure as="nav" className="bg-dark-blue">
@@ -172,5 +227,5 @@ export default function NavBar() {
         </>
       )}
     </Disclosure>
-  );
+  )
 }
