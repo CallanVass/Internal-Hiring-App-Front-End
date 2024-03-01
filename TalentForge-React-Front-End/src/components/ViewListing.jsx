@@ -1,12 +1,3 @@
-/*
-Attempted several methods to get the data to display in the ViewListing component.
-The issue is this: the listing is 'known' in the Opportunities component (it is stored in context) - clicking on a listing
-causes a call to App.jsx (as all routes are in App.jsx) - this means that the identity of the listing needs to be passed from
-Opportunities (where it was clicked) to App (which knows where the data is to render a listing) then from App to ViewListing
-(which actually renders the page and its components). However the ViewListing component, has no visibility of listing - it is 'unknown'.
-*/
-
-
 import React, { useState, useEffect } from "react"
 import "../assets/css/ViewListing.css"
 import { useParams } from "react-router-dom"
@@ -56,10 +47,12 @@ const ViewListing = () => {
       } finally {
         setIsLoading(false);
       }
-    };
+    }
 
     fetchListingData();
-  }, [id]);
+  }, [id])
+
+  console.log(listing)
 
   // Date function to format date into dd/mm/yy
   function dateFormat(stringDate) {
@@ -73,7 +66,6 @@ const ViewListing = () => {
   }
 
 
-  console.log(listing)
 
   return (
     <>
@@ -122,9 +114,10 @@ const ViewListing = () => {
             {/* Job points */}
             <div className="job-points mx-7 md:mx-11 lg:mx-11 my-2 md:my-4 lg:my-4">
               <div className="list-disc list-inside text-lg md:text-3xl lg:text-3xl">
-                <li>{listing.description.points[0] && listing.description.points[0]}</li>
-                <li>{listing.description.points[1] && listing.description.points[1]}</li>
-                <li>{listing.description.points[2] && listing.description.points[2]}</li>
+                {/* Issue on initial render causes the app to crash - tried Callan's solution in homepage to display temporary text */}
+                <li>{listing.description.points[0] && listing.description?.points[0] || ''}</li>
+                <li>{listing.description.points[1] && listing.description?.points[1] || ''}</li>
+                <li>{listing.description.points[2] && listing.description?.points[2] || ''}</li>
               </div>
             </div>
           </div>
@@ -133,7 +126,8 @@ const ViewListing = () => {
             {/* Full job description */}
             <div className="mx-8 my-2 md:my-4 lg:my-4">
               <p className=" text-center md:text-2xl lg:text-2xl" id="para">
-                {listing.description.text}
+                {/* Issue on initial render causes the app to crash - tried Callan's solution in homepage to display temporary text */}
+                {listing.description?.text || ''}
               </p>
             </div>
           </div>
