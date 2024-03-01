@@ -14,29 +14,38 @@ const UserSearch = () => {
   const [users, setUsers] = useState([]);
 
   // Function to fetch users from the backend
-  const fetchUsers = async () => {
+const fetchUsers = async () => {
+  const token = sessionStorage.getItem('token'); // Retrieve the token from sessionStorage
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`, // Use the token for Authorization
+  };
+
+  try {
     try {
-        try{
-            const response = await fetch('http://localhost:8002/users')
-            const data = await response.json()
-            console.log(data)
-            setUsers(data)
-        } catch (error) {
-            const response = await fetch('http://172.31.190.165:8003/users')
-            const data = await response.json()
-            console.log(data)
-            setUsers(data)
-        }
+      const response = await fetch('http://localhost:8002/users', { headers });
+      if (!response.ok) throw new Error(`HTTP status ${response.status}`);
+      const data = await response.json();
+      console.log(data);
+      setUsers(data);
     } catch (error) {
-      console.error("Failed to fetch users", error);
+      // If the first fetch fails, try the second URL
+      console.error("Trying backup URL due to error:", error.message);
+      const response = await fetch('http://172.31.190.165:8003/users', { headers });
+      if (!response.ok) throw new Error(`HTTP status ${response.status}`);
+      const data = await response.json();
+      console.log(data);
+      setUsers(data);
     }
-
+  } catch (error) {
+    console.error("Failed to fetch users", error.message);
   }
+};
 
-  // Use useEffect to fetch users when the component mounts
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+// Use useEffect to fetch users when the component mounts
+useEffect(() => {
+  fetchUsers();
+}, [])
 
   return (
     <>

@@ -5,15 +5,10 @@ import { useParams } from "react-router-dom"
 
 
 const ViewListing = () => {
-  const [ listing, setListing ] = useState([])
+  const [ listing, setListing ] = useState(null)
   const [isLoading, setIsLoading] = useState(true); // Track loading state
   const [error, setError] = useState(null); // Track error state
   const { id } = useParams()
-  // let listing = ''
-  console.log(id)
-  // id = useParams()
-  // const { id } = useParams()
-  // const id = id.id
 
   document.title = "View Listing"
 
@@ -52,20 +47,6 @@ const ViewListing = () => {
     fetchListingData();
   }, [id])
 
-  console.log(listing)
-
-  // Date function to format date into dd/mm/yy
-  function dateFormat(stringDate) {
-    const date = new Date(stringDate)
-
-    const day = String(date.getUTCDate()).padStart(2, '0')
-    const month = String(date.getUTCMonth() + 1).padStart(2, '0')
-    const year = String(date.getUTCFullYear()).slice(-2)
-
-    return `${day}/${month}/${year}`
-  }
-
-
 
   return (
     <>
@@ -83,7 +64,7 @@ const ViewListing = () => {
             {/* Listing top level info */}
             <div className="top-level-info mx-2 sm:mx-4 md:mx-4 lg:mx-4 my-2 md:my-4 lg:my-4">
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                {dateFormat(listing.datePosted)}
+              {listing ? listing.datePosted : "Loading..."}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Hybrid, On Site

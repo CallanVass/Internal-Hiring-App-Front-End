@@ -29,33 +29,31 @@ export const UserContext = createContext()
 const App = () => {
   // const CurrentUserContext = createContext()
   // const ProfileContext = createContext()
-  const [users, setUsers] = useState([]) // This state object is for ALL users
+  const [users, setUsers] = useState([])
+  const [error, setError] = useState(null)
   // const currentListing = useContext(ListingContext)
   // const token = useContext(AuthContext)
-  useEffect(() => {
 
-    try {
-      fetch('http://localhost:8002/users', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-      })
-        .then(res => res.json())
-        .then(data => setUsers(data))
-    } catch (error) {
-      fetch('http://172.31.190.165:8003/users', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-      })
-        .then(res => res.json())
-        .then(data => setUsers(data))
-    }
-  }, [])
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('http://localhost:8002/users', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+          },
+        });
+        if (!response.ok) throw new Error('Network response was not ok.');
+        const data = await response.json();
+        setUsers(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   // const createProvider = ({ children }) => {
   //   return(
