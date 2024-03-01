@@ -1,26 +1,23 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from "react"
-import  Auth  from "../authentication/Auth"
-import App, { CurrentUserContext, ProfileContext } from "./App"
-import tempUsers from "./TempUserData"
+import React, { useState, useContext } from "react";
+import Auth from "../authentication/Auth";
+import App, { CurrentUserContext, ProfileContext } from "./App";
+import tempUsers from "./TempUserData";
 // import Profile from "./Profile"
-
 
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
 
+const TempProfile = () => {
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [profileImage, setProfileImage] = useState("path-to-your-image.jpg");
+  const [skills, setSkills] = useState(["Edit Profile to Add Skills"]);
+  const [newSkill, setNewSkill] = useState("");
+  let user = tempUsers[0];
+  let currentUser = user; // Provides access to the user who is currently signed in
+  const profile = user; // Provides access to user whose profile is currently being viewed
 
-const TempProfile =  () => {
-  const [isEditMode, setIsEditMode] = useState(false)
-  const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
-  const [skills, setSkills] = useState(["Edit Profile to add skills!"])
-  const [newSkill, setNewSkill] = useState("")
-  let user = tempUsers[0]
-  let currentUser = user // Provides access to the user who is currently signed in
-  const profile = user // Provides access to user whose profile is currently being viewed
-
-
-  console.log(currentUser)
-  console.log(profile)
+  console.log(currentUser);
+  console.log(profile);
 
   // Checkboxes Dummy Data
   const statuses = [
@@ -60,24 +57,19 @@ const TempProfile =  () => {
   // If the ID of the user and the ID from the token match or it is an admin, then the edit button/applications are rendered
   // Profile will call a method passing the userId of the profile and the userId from the token
 
-  function EditButtonRender({Auth}) {
-  return (
-    <div className="editButtonRender">
-      { Auth ?
-      (
-        <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
-          <button
-            onClick={toggleEditMode}
-            className="bg-washed-blue text-white p-4 rounded-lg shadow-md hover:bg-dark-blue"
-          >
-            {isEditMode ? "Save Changes" : "Edit Profile"}
-          </button>
-        </div>
-      )
-      : null
-      }
-    </div>
-  )}
+  function EditButtonRender({ Auth }) {
+    return (
+      <div className="editButtonRender">
+        {Auth ? (
+          <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 mb-10 px-5">
+            <button onClick={toggleEditMode} className="bg-dark-blue text-white p-4 rounded-lg shadow-md">
+              {isEditMode ? "Save Changes" : "Edit Profile"}
+            </button>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
 
   const addSkill = () => {
     if (newSkill) {
@@ -106,7 +98,6 @@ const TempProfile =  () => {
     department: user.department,
     aboutMe: user.aboutMe.text,
     careerDevelopment: user.aboutMe.careerDevelopment,
-
   });
 
   const toggleEditMode = () => setIsEditMode(!isEditMode);
@@ -118,7 +109,7 @@ const TempProfile =  () => {
   return (
     <>
       {/* Div encapsulating/creating grid effect */}
-      <div className="max-w-7xl mx-auto mt-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
+      <div className="bg-white mx-6 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16 xl:mx-40 mt-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
         {/* Div for first grid row */}
         <div className="flex justify-center items-center flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
           {/* First Column: Profile Image, Role, & Department */}
@@ -152,16 +143,18 @@ const TempProfile =  () => {
                     type="text"
                     value={`${editableProfile.firstName} ${" "} ${editableProfile.lastName}`}
                     onChange={(e) => handleInputChange(e, "name")}
-                    className="text-input-class border border-gray-300 w-full"
+                    className="pl-2 form-input w-full rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
               ) : (
-                <h2 className="text-3xl font-bold mb-2">{`${editableProfile.firstName} ${" "} ${editableProfile.lastName}`}</h2>
+                <h2 className="text-3xl font-bold mb-2">{`${editableProfile.firstName} ${" "} ${
+                  editableProfile.lastName
+                }`}</h2>
               )}
 
               {/* Edit Role */}
               {isEditMode ? (
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-4 w-full">
                   <div className="mr-2">Role:</div>
                   <input
                     type="text"
@@ -169,7 +162,7 @@ const TempProfile =  () => {
                     placeholder="(20 character max)"
                     value={editableProfile.role}
                     onChange={(e) => handleInputChange(e, "role")}
-                    className="text-input-class flex-1 border border-gray-300"
+                    className="pl-2 form-input w-full rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
               ) : (
@@ -178,7 +171,7 @@ const TempProfile =  () => {
 
               {/* Edit Department */}
               {isEditMode ? (
-                <div className="flex items-center mb-4">
+                <div className="flex items-center w-full">
                   <div className="mr-2">Department: </div>
                   <input
                     type="text"
@@ -186,7 +179,7 @@ const TempProfile =  () => {
                     placeholder="(25 character max)"
                     value={editableProfile.department}
                     onChange={(e) => handleInputChange(e, "department")}
-                    className="text-input-class border border-gray-300"
+                    className="pl-2 form-input w-full rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                 </div>
               ) : (
@@ -204,38 +197,36 @@ const TempProfile =  () => {
               <div className="flex flex-wrap gap-2 items-center space-x-0.5 mt-10 px-5 flex-col">
                 {" "}
                 {/* Changed class to flex-col */}
-                {skills.map((skill, index) => (
-                  <div key={index} className="flex items-center flex-col">
-                    {" "}
-                    {/* Changed class to flex-col */}
-                    <span className="bg-dark-green text-white px-4 py-2 rounded-md mb-2 font-medium">{skill}</span>
-                    <button
-                      onClick={() => removeSkill(index)}
-                      className="bg-red-500 text-white ml-2 px-2 py-1 rounded-md mb-2"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                ))}
               </div>
               {/* Add new skill */}
-              <div className="flex justify-center items-center max-w-lg mx-auto mt-10 px-5 flex-col"> {/* Added flex class */}
+              <div className="flex justify-center items-center w-full flex-col">
+                {" "}
+                {/* Added flex class */}
                 <input
                   maxLength="15"
                   placeholder="(15 character max)"
                   type="text"
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
-                  className="border p-2 rounded-md w-full"
+                  className="pl-2 form-input w-full rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mb-4"
                 />
-                <button
-                  onClick={addSkill}
-                  data-testid="add-skill-button"
-                  className="bg-dark-green text-white shadow shadow-gray-300 px-4 py-2 rounded-md mt-2 self-center"
-
-                >
-                  Add Skill
-                </button>
+                {skills.map((skill, index) => (
+                  <div key={index} className="flex items-center justify-center">
+                    <button
+                      onClick={addSkill}
+                      data-testid="add-skill-button"
+                      className="text-white bg-dark-blue px-4 py-2 rounded-md mt-2 mr-2"
+                    >
+                      Add Skill
+                    </button>
+                    <button
+                      onClick={() => removeSkill(index)}
+                      className="bg-red-500 text-white px-4 py-2 rounded-md mt-2 ml-2"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
               </div>
             </div>
           ) : (
@@ -330,24 +321,24 @@ const TempProfile =  () => {
           {/* List of Applications Can applications be rendered using opportunities.jsx ? */}
           <div className="space-y-4 justify-center items-center max-w-lg mx-auto mt-10 px-5 ">
             {Object.entries(applications).map(([key, value]) => (
-              <div key={key} className="bg-washed-blue text-white p-4 rounded-lg shadow-md border border-gray-300">
+              <div key={key} className="bg-dark-blue text-white p-4 rounded-lg shadow-md border border-gray-300">
                 <a className="text-lg font-semibold" href="">
                   {value.jobName}
                 </a>
-                <p className="text-sm">Salary: ${value.jobSalary}</p>
-                <p className="text-sm">{value.jobDescription}</p>
+                <p className="text-sm text-white">Salary: ${value.jobSalary}</p>
+                <p className="text-sm text-white">{value.jobDescription}</p>
               </div>
             ))}
           </div>
 
           {/* Edit Button */}
-          <EditButtonRender Auth={Auth(profile._id, currentUser)}/>
+          <EditButtonRender Auth={Auth(profile._id, currentUser)} />
           {/* END OF THIRD COLUMN DIV */}
         </div>
         {/* End of div encapsulating/creating grid effect */}
       </div>
     </>
-  )
-}
+  );
+};
 
 export default TempProfile;
