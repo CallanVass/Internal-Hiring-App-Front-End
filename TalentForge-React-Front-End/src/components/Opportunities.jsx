@@ -38,38 +38,6 @@ const JobListing = () => {
 
   console.log(listings)
 
-  // Sample job data
-  // const [jobs, setJobs] = useState([
-  //   {
-  //     id: 1,
-  //     title: "Software Engineer",
-  //     department: "Engineering",
-  //     location: "Location A",
-  //     salary: "$100,000",
-  //     postedDate: "2024-02-22",
-  //     jobDescription: "We are looking for a software engineer to join our team.",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Marketing Manager",
-  //     department: "Marketing",
-  //     location: "Location B",
-  //     salary: "$80,000",
-  //     postedDate: "2024-02-21",
-  //     jobDescription: "We are looking for a marketing manager to join our team.",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "HR Specialist",
-  //     department: "Human Resources",
-  //     location: "Location C",
-  //     salary: "$70,000",
-  //     postedDate: "2024-02-20",
-  //     jobDescription: "We are looking for an HR specialist to join our team.",
-  //   },
-  //   // Add more sample job data as needed
-  // ]);
-
   const [selectedDepartment, setSelectedDepartment] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
   const [filteredListings, setFilteredListings] = useState([...listings])
@@ -142,7 +110,7 @@ function listingClick(listing) {
               <option value="Engineering">Engineering</option>
               <option value="Marketing">Marketing</option>
               <option value="Human Resources">Human Resources</option>
-              {/* Add more departments as needed */}
+              <option value="IT">Information Technology</option>
             </select>
           </div>
           <div className="mt-4 w-full">
@@ -162,10 +130,6 @@ function listingClick(listing) {
                 <div className="p-4"
                   onClick={() => {
                     listingClick(listing)
-                    // nav(`/listings/${listing._id}`)
-                    // console.log(listing)
-                    // console.log(listing._id)
-                    // App.getCurrentListing(listing)
                     }}>
                   <h2 className="text-xl text-center font-medium text-gray-900">{listing.title}</h2>
                   <p className="text-base text-center">{listing.department}</p>
