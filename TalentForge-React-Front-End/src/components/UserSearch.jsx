@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 
 const UserSearch = () => {
-  document.title = "User Search";
+  document.title = "Company Network";
   // Dummy Data
   const company = {
     name: "Microsoft",
