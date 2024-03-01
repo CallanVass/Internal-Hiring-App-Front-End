@@ -10,12 +10,15 @@ Opportunities (where it was clicked) to App (which knows where the data is to re
 import React, { useState, useEffect } from "react"
 import "../assets/css/ViewListing.css"
 import { useParams } from "react-router-dom"
-import PropTypes from 'prop-types'
 
 
-const ViewListing = ({ id }) => {
-  const [ listings, setListings ] = useState([])
-  let listing = ''
+
+const ViewListing = () => {
+  const [ listing, setListing ] = useState([])
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
+  const [error, setError] = useState(null); // Track error state
+  const { id } = useParams()
+  // let listing = ''
   console.log(id)
   // id = useParams()
   // const { id } = useParams()
@@ -23,33 +26,54 @@ const ViewListing = ({ id }) => {
 
   document.title = "View Listing"
 
-useEffect (() => {
-  try {
-    fetch('http://localhost:8002/listings', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+
+  useEffect(() => {
+    const fetchListingData = async () => {
+      setIsLoading(true);
+      try {
+        const token = sessionStorage.getItem('token'); // Retrieve the token
+        if (!token) {
+          throw new Error('No token found');
+        }
+
+        // Fetch user data using the userId
+        const response = await fetch(`http://localhost:8002/listings/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch listing data');
+        }
+
+        const data = await response.json();
+        setListing(data); // Set the listing data
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
       }
-    })
-    .then(res => res.json())
-    .then(data => setListings(data))
-  } catch (error) {
-    fetch('http://172.31.190.165:8003/listings', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-      }
-    })
-    .then(res => res.json())
-    .then(data => setListings(data))
+    };
+
+    fetchListingData();
+  }, [id]);
+
+  // Date function to format date into dd/mm/yy
+  function dateFormat(stringDate) {
+    const date = new Date(stringDate)
+
+    const day = String(date.getUTCDate()).padStart(2, '0')
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0')
+    const year = String(date.getUTCFullYear()).slice(-2)
+
+    return `${day}/${month}/${year}`
   }
-}, [])
 
-listing = listings.find(listing => listing._id === id)
 
-console.log(listing)
+  console.log(listing)
 
   return (
     <>
@@ -61,34 +85,34 @@ console.log(listing)
           </div>
           {/* Listing subheader */}
           <div className="flex justify-center">
-            <h2 className="text-2xl md:text-4xl lg:text-4xl">&#39;listing.department&#39;</h2>
+            <h2 className="text-2xl md:text-4xl lg:text-4xl">{listing.department}</h2>
           </div>
           <div className="flex justify-center items-center flex-col sm:flex-col md:flex-col lg:flex-row">
             {/* Listing top level info */}
             <div className="top-level-info mx-2 sm:mx-4 md:mx-4 lg:mx-4 my-2 md:my-4 lg:my-4">
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                &#39;listing.datePosted&#39;
+                {dateFormat(listing.datePosted)}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Hybrid, On Site
               </p>
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                &#39;listing.location&#39;
+                {listing.location}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Hybrid, On Site
               </p>
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                &#39;listing.roleType&#39;
+                {listing.roleType}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Full time, part time
               </p>
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                &#39;listing.roleDuration&#39;
+                {listing.roleDuration}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Temporary, Contract
@@ -98,10 +122,9 @@ console.log(listing)
             {/* Job points */}
             <div className="job-points mx-7 md:mx-11 lg:mx-11 my-2 md:my-4 lg:my-4">
               <div className="list-disc list-inside text-lg md:text-3xl lg:text-3xl">
-                <li>Job point 1</li>
-                <li>Job point 2</li>
-                <li>Job point 3</li>
-                <li>Job point 4</li>
+                <li>{listing.description.points[0] && listing.description.points[0]}</li>
+                <li>{listing.description.points[1] && listing.description.points[1]}</li>
+                <li>{listing.description.points[2] && listing.description.points[2]}</li>
               </div>
             </div>
           </div>
@@ -110,9 +133,7 @@ console.log(listing)
             {/* Full job description */}
             <div className="mx-8 my-2 md:my-4 lg:my-4">
               <p className=" text-center md:text-2xl lg:text-2xl" id="para">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias laudantium, aut distinctio impedit esse
-                eos unde, quasi voluptates officiis rem ex iste nemo debitis soluta ut earum! Sed numquam doloremque quo
-                magnam ullam? Rem quod vel repellendus fugit beatae quaerat.
+                {listing.description.text}
               </p>
             </div>
           </div>
@@ -127,7 +148,7 @@ console.log(listing)
           </div>
           {/* Closing date */}
           <div className="flex justify-center my-3 pb-6 italic ">
-            <p className="text-lg md:text-2xl lg:text-2xl text-red-500">Closing Date: &#39;listing.closingDate&#39;</p>
+            <p className="text-lg md:text-2xl lg:text-2xl text-red-500">Closing Date: {dateFormat(listing.dateClosing)}</p>
           </div>
         </div>
       </div>
