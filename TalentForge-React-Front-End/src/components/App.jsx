@@ -23,6 +23,7 @@ import decoder from '../authentication/decoder'
 
 export const ProfileContext = createContext()
 export const CurrentUserContext = createContext()
+export const UserContext = createContext()
 
 
 const App = () => {
@@ -63,6 +64,31 @@ const App = () => {
   //           </NAMEContext.Provider>
   //   )
   // }
+
+  const UserProvider = ({ children }) => {
+    // const [currentUser, setCurrentUser] = useState([]) // This state object is for the signed in user
+    let {id} = useParams()
+    let profileUser = users?.find(user => user._id === id)
+
+    console.log(id)
+
+    console.log(profileUser)
+    console.log(users)
+
+    const token = decoder(sessionStorage.getItem('token'))
+    console.log(sessionStorage.getItem('token'))
+    console.log(token)
+    let currentUser = users.find(user => user._id === token._id)
+    console.log(currentUser)
+
+    // setCurrentUser(users.find(user => user._id === token._id))
+
+  return(
+            <UserContext.Provider value={ {currentUser, profileUser }}>
+              {children}
+            </UserContext.Provider>
+    )
+  }
 
 
   const CurrentUserProvider = ({ children }) => {
@@ -175,6 +201,7 @@ const Layout = ({ children }) => {
 
 return (
   <AuthProvider>
+    <UserProvider>
               <CurrentUserProvider>
 
     <ProfileProvider>
@@ -209,7 +236,7 @@ return (
     </BrowserRouter>
     </ProfileProvider>
     </CurrentUserProvider>
-
+  </UserProvider>
 </AuthProvider>
   )
 }
