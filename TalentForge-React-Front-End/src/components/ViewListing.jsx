@@ -14,7 +14,7 @@ import { ListingContext } from "./Opportunities"
 
 const ViewListing = ({ listing }) => {
 
-
+  document.title = "View Listing";
 console.log(listing)
   return (
     <>

@@ -7,7 +7,8 @@ import App, { CurrentUserContext, ProfileContext } from "./App"
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
 
 
-const Profile =  ({ user }) => {
+const Profile = ({ user }) => {
+  document.title = "Profile";
   const [isEditMode, setIsEditMode] = useState(false)
   const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
   const [skills, setSkills] = useState(["Edit Profile to add skills!"])

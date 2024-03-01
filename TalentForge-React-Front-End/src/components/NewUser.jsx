@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 const NewEmployee = () => {
+  document.title = "Create User";
   const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
 
