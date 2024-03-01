@@ -21,10 +21,10 @@ const TempProfile = () => {
 
   // Checkboxes Dummy Data
   const statuses = [
-    "Looking for a new job!",
-    "Happy where I am!",
-    "Might be willing to move!",
-    "Unsure how I feel about it!",
+    "Looking for a new job",
+    "Happy where I am",
+    "Might be willing to move",
+    "Unsure how I feel about it",
   ];
 
   // Applications Dummy Data
@@ -109,7 +109,7 @@ const TempProfile = () => {
   return (
     <>
       {/* Div encapsulating/creating grid effect */}
-      <div className="bg-white mx-6 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16 xl:mx-40 mt-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
+      <div className="bg-white items-center justify-center mx-6 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16 xl:mx-40 mt-10 px-5 lg:grid lg:grid-cols-3 lg:gap-4">
         {/* Div for first grid row */}
         <div className="flex justify-center items-center flex-col lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
           {/* First Column: Profile Image, Role, & Department */}
@@ -132,10 +132,10 @@ const TempProfile = () => {
                 <img src={profileImage} alt="Profile Picture" className="text-center mb-4 sm:w-48 md:w-64 lg:w-96" />
               </div>
             )}
-            <div className="flex-1 ">
+            <div className="flex flex-col items-center justify-center flex-1">
               {/* Edit Name */}
               {isEditMode ? (
-                <div className="flex items-center mb-4 w-full">
+                <div className="flex justify-center items-center mb-4 w-full">
                   <div className="mr-2">Name:</div>
                   <input
                     maxLength="30"
@@ -147,7 +147,7 @@ const TempProfile = () => {
                   />
                 </div>
               ) : (
-                <h2 className="text-3xl font-bold mb-2">{`${editableProfile.firstName} ${" "} ${
+                <h2 className="text-2xl text-center font-bold mb-2">{`${editableProfile.firstName} ${" "} ${
                   editableProfile.lastName
                 }`}</h2>
               )}
@@ -166,12 +166,12 @@ const TempProfile = () => {
                   />
                 </div>
               ) : (
-                <p>Role: {editableProfile.role}</p>
+                <p className="text-xl">Role: {editableProfile.role}</p>
               )}
 
               {/* Edit Department */}
               {isEditMode ? (
-                <div className="flex items-center w-full">
+                <div className="flex items-center  w-full">
                   <div className="mr-2">Department: </div>
                   <input
                     type="text"
@@ -183,7 +183,7 @@ const TempProfile = () => {
                   />
                 </div>
               ) : (
-                <p>Department: {editableProfile.department}</p>
+                <p className="text-xl">Department: {editableProfile.department}</p>
               )}
             </div>
           </div>
@@ -234,7 +234,7 @@ const TempProfile = () => {
             <div className="flex flex-wrap gap-2 items-center space-x-0.5 max-w-lg mx-auto mt-10 px-5">
               {/* Enumerate over each skill, creating a span for each one. */}
               {skills.map((skill, index) => (
-                <span key={index} className="bg-blue-500 text-white px-4 py-2 rounded-md text-sm font-medium">
+                <span key={index} className="bg-dark-blue text-white px-4 py-2 rounded-md text-md font-medium">
                   {skill}
                 </span>
               ))}
@@ -243,8 +243,8 @@ const TempProfile = () => {
 
           {/* Profile Description (About Me) */}
           {isEditMode ? (
-            <div className="flex flex-col max-w-lg mx-auto mt-10 px-5 lg:mb-10">
-              <label htmlFor="aboutMe" className="text-center mb-3 text-xl">
+            <div className="flex flex-col items-center justify-center w-full mx-auto mt-10 px-5 lg:mb-10">
+              <label htmlFor="aboutMe" className="text-center mb-3 text-bold text-xl">
                 About Me:
               </label>
               <textarea
@@ -252,13 +252,13 @@ const TempProfile = () => {
                 placeholder="(220 character max)"
                 value={editableProfile.aboutMe}
                 onChange={(e) => handleInputChange(e, "aboutMe")}
-                className="text-input-class w-full h-32 p-2 border rounded-md"
+                className="text-input-class w-full h-56 p-2 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </div>
           ) : (
             <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5 lg:mb-10">
-              <h2 className="text-center mb-3 text-xl">About Me</h2>
-              <p className="">{editableProfile.aboutMe}</p>
+              <h2 className="text-2xl text-center font-bold mb-2">About Me</h2>
+              <p className="text-xl">{editableProfile.aboutMe}</p>
             </div>
           )}
           {/* END OF FIRST COLUMN DIV */}
@@ -268,52 +268,66 @@ const TempProfile = () => {
         <hr className="border-b border-gray-900 my-10 w-2/3 mx-auto max-w-md lg:hidden" />
 
         {/* Div for second grid row */}
-        <div className="flex lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 px-5">
+        <div className="flex flex-col justify-center items-center lg:flex-col lg:space-x-4 max-w-6xl mx-auto mt-10 mb-10 px-5 ">
           {/* Checkboxes (Radio Buttons) */}
-          {isEditMode ? (
-            <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
-              {statuses.map((status, index) => (
-                <label key={index} className="flex items-center space-x-2">
-                  <input
-                    type="radio"
-                    name="status"
-                    id={`status-${index}`}
-                    value={status}
-                    checked={editableProfile.status === status}
-                    onChange={(e) => handleInputChange(e, "status")}
-                    className="form-radio h-5 w-5 text-black"
-                  />
-                  <span>{status}</span>
-                </label>
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
-              <h2 className="text-center mb-3 text-xl">Status:</h2>
-              <p>{editableProfile.status}</p>
-            </div>
-          )}
+          <div
+            className={`flex ${isEditMode ? "flex-col" : ""} ${isEditMode ? "w-full" : "max-w-lg"} mx-auto mt-10 ${
+              isEditMode ? "" : "px-5"
+            }`}
+          >
+            {isEditMode ? (
+              <div className="flex flex-col justify-center items-center w-full mx-auto mt-10 ">
+                {statuses.map((status, index) => (
+                  <label key={index} className="flex text-xl text-left items-center mb-8 space-x-2">
+                    <input
+                      type="radio"
+                      name="status"
+                      id={`status-${index}`}
+                      value={status}
+                      checked={editableProfile.status === status}
+                      onChange={(e) => handleInputChange(e, "status")}
+                      className="form-radio h-5 w-5 text-black"
+                    />
+                    <span>{status}</span>
+                  </label>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col justify-center items-center mb-12">
+                <h2 className="text-2xl text-center font-bold mb-2">Status:</h2>
+                <p className="text-xl">{editableProfile.status}</p>
+              </div>
+            )}
+          </div>
 
           {/* Career Development Description */}
-          {isEditMode ? (
-            <div className="flex flex-col max-w-lg mx-auto mt-10 px-5">
-              <label htmlFor="aboutMe" className="text-center mb-3 text-xl font-bold">
-                Career Development:
-              </label>
-              <textarea
-                maxLength="220"
-                placeholder="(220 character max)"
-                value={editableProfile.careerDevelopment}
-                onChange={(e) => handleInputChange(e, "careerDevelopment")}
-                className="text-input-class w-full h-32 p-2 border rounded-md" // Tailwind classes to adjust width and height
-              />
-            </div>
-          ) : (
-            <div className="flex flex-col justify-center items-center max-w-lg mx-auto mt-10 px-5">
-              <h2 className="text-center mb-3 text-xl">Career Development</h2>
-              <p>{editableProfile.careerDevelopment}</p>
-            </div>
-          )}
+          <div
+            className={`flex ${isEditMode ? "flex-col" : ""} ${isEditMode ? "w-full" : "max-w-lg"} mx-auto mt-10 ${
+              isEditMode ? "px-5" : ""
+            } justify-center items-center`}
+          >
+            {isEditMode ? (
+              <div className="w-full mx-auto mt-10 px-5 flex flex-col items-center">
+                {" "}
+                {/* Added items-center class */}
+                <label htmlFor="aboutMe" className="text-center mb-3 text-xl font-bold">
+                  Career Development:
+                </label>
+                <textarea
+                  maxLength="220"
+                  placeholder="(220 character max)"
+                  value={editableProfile.careerDevelopment}
+                  onChange={(e) => handleInputChange(e, "careerDevelopment")}
+                  className="text-input-class w-full h-56 p-2 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" // Tailwind classes to adjust width and height
+                />
+              </div>
+            ) : (
+              <div className="flex flex-col justify-center items-center">
+                <h2 className="text-2xl text-center font-bold mb-2">Career Development</h2>
+                <p className="text-xl text-center">{editableProfile.careerDevelopment}</p>
+              </div>
+            )}
+          </div>
           {/* END OF SECOND COLUMN DIV */}
         </div>
         {/* Div for third grid row */}
