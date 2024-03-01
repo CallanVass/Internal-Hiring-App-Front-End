@@ -6,6 +6,7 @@ import Footer from './Footer' // Import the 'Footer' component
 import Login from './Login' // Import the 'Login' component
 import HomePage from './HomePage' // Import the 'HomePage' component
 import Profile from './Profile' // Import the 'Profile' component
+import TempProfile from './TempProfile' // Import the 'Profile' component
 import Opportunities from './Opportunities' // Import the 'Opportunities' component
 import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
@@ -129,6 +130,7 @@ return (
               <Routes>
                 <Route path='/home' element={<HomePage />} />
                 <Route path='/profile/:id' element={<ProfileWrapper  />} />
+                <Route path='/temp-profile' element={<TempProfile  />} />
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
 
