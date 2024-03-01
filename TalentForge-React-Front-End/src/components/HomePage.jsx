@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react"
 import { NavLink } from "react-router-dom";
 import "../assets/css/HomePage.css";
+import { CurrentUserContext } from "./App"
 
 const HomePage = () => {
+  let homeUser = useContext(CurrentUserContext) // Provides access to the user who is currently signed in
+   console.log(homeUser)
+
   document.title = "TalentForge - Forging Futures";
   return (
     <>
@@ -13,8 +17,8 @@ const HomePage = () => {
           {/* Text content */}
           <div className="flex justify-center p-2">
             <div className="flex flex-col justify-center items-center my-20">
-              <h1 className="text-dark-blue text-5xl md:text-6xl lg:text-6xl inset-y-28 h-fit md:inset-y-44 max-w-full md:max-w-lg lg:max-w-3xl px-10">
-                Welcome &#39;user.name&#39; to
+              <h1 className="text-dark-blue text-center text-5xl md:text-6xl lg:text-6xl inset-y-28 h-fit md:inset-y-44 max-w-full md:max-w-lg lg:max-w-3xl px-10">
+                Welcome {homeUser.firstName} to
               </h1>
               <img src="src/assets/logos/transplogoslogan.png" alt="Talent Forge Logo" className="h-auto w-3/6" />
               <h2 className="text-dark-blue text-3xl lg:text-4xl inset-y-72 md:inset-y-96 h-fit max-w-full md:max-w-lg lg:max-w-3xl px-10">
@@ -52,7 +56,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      
+
     </>
   );
 };

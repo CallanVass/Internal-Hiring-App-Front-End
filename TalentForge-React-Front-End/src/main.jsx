@@ -6,8 +6,8 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
-  <AuthProvider value={{token: 'token'}}>
-    <App />
-  </AuthProvider>
+    <AuthProvider value={{token: 'token'}}>
+      <App />
+    </AuthProvider>
   </>
 )
