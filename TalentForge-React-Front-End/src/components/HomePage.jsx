@@ -1,13 +1,55 @@
-import React, { useContext } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { NavLink } from "react-router-dom";
 import "../assets/css/HomePage.css";
-import { CurrentUserContext } from "./App"
+
 
 const HomePage = () => {
-  let homeUser = useContext(CurrentUserContext) // Provides access to the user who is currently signed in
-   console.log(homeUser)
 
-  document.title = "TalentForge - Forging Futures";
+    const [homeUser, setHomeUser] = useState(null); // homeUser is initially null
+    const [isLoading, setIsLoading] = useState(true); // Track loading state
+    const [error, setError] = useState(null); // Track error state
+  
+    useEffect(() => {
+        const fetchUserData = async () => {
+          setIsLoading(true);
+          try {
+            const token = sessionStorage.getItem('token'); // Retrieve the token
+            if (!token) {
+              throw new Error('No token found');
+            }
+      
+            // Decode the JWT to get the user ID
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+              '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+            const { _id } = JSON.parse(jsonPayload); // Assuming the payload has a userId field
+      
+            // Fetch user data using the userId
+            const response = await fetch(`http://localhost:8002/users/${_id}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+              },
+            });
+      
+            if (!response.ok) {
+              throw new Error('Failed to fetch user data');
+            }
+      
+            const data = await response.json();
+            setHomeUser(data); // Set the user data
+          } catch (error) {
+            setError(error.message);
+          } finally {
+            setIsLoading(false);
+          }
+        };
+      
+        fetchUserData();
+      }, []);
+      
   return (
     <>
       {/* Main container */}
@@ -18,7 +60,7 @@ const HomePage = () => {
           <div className="flex justify-center p-2">
             <div className="flex flex-col justify-center items-center my-20">
               <h1 className="text-dark-blue text-center text-5xl md:text-6xl lg:text-6xl inset-y-28 h-fit md:inset-y-44 max-w-full md:max-w-lg lg:max-w-3xl px-10">
-                Welcome {homeUser.firstName} to
+                Welcome {homeUser?.firstName || 'Guest'} to
               </h1>
               <img src="src/assets/logos/transplogoslogan.png" alt="Talent Forge Logo" className="h-auto w-3/6" />
               <h2 className="text-dark-blue text-3xl lg:text-4xl inset-y-72 md:inset-y-96 h-fit max-w-full md:max-w-lg lg:max-w-3xl px-10">
