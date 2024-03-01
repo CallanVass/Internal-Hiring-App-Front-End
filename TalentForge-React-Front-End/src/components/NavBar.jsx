@@ -14,25 +14,25 @@ const navigation = [
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function NavBar() {
-  const { token } = useContext(AuthContext)
-  const nav = useNavigate()
+  const { token } = useContext(AuthContext);
+  const nav = useNavigate();
 
   const showProfile = () => {
     if (token) {
-      const user = decoder(token)
-      nav(`/profile/${user._id}`)
+      const user = decoder(token);
+      nav(`/profile/${user._id}`);
     }
   };
-  const { logout } = useContext(AuthContext)
+  const { logout } = useContext(AuthContext);
 
   const handleLogout = () => {
-    logout()
-    nav("/")
-  }
+    logout();
+    nav("/");
+  };
 
   return (
     <Disclosure as="nav" className="bg-dark-blue">
@@ -69,9 +69,8 @@ export default function NavBar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? "bg-dark-blue text-white border" : "text-white hover:border hover:text-white",
+                          item.current ? "bg-dark-blue text-white hover:border"  : "text-white hover:text-white hover:border",
                           "rounded-md px-8 py-2 text-md font-custom"
-                          // interact with fonts here ^^^^
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -111,7 +110,11 @@ export default function NavBar() {
                           <a
                             onClick={showProfile}
                             // href="/profile"
-                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-lg text-black", "cursor-pointer")}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-lg text-black",
+                              "cursor-pointer"
+                            )}
                           >
                             Your Profile
                           </a>
@@ -131,7 +134,11 @@ export default function NavBar() {
                         {({ active }) => (
                           <a
                             onClick={handleLogout}
-                            className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-lg text-black", "cursor-pointer")}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-lg text-black",
+                              "cursor-pointer"
+                            )}
                           >
                             Sign out
                           </a>
