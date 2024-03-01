@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 
 
 const NewListing = () => {
-
+  document.title = "Create Listing";
 
     const navigate = useNavigate()
 

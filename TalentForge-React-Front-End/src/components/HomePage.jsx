@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "../assets/css/HomePage.css";
 
 const HomePage = () => {
+  document.title = "TalentForge - Forging Futures";
   return (
     <>
       {/* Main container */}

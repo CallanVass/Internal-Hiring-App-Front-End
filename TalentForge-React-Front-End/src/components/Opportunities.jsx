@@ -8,6 +8,7 @@ export const ListingContext = createContext()
 
 
 const JobListing = () => {
+  document.title = "Opportunities";
   const [listings, setListings] = useState([])
   const nav = useNavigate()
 
