@@ -60,6 +60,21 @@ const JobListing = () => {
     setCurrentListing(listing)
   }
 
+  // Function to display a preview of the job description
+  // The full text is displayed on the ViewListing page
+  function displayPreview(text) {
+    if (!text) {
+      return '';
+    }
+    return text.split(' ').slice(0, 20).join(' ');
+  }
+
+  // Function to format salary as currency with 1000s separator
+  function formatSalary(salary) {
+    return `$${Number(salary).toLocaleString()}`;
+  }
+
+
   document.title = "Opportunities"
 
   return (
@@ -108,9 +123,9 @@ const JobListing = () => {
                   <p className="text-base text-center">{listing.department}</p>
                   <p className="text-base mt-2">{listing.roleType}</p>
                   <p className="text-base mt-2">{listing.location}</p>
-                  <p className="text-base mt-2">Salary: {`$${listing.salary}`}</p>   {/* Look at currency formatting: $100,000*/}
-                  <p className="text-base mt-2">Posted Date: {listing.datePosted}</p> {/* Date/time formatting */}
-                  <p className="text-base mt-2">Job Description: {listing.description.text}</p>
+                  <p className="text-base mt-2">Salary: {formatSalary(listing.salary)}</p>
+                  <p className="text-base mt-2">Posted Date: {listing.datePosted}</p>
+                  <p className="text-base mt-2">Job Description: {displayPreview(listing.description.text)}</p>
                   <div className="flex justify-center">
                     <button className="bg-dark-blue hover:bg-washed-blue text-white font-bold py-2 px-4 rounded mt-4">
                       Apply Now
