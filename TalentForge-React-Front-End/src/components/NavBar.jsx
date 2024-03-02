@@ -4,6 +4,8 @@ import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
 import decoder from "../authentication/decoder"
+import { ContextWrapper } from "./App"
+
 
 
 
@@ -12,11 +14,15 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+  const {allUsers, allListings, loggedInUser, listing, profile} = useContext(ContextWrapper)
+  const [users, setUsers] = allUsers
+
+
 
     const [homeUser, setHomeUser] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
-  
+
     useEffect(() => {
       const fetchUserData = async () => {
         setIsLoading(true)
@@ -25,10 +31,10 @@ export default function NavBar() {
           if (!token) {
             throw new Error('No token found')
           }
-  
+
 
           const user = decoder(token)
-  
+
           // Fetch user data using the userId
           const response = await fetch(`http://localhost:8002/users/${user._id}`, {
             method: 'GET',
@@ -37,11 +43,11 @@ export default function NavBar() {
               'Authorization': `Bearer ${token}`,
             },
           })
-  
+
           if (!response.ok) {
             throw new Error('Failed to fetch user data')
           }
-  
+
           const data = await response.json()
           setHomeUser(data) // Set the user data
         } catch (error) {
@@ -50,10 +56,10 @@ export default function NavBar() {
           setIsLoading(false)
         }
       }
-  
+
       fetchUserData()
     }, [])
-  
+
     // Define adminRender here to access homeUser
     const adminRender = () => {
       if (homeUser && homeUser.admin) {
@@ -64,7 +70,7 @@ export default function NavBar() {
       }
       return []
     }
-    
+
     // Nav rendered conditionally based on homeUser.admin status
     const navigation = [
       { name: "Home", href: "/home", current: true },

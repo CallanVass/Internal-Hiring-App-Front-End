@@ -11,7 +11,8 @@ const Profile = () => {
   const {allUsers, allListings, loggedInUser, listing, profile} = useContext(ContextWrapper)
   const [users, setUsers] = allUsers
   const [currentUser, setCurrentUser] = loggedInUser
-
+  const [profileUser, setProfileUser] = profile
+  const [listings, setListings] = allListings
 
   document.title = "Profile"
   const [isEditMode, setIsEditMode] = useState(false)
@@ -44,7 +45,7 @@ const Profile = () => {
     app2: {
       jobName: "Secretary",
       jobSalary: "60,000",
-      jobDescription: "Secretary position. Not for the feint of heart.",
+      jobDescription: "Secretary position. Not for the faint of heart.",
     },
     app3: {
       jobName: "CEO",
