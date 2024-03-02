@@ -11,49 +11,9 @@ const Profile = () => {
   let currentUser = useContext(CurrentUserContext) // Provides access to the user who is currently signed in
   // let profileUser = useContext(ProfileContext) // Provides access to the user who is currently signed in
   let profileUser = useContext(UserContext) // Provides access to the user who is currently signed in
-  currentUser = {
-		"_id": "65dfac0ce95d4b133c52e1a7",
-		"firstName": "Adam",
-		"lastName": "Andrews",
-		"email": "adam@email.com",
-		"password": "$2b$08$mU/8JnncMa1zqU4i1RvZduUOiVoT9jL8rRU0duJZ6nbha3ZJxgR.y",
-		"role": "Recruitment Manager",
-		"department": "Human Resources",
-		"image": "./misc/male_user_image.jpeg",
-		"admin": true,
-		"aboutMe": {
-			"text": "I am a manager of the recruitment team",
-			"careerDevelopment": "I am keen to experience all areas of Human Rescources",
-			"tags": [
-				"Happy where I am!",
-				"Might be willing to move!"
-			]
-		},
-		"applications": [],
-		"__v": 0
-	}
 
-  profileUser = {
-		"_id": "65dfac0ce95d4b133c52e1a7",
-		"firstName": "Adam",
-		"lastName": "Andrews",
-		"email": "adam@email.com",
-		"password": "$2b$08$mU/8JnncMa1zqU4i1RvZduUOiVoT9jL8rRU0duJZ6nbha3ZJxgR.y",
-		"role": "Recruitment Manager",
-		"department": "Human Resources",
-		"image": "./misc/male_user_image.jpeg",
-		"admin": true,
-		"aboutMe": {
-			"text": "I am a manager of the recruitment team",
-			"careerDevelopment": "I am keen to experience all areas of Human Rescources",
-			"tags": [
-				"Happy where I am!",
-				"Might be willing to move!"
-			]
-		},
-		"applications": [],
-		"__v": 0
-	}
+
+ 
   document.title = "Profile"
   const [isEditMode, setIsEditMode] = useState(false)
   const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
