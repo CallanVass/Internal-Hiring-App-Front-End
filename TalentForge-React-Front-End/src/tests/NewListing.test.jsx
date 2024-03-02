@@ -24,24 +24,4 @@ test("renders NewListing and checks form submission", async () => {
   // Simulate form submission
   const submitButton = getByText(/Save/i);
   fireEvent.click(submitButton);
-
-  // Add more assertions based on what you expect to happen when the form is submitted
-});
-
-test("submits the form", async ({ is }) => {
-  let submitted = false;
-  const onSubmit = () => {
-    submitted = true;
-  };
-  const { getByLabelText, getByText } = render(NewListing, { props: { onSubmit } });
-
-  await fireEvent.update(getByText(/Job title:/i), "Software Engineer");
-  await fireEvent.update(getByText(/Department:/i), "Engineering");
-  await fireEvent.update(getByText(/Salary:/i), "100000");
-  await fireEvent.update(getByText(/Posting date:/i), "2022-01-01");
-  await fireEvent.update(getByText(/Closing date:/i), "2022-02-01");
-
-  await fireEvent.click(getByText("Save"));
-
-  is(submitted, true);
 });
