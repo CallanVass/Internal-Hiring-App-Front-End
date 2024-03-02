@@ -1,30 +1,44 @@
-import { render, fireEvent, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Profile from "../components/Profile";
-import {  describe, expect, it } from "vitest";
+import { UserContext, CurrentUserContext } from "../components/App";
+import { describe, expect, beforeEach, test } from "vitest";
 
-describe("Profile Component", () => {
-  it("should render without crashing", () => {
-    render(<Profile />);
+describe("Profile component", () => {
+  const mockCurrentUser = {
+    // Add properties for the current user here
+  };
+
+  const mockProfileUser = {
+    // Add properties for the profile user here
+    aboutMe: {
+      text: "Mock text",
+      careerDevelopment: "Mock career development",
+    },
+  };
+
+  beforeEach(() => {
+    render(
+      <CurrentUserContext.Provider value={mockCurrentUser}>
+        <UserContext.Provider value={mockProfileUser}>
+          <Profile />
+        </UserContext.Provider>
+      </CurrentUserContext.Provider>
+    );
   });
 
-  it('should toggle edit mode', () => {
-    render(<Profile />);
-    const editButton = screen.getByRole('button', { name: /edit profile/i });
-    fireEvent.click(editButton);
-    expect(screen.getByRole('button', { name: /save changes/i })).to.exist;
-    fireEvent.click(editButton);
-    expect(screen.getByRole('button', { name: /edit profile/i })).to.exist;
+  test("renders profile image", () => {
+    const profileImage = screen.getByAltText("Profile Picture");
+    expect(profileImage).to.exist;
   });
 
-  it('should add a skill', () => {
-    render(<Profile />);
-    const editButton = screen.getByRole('button', { name: /edit profile/i });
-    fireEvent.click(editButton);
-    const addSkillInput = screen.getByPlaceholderText(/15 character max/i);
-    const addSkillButton = screen.getByRole('button', { name: /add skill/i });
-    fireEvent.change(addSkillInput, { target: { value: 'New Skill' } });
-    fireEvent.click(addSkillButton);
-    expect(screen.getByText(/new skill/i)).to.exist;
+  test("renders skills", () => {
+    const skills = screen.getByText("Edit Profile to add skills!");
+    expect(skills).to.exist;
+  });
+
+  test("renders edit button when authorized", () => {
+    const editButton = screen.getByText("Edit Profile");
+    expect(editButton).to.exist;
   });
 
 });

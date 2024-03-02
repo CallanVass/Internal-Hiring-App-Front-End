@@ -1,56 +1,85 @@
-import "@testing-library/jest-dom";
+import { describe, expect, it, beforeEach, test } from "vitest";
+import { render } from "react-dom";
+import { act } from "react-dom/test-utils";
+import { unmountComponentAtNode } from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import { render, fireEvent, waitFor } from "@testing-library/react";
-import { createMemoryHistory } from "history";
-import { describe, expect, it, beforeEach } from "vitest";
 import Login from "../components/Login";
+import { AuthContext } from "../authentication/AuthContext";
+import { fireEvent } from "@testing-library/react";
 
-describe("Login Component", () => {
-    it("redirects to the homepage after successful login", async () => {
-        const history = createMemoryHistory();
-        const { getByLabelText, getAllByRole } = render(
-            <Router history={history}>
-                <Login />
-            </Router>
-        );
+let container = null;
 
-        const usernameInput = getByLabelText("Username:");
-        const passwordInput = getByLabelText("Password:");
-        const loginButton = getAllByRole('button', { name: /login/i })[0];
+test("renders Login component", () => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
 
+  act(() => {
+    render(
+      <AuthContext.Provider value={{ login: () => {} }}>
+        <Router>
+          <Login />
+        </Router>
+      </AuthContext.Provider>,
+      container
+    );
+  });
+  expect(container.textContent).toContain("Login");
 
-        fireEvent.change(usernameInput, { target: { value: "test" } });
-        fireEvent.change(passwordInput, { target: { value: "test" } });
-        fireEvent.click(loginButton);
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
 
-        // // Wait for any changes to the history's location
-        // await waitFor(() => {
-        //     // Check that the history's location is now the homepage
-        //     expect(history.location.pathname).toBe("/home");
-        // });
-    });
+test("username and password inputs are empty initially", () => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
 
-    let container;
+  act(() => {
+    render(
+      <AuthContext.Provider value={{ login: () => {} }}>
+        <Router>
+          <Login />
+        </Router>
+      </AuthContext.Provider>,
+      container
+    );
+  });
 
-    beforeEach(() => {
-        container = render(
-            <Router>
-                <Login />
-            </Router>
-        ).container;
-    });
+  const usernameInput = container.querySelector("#username");
+  const passwordInput = container.querySelector("#password");
 
-    it("renders the Home component", () => {
-        expect(container.querySelector("div")).toBeInTheDocument();
-        expect(container.querySelector("form")).toBeInTheDocument();
-        expect(container.querySelector("form")).toHaveTextContent("Username: ");
-        expect(container.querySelector("form")).toHaveTextContent("Password: ");
-    });
+  expect(usernameInput.value).toBe("");
+  expect(passwordInput.value).toBe("");
 
-    // Unable to find the right way to test the button click (tried getByTitle, Role, etc.)
-    // test('login button renders home page', async () => {
-    //     render(<App />);
-    //     const button = screen.getAllByTitle('login-btn'); // adjust this if your button has a name or label
-    //     await userEvent.click(button);
-    //   });
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+test("username and password inputs accept input", () => {
+  container = document.createElement("div");
+  document.body.appendChild(container);
+
+  act(() => {
+    render(
+      <AuthContext.Provider value={{ login: () => {} }}>
+        <Router>
+          <Login />
+        </Router>
+      </AuthContext.Provider>,
+      container
+    );
+  });
+  const usernameInput = container.querySelector("#username");
+  const passwordInput = container.querySelector("#password");
+
+  fireEvent.change(usernameInput, { target: { value: "testuser" } });
+  fireEvent.change(passwordInput, { target: { value: "testpassword" } });
+
+  expect(usernameInput.value).toBe("testuser");
+  expect(passwordInput.value).toBe("testpassword");
+
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
 });

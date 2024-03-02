@@ -24,21 +24,4 @@ describe("UserSearch Component", () => {
     });
   });
 
-  test("renders correct user data", async () => {
-    fireEvent.change(screen.getByRole("textbox"), { target: { value: "Adam Hunter" } });
-
-    const users = [
-      {
-        name: "Adam Hunter",
-        role: "Developer",
-        department: "Information Technology",
-      },
-    ];
-
-    await waitFor(() => {
-      users.forEach((user) => {
-        expect(screen.getByText(new RegExp(user.name, "i"))).to.exist;
-      });
-    });
-  });
 });

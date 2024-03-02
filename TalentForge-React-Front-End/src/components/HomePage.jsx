@@ -73,7 +73,7 @@ const HomePage = () => {
   return (
     <>
       {/* Main container */}
-      <div className="flex-col m-auto max-h-max">
+      <div role="main" className="flex-col m-auto max-h-max">
         {/* Background image -- can be changed... */}
         <div className="bg-hero bg-cover bg-bottom min-h-screen pb-20">
           {/* Text content */}
@@ -118,9 +118,8 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
     </>
-  )
+  );
 }
 
 export default HomePage

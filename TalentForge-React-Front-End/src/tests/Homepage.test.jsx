@@ -1,40 +1,58 @@
-import { describe, expect, it, beforeEach } from "vitest"
-import { render, screen } from "@testing-library/react";
+// FILEPATH: /home/mattbryant/projects/talentforge/Talent-Forge-Front-End/TalentForge-React-Front-End/src/tests/HomePage.test.jsx
+
+import { render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter as Router } from "react-router-dom";
 import HomePage from "../components/HomePage";
-import '@testing-library/jest-dom';
+import { describe, expect, it, beforeEach, test } from "vitest";
 
-describe('HomePage Component', () => {
-    beforeEach(() => {
-      render(<HomePage />);
-    });
-      
-    it('renders without crashing', () => {
-        const headings = screen.getAllByRole('heading');
-        expect(headings.length).toBeGreaterThan(0);
+describe("HomePage Component", () => {
+  beforeEach(() => {
+    global.fetch = () =>
+      Promise.resolve({
+        json: () => Promise.resolve({ firstName: "Test" }),
       });
-  
-    it('renders the welcome text', () => {
-      const welcomeText = screen.getByText('Welcome \'user.name\' to TalentForge');
-      expect(welcomeText).toBeInTheDocument();
-    });
-  
-    it('renders the intro text', () => {
-      const introText = screen.getByText(/This is your home of....explore, interact, opportunities, develop...mission statement\/blurb\/ intro to let users know about the site and all of the benefits they can expect from it.../i);
-      expect(introText).toBeInTheDocument();
-    });
-  
-    it('renders the Latest Jobs button', () => {
-      const latestJobsButton = screen.getByText('Latest Jobs');
-      expect(latestJobsButton).toBeInTheDocument();
-    });
+  });
 
-    it('renders the My Profile button', () => {
-      const myProfileButton = screen.getByText('My Profile');
-      expect(myProfileButton).toBeInTheDocument();
-    });
+  it("renders without crashing", () => {
+    render(
+      <Router>
+        <HomePage />
+      </Router>
+    );
+    const homePage = screen.getByRole("main");
+    expect(homePage).to.exist;
+  });
 
-    it('renders the Company Network button', () => {
-      const companyNetworkButton = screen.getByText('Company Network');
-      expect(companyNetworkButton).toBeInTheDocument();
-    });
+ it("renders the welcome message", async () => {
+   render(
+     <Router>
+       <HomePage />
+     </Router>
+   );
+   await waitFor(() => screen.getByText("Welcome Guest to"));
+ });
+
+  it("renders the logo", () => {
+    render(
+      <Router>
+        <HomePage />
+      </Router>
+    );
+    const logo = screen.getByAltText("Talent Forge Logo");
+    expect(logo).to.exist;
+  });
+
+  it("renders the navigation links", () => {
+    render(
+      <Router>
+        <HomePage />
+      </Router>
+    );
+    const latestJobsLink = screen.getByText("Latest Jobs");
+    const myProfileLink = screen.getByText("My Profile");
+    const companyNetworkLink = screen.getByText("Company Network");
+    expect(latestJobsLink).to.exist;
+    expect(myProfileLink).to.exist;
+    expect(companyNetworkLink).to.exist;
+  });
 });
