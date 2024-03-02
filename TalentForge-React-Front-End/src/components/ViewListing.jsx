@@ -83,10 +83,10 @@ const ViewListing = () => {
           <div className="flex flex-col justify-center mx-2 md:mx-4 lg:mx-4 my-4 md:my-6 lg:my-6">
             {/* Full job description */}
             <div className="mx-8 my-2 md:my-4 lg:my-4">
-              <p className=" text-center md:text-2xl lg:text-2xl" id="para">
+              <span className=" text-center md:text-2xl lg:text-2xl" id="para">
                 {/* Issue on initial render causes the app to crash - tried Callan's solution in homepage to display temporary text */}
                 {renderJobInfo('text')}
-              </p>
+              </span>
             </div>
           </div>
           {/* Apply Now button */}

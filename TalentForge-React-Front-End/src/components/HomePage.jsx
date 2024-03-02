@@ -22,7 +22,7 @@ const HomePage = () => {
           <div className="flex justify-center p-2">
             <div className="flex flex-col justify-center items-center my-20">
               <h1 className="text-dark-blue text-center text-5xl md:text-6xl lg:text-6xl inset-y-28 h-fit md:inset-y-44 max-w-full md:max-w-lg lg:max-w-3xl px-10">
-                Welcome {currentUser?.firstName || 'Guest'} to
+                Welcome {currentUser?.firstName || ''} to
               </h1>
               <img src="src/assets/logos/transplogoslogan.png" alt="Talent Forge Logo" className="h-auto w-3/6" />
               <h2 className="text-dark-blue text-3xl lg:text-4xl inset-y-72 md:inset-y-96 h-fit max-w-full md:max-w-lg lg:max-w-3xl px-10">
