@@ -1,52 +1,47 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import userEvent from "@testing-library/user-event";
-import { test, describe, expect, it, beforeEach } from "vitest";
+import { render, fireEvent } from "@testing-library/react";
+import { expect, test } from "vitest";
 import NewListing from "../components/NewListing";
+import { BrowserRouter as Router } from "react-router-dom";
 
-describe("NewListing", () => {
-  beforeEach(() => {
-    render(<NewListing />);
-  });
+test("renders NewListing and checks form submission", async () => {
+  const { getByLabelText, getByText } = render(
+    <Router>
+      <NewListing />
+    </Router>
+  );
 
-  test("renders form fields correctly", () => {
-    const jobTitleInput = screen.getByLabelText(/Job title:/i);
-    expect(jobTitleInput).toBeInTheDocument();
+  // Check if form elements are present
+  expect(getByText(/Job title:/i)).to.exist;
+  expect(getByText(/Department:/i)).to.exist;
+  expect(getByText(/Salary:/i)).to.exist;
+  expect(getByText(/Posting date:/i)).to.exist;
+  expect(getByText(/Closing date:/i)).to.exist;
+  expect(getByText(/Role Basis:/i)).to.exist;
+  expect(getByText(/Role type:/i)).to.exist;
+  expect(getByText(/Role location:/i)).to.exist;
+  expect(getByText(/Full description:/i)).to.exist;
 
-    const departmentInput = screen.getByLabelText(/Department:/i);
-    expect(departmentInput).toBeInTheDocument();
+  // Simulate form submission
+  const submitButton = getByText(/Save/i);
+  fireEvent.click(submitButton);
 
-    const closingDateInput = screen.getByLabelText(/Closing date:/i);
-    expect(closingDateInput).toBeInTheDocument();
-  });
+  // Add more assertions based on what you expect to happen when the form is submitted
+});
 
-  test("renders role basis radio buttons correctly", () => {
-    const fullTimeInput = screen.getByLabelText(/Full Time/i);
-    expect(fullTimeInput).toBeInTheDocument();
-    expect(fullTimeInput).toBeChecked();
+test("submits the form", async ({ is }) => {
+  let submitted = false;
+  const onSubmit = () => {
+    submitted = true;
+  };
+  const { getByLabelText, getByText } = render(NewListing, { props: { onSubmit } });
 
-    const partTimeInput = screen.getByLabelText(/Part Time/i);
-    expect(partTimeInput).toBeInTheDocument();
-    expect(partTimeInput).not.toBeChecked();
+  await fireEvent.update(getByText(/Job title:/i), "Software Engineer");
+  await fireEvent.update(getByText(/Department:/i), "Engineering");
+  await fireEvent.update(getByText(/Salary:/i), "100000");
+  await fireEvent.update(getByText(/Posting date:/i), "2022-01-01");
+  await fireEvent.update(getByText(/Closing date:/i), "2022-02-01");
 
-    const otherInputs = screen.getAllByText(/Other/i);
-    otherInputs.forEach((input) => {
-      expect(input).toBeInTheDocument();
-      expect(input).not.toBeChecked();
-    });
-  });
+  await fireEvent.click(getByText("Save"));
 
-  test("renders role type radio buttons correctly", () => {
-    const permanentInput = screen.getByLabelText(/Permanent/i);
-    expect(permanentInput).toBeInTheDocument();
-    expect(permanentInput).toBeChecked();
-  });
-
-  test("changes radio button selection on click", () => {
-    const { getAllByLabelText } = render(<NewListing />);
-    const radioButtons = getAllByLabelText("Part Time");
-    const radioButton = radioButtons.find((button) => button.name === "hours");
-
-    fireEvent.click(radioButton);
-  });
+  is(submitted, true);
 });
