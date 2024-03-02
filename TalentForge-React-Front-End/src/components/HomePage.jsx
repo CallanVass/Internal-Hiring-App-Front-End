@@ -6,15 +6,22 @@ import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 const HomePage = () => {
-  const {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
+  const {allUsers, loggedInUser} = useContext(AppContext)
   const [currentUser, setCurrentUser] = loggedInUser
+  const [users, setUsers] = allUsers
+
+
+
   console.log(currentUser)
+  console.log(users)
 
+
+  // Is a waiting function needed before the user data is rendered?
   // const renderUserData = async () => {
-
+  // while (currentUser === null) { ... }
   // }
 
-
+  // Or do we re-populate the allUsers state with the user data from the server and do another setState for currentUser?
 
 
 
@@ -77,8 +84,8 @@ const HomePage = () => {
               </h1>
               <img src="src/assets/logos/transplogoslogan.png" alt="Talent Forge Logo" className="h-auto w-3/6" />
               <h2 className="text-dark-blue text-3xl lg:text-4xl inset-y-72 md:inset-y-96 h-fit max-w-full md:max-w-lg lg:max-w-3xl px-10">
-                This is your home of....explore, interact, opportunities, develop...mission statement/blurb/ intro to
-                let users know about the site and all of the benefits they can expect from it...
+              Empowering individuals to achieve their full potential through innovative software solutions that foster
+              growth, facilitate development, and promote meaningful connections within the workplace.
                 <br />
                 <br />
                 Select one of the links below to get started!

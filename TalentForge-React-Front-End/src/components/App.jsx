@@ -19,7 +19,7 @@ import decoder from '../authentication/decoder'
 
 
 
-export const ContextWrapper = createContext()
+
 
 const App = () => {
   // Required states for App to function
@@ -41,12 +41,14 @@ const Layout = ({ children }) => {
 
   return (
   <>
+  <AppContextProvider>
       {/* Conditionally render the NavBar unless on login page */}
       {showNavBar && <NavBar />}
       {/* Content to render on other pages */}
       <div className='flex flex-col min-h-screen'>
       <div className='flex-grow'>{children}</div>
       </div>
+      </AppContextProvider>
   </>
   )
 }
