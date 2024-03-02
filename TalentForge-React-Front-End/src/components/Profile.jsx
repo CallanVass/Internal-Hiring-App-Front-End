@@ -5,7 +5,7 @@ import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
-
+// Add search functionality to access any job applications
 
 const Profile = () => {
   const {allUsers, allListings, loggedInUser, profile} = useContext(AppContext)

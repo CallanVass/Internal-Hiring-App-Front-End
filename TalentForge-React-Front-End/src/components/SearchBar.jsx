@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from "react"
+import { AppContext } from '../authentication/AppContext'
 import Fuse from 'fuse.js'
 
 // Recieve users props to SearchBar from UserSearch
-const SearchBar = ({ users }) => {
-
-// Set query state to empty string
+const SearchBar = () => {
+    const {allUsers, profile} = useContext(AppContext)
+    const [users, setUsers] = allUsers
+    const [profileUser, setProfileUser] = profile
+    // Set query state to empty string
 const [query, setQuery] = useState('')
 // Set result state to empty list
 const [results, setResults] = useState([])
-
+console.log(query)
+console.log(results)
 // Create Fuse object
 useEffect(() => {
     const fuse = new Fuse(users, {
@@ -21,7 +25,7 @@ useEffect(() => {
             "aboutMe"
         ],
         includeScore: true,
-    });
+    })
 
     // Perform search if query is already present
     if (query.length > 2) {
@@ -47,15 +51,16 @@ const handleSearch = (e) => {
             />
         </div>
         <div>
-            {results.map((result, index) => (
+            {results?.map((result, index) => (
                 <div key={index} className="border border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 bg-blue-500 opacity-50 mb-5">
                     {/* DATABASE PROFILE PICTURE GOES HERE */}
                     <img href=""></img>
                     {/* Linking profile */}
-                    <a href="http://localhost:5173/profile-page">
+                    {/* Change to onCLick event with useNavigation hook? */}
+                    <a href={`http://localhost:5173/profile/${result.item._id}`} onClick={() => setProfileUser(result.item)}>
                     <span className="block text-center mb-3 text-2xl">{result.item.firstName + " " + result.item.lastName}</span>
                     <span className="block text-center mb-3 text-l">{result.item.role}, {result.item.department}</span>
-                    <div className="m-5">{result.item.aboutMe.text}</div></a>
+                    {/* <div className="m-5">{result.item.aboutMe.text}</div> */}</a>
                 </div>
             ))}
         </div>

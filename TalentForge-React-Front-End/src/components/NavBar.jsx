@@ -8,9 +8,6 @@ import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 
-
-// const {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ")
 }
@@ -25,50 +22,6 @@ const {allUsers, loggedInUser, profile} = useContext(AppContext)
   console.log(users)
 
 
-  // Or do we re-populate the allUsers state with the user data from the server and do another setState for currentUser?
-
-
-
-    // const [homeUser, setHomeUser] = useState(null)
-    // const [isLoading, setIsLoading] = useState(true)
-    // const [error, setError] = useState(null)
-
-    // useEffect(() => {
-    //   const fetchUserData = async () => {
-    //     setIsLoading(true)
-    //     try {
-    //       const token = sessionStorage.getItem('token')
-    //       if (!token) {
-    //         throw new Error('No token found')
-    //       }
-
-
-    //       const user = decoder(token)
-
-    //       // Fetch user data using the userId
-    //       const response = await fetch(`http://localhost:8002/users/${user._id}`, {
-    //         method: 'GET',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //           'Authorization': `Bearer ${token}`,
-    //         },
-    //       })
-
-    //       if (!response.ok) {
-    //         throw new Error('Failed to fetch user data')
-    //       }
-
-    //       const data = await response.json()
-    //       setHomeUser(data) // Set the user data
-    //     } catch (error) {
-    //       setError(error.message)
-    //     } finally {
-    //       setIsLoading(false)
-    //     }
-    //   }
-
-    //   fetchUserData()
-    // }, [])
 
     // Define adminRender here to access homeUser
     const adminRender = () => {
@@ -92,6 +45,9 @@ const {allUsers, loggedInUser, profile} = useContext(AppContext)
   const { token } = useContext(AuthContext)
   const nav = useNavigate()
 
+  // Need a way to re-set the current user as profileUser
+  // Whenever another user's profile is viewed, then closed
+  // When component unmounts???
   const showProfile = () => {
     // if (token) {
       // const user = decoder(token)
