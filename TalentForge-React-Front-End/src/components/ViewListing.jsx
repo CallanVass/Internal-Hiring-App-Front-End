@@ -1,51 +1,20 @@
 import React, { useState, useEffect } from "react"
 import "../assets/css/ViewListing.css"
+// import { AppContext, AppContextProvider } from '../authentication/AppContext'
+// import { JobListing.ListingContext, JobListing.ListingContextProvider } from "./Opportunities";
 import { useParams } from "react-router-dom"
 
 
+// View Listing not rendering due to listing not being passed as a prop
+// It is correctly being set in Opportunities.jsx
+const ViewListing = ({ listing }) => {
+  // const { allListings } = useContext(AppContext)
+  // const [listings, setListings] = allListings
+  console.log(listing)
 
-const ViewListing = () => {
-  const [ listing, setListing ] = useState(null)
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
-  const [error, setError] = useState(null); // Track error state
-  const { id } = useParams()
+
 
   document.title = "View Listing"
-
-
-  useEffect(() => {
-    const fetchListingData = async () => {
-      setIsLoading(true);
-      try {
-        const token = sessionStorage.getItem('token'); // Retrieve the token
-        if (!token) {
-          throw new Error('No token found');
-        }
-
-        // Fetch user data using the userId
-        const response = await fetch(`http://localhost:8002/listings/${id}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch listing data');
-        }
-
-        const data = await response.json();
-        setListing(data); // Set the listing data
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchListingData();
-  }, [id])
 
 
   return (

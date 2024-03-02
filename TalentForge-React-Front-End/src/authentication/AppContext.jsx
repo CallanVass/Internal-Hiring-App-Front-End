@@ -61,16 +61,6 @@ export const AppContextProvider = ({ children }) => {
         return () => clearTimeout(setUser)
     }, [setCurrentUser, users])
 
-    // const setProfile = (userID) => {
-    //     const user = users.find(user => user._id === userID)
-    //     setProfileUser(user)
-    // }
-
-    // const setListing = (listingID) => {
-    //     const currentListing = listings.find(listing => listing._id === listingID)
-    //     setCurrentListing(currentListing)
-    // }
-
 
       console.log(users)
       console.log(listings)
@@ -81,22 +71,12 @@ export const AppContextProvider = ({ children }) => {
 
 return (
     <AppContext.Provider
-        // value={{
-        //     allUsers : [users, setUsers],
-        //     allListings : [listings, setListings],
-        //     loggedInUser : [currentUser, setCurrentUser],
-        //     listing : [currentListing, setCurrentListing],
-        //     profile : [profileUser, setProfileUser],
-        //     }}>
         value={{
             allUsers : [users, setUsers],
             allListings : [listings, setListings],
             loggedInUser : [currentUser, setCurrentUser],
             listing : [currentListing, setCurrentListing],
             profile : [profileUser, setProfileUser],
-            // setUser,
-            // setProfile,
-            // setListing
             }}>
         {children}
     </AppContext.Provider>

@@ -6,26 +6,12 @@ import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 const HomePage = () => {
-  const {allUsers, loggedInUser} = useContext(AppContext)
-  const [currentUser, setCurrentUser] = loggedInUser
-  const [users, setUsers] = allUsers
+  const { loggedInUser } = useContext(AppContext)
+  const [currentUser, setCurrentUser] = loggedInUser // currentUser is set in AppContextProvider
 
 
 
-  console.log(currentUser)
-  console.log(users)
 
-
-  // Is a waiting function needed before the user data is rendered?
-  // const renderUserData = async () => {
-  // while (currentUser === null) { ... }
-  // }
-
-  // Or do we re-populate the allUsers state with the user data from the server and do another setState for currentUser?
-
-
-
-   
   return (
     <>
       {/* Main container */}

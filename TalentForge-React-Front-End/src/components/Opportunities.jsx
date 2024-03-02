@@ -1,40 +1,17 @@
-import React, { useState, useEffect, createContext } from "react"
+import React, { useState, useEffect, createContext, useContext } from "react"
 import ViewListing from "./ViewListing"
 import { useNavigate } from 'react-router-dom'
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 import Fuse from "fuse.js" // Import Fuse.js library
 
 
-export const ListingContext = createContext()
-
+// export const ListingContext = createContext()
 
 const JobListing = () => {
-  document.title = "Opportunities";
-  const [listings, setListings] = useState([])
-  const nav = useNavigate()
+  const { allListings } = useContext(AppContext)
+  const [listings, setListings] = allListings
 
-  useEffect (() => {
-    try {
-      fetch('http://localhost:8002/listings', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-      })
-      .then(res => res.json())
-      .then(data => setListings(data))
-    } catch (error) {
-      fetch('http://172.31.190.165:8003/listings', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-      })
-      .then(res => res.json())
-      .then(data => setListings(data))
-    }
-  }, [])
+  const nav = useNavigate()
 
   console.log(listings)
 
@@ -74,20 +51,31 @@ const JobListing = () => {
   }, [searchQuery, selectedDepartment, listings])
 
 
-// export const ListingContext = createContext()
-// <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-// function listingClick(listing) {
-//   nav(`/listings/${listing._id}`)
-//   console.log(listing)
-//   console.log(listing._id)
 
-//   return (<ListingContext.Provider value={ listing }>{console.log(listing)}
-//             {/* <ViewListing listing={listing} /> */}
-//             <ViewListing listing={listing} />
-//           </ListingContext.Provider>)
-// }
+  const ListingContext = createContext()
+  const [listing, setListing] = useState([])
 
 
+  const ListingContextProvider = ({ children }) => {
+    console.log(listing)
+
+    return (<ListingContext.Provider value={ listing }>{console.log(listing)}
+                  <ViewListing listing={listing} />
+                </ListingContext.Provider>
+            )
+  }
+
+
+  function listingClick(listing) {
+    nav(`/listings/${listing._id}`)
+    // nav('/opportunities')
+    console.log(listing)
+    console.log(listing._id)
+    setListing(listing)
+    ListingContextProvider()
+  }
+
+  document.title = "Opportunities"
 
   return (
     <div className="bg-white mx-6 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16 xl:mx-96">

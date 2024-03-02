@@ -8,14 +8,14 @@ import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 const Profile = () => {
-  const {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
+  const {allUsers, allListings, loggedInUser, profile} = useContext(AppContext)
   const [users, setUsers] = allUsers
   const [currentUser, setCurrentUser] = loggedInUser
   const [profileUser, setProfileUser] = profile
   const [listings, setListings] = allListings
 
 
- 
+
   document.title = "Profile"
   const [isEditMode, setIsEditMode] = useState(false)
   const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
@@ -37,29 +37,7 @@ const Profile = () => {
   ];
 
   // Applications Dummy Data
-
-  const applications = {
-    app1: {
-      jobName: "Assistant Manager",
-      jobSalary: "65,000",
-      jobDescription: "An assistant manager position.",
-    },
-    app2: {
-      jobName: "Secretary",
-      jobSalary: "60,000",
-      jobDescription: "Secretary position. Not for the faint of heart.",
-    },
-    app3: {
-      jobName: "CEO",
-      jobSalary: "100,000,000",
-      jobDescription: "Wow, aren't you important, huh?",
-    },
-    app4: {
-      jobName: "Minimum Wage Worker",
-      jobSalary: "52,000",
-      jobDescription: "Sorry about that one.",
-    },
-  };
+  const applications = []
 
   // The user profile is required to conditionally render the edit button and job applications
   // We know the userId and that there is a valid token
