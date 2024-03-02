@@ -4,7 +4,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
 import decoder from "../authentication/decoder"
-import { ContextWrapper } from "./App"
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 
@@ -14,7 +14,7 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
-  const {allUsers, allListings, loggedInUser, listing, profile} = useContext(ContextWrapper)
+  const {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
   const [users, setUsers] = allUsers
 
 

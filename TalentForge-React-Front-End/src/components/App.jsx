@@ -13,6 +13,7 @@ import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import NewUser from './NewUser' // Import the 'NewUser' component
 import { AuthContext, AuthProvider } from '../authentication/AuthContext'
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 import decoder from '../authentication/decoder'
 
@@ -22,12 +23,12 @@ export const ContextWrapper = createContext()
 
 const App = () => {
   // Required states for App to function
-  const [users, setUsers] = useState([])
-  const [listings, setListings] = useState([])
-  const [currentUser, setCurrentUser] = useState(null)
-  const [currentListing, setCurrentListing] = useState(null)
-  const [profileUser, setProfileUser] = useState(null)
-  
+  // const [users, setUsers] = useState([])
+  // const [listings, setListings] = useState([])
+  // const [currentUser, setCurrentUser] = useState(null)
+  // const [currentListing, setCurrentListing] = useState(null)
+  // const [profileUser, setProfileUser] = useState(null)
+
 
 
 
@@ -50,17 +51,11 @@ const Layout = ({ children }) => {
   )
 }
 
-//const = {allUsers, allListings, loggedInUser, listing, profile} = useContext(ContextWrapper)
+//const = {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
 
 return (
   <AuthProvider>
-    <ContextWrapper.Provider
-      value={{
-        allUsers : [users, setUsers],
-        allListings : [listings, setListings],
-        loggedInUser : [currentUser, setCurrentUser],
-        listing : [currentListing, setCurrentListing],
-        profile : [profileUser, setProfileUser] }}>
+    <AppContextProvider>
     <BrowserRouter>
       <div className='flex flex-col min-h-screen'>
         <Routes>
@@ -90,7 +85,7 @@ return (
         <div className='flex-grow'></div><Footer />
       </div>
     </BrowserRouter>
-    </ContextWrapper.Provider>
+    </AppContextProvider>
 </AuthProvider>
   )
 }

@@ -1,18 +1,18 @@
 import React, { useContext, useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import "../assets/css/HomePage.css"
-import { ContextWrapper } from "./App"
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 
 const HomePage = () => {
-  const {allUsers, allListings, loggedInUser, listing, profile} = useContext(ContextWrapper)
+  const {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
   const [currentUser, setCurrentUser] = loggedInUser
   console.log(currentUser)
 
-  const renderUserData = async () => {
+  // const renderUserData = async () => {
 
-  }
+  // }
 
 
 

@@ -2,12 +2,12 @@ import React, { useState, useEffect,createContext, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
 import '../assets/css/Login.css'
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
-import { ContextWrapper } from "./App"
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 import decoder from '../authentication/decoder'
 
 
 const Login = () => {
-    const {allUsers, allListings, loggedInUser, listing, profile} = useContext(ContextWrapper)
+    const {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
     const [users, setUsers] = allUsers
     const [listings, setListings] = allListings
     const [currentUser, setCurrentUser] = loggedInUser
