@@ -12,27 +12,27 @@ describe('Footer Component', () => {
       
     it('renders without crashing', () => {
       const footer = screen.getByRole('contentinfo');
-      expect(footer).toBeInTheDocument();
+      expect(footer).to.exist;
     });
   
     it('renders the logo', () => {
       const logo = screen.getByAltText('TalentForge Logo');
-      expect(logo).toBeInTheDocument();
+      expect(logo).to.exist;
     });
   
     it('renders the follow us section', () => {
       const followUs = screen.getByText('Follow us');
-      expect(followUs).toBeInTheDocument();
+      expect(followUs).to.exist;
     });
   
     it('renders the legal section', () => {
       const legal = screen.getByText('Legal');
-      expect(legal).toBeInTheDocument();
+      expect(legal).to.exist;
     });
   
     it('renders the social media links', () => {
       const facebookLink = screen.getByLabelText('Facebook page');
-      expect(facebookLink).toBeInTheDocument();
+      expect(facebookLink).to.exist;
     });
 });
 
@@ -43,9 +43,9 @@ test('renders footer text', () => {
     const linkElement = screen.getByText(/TalentForge™/i);
     const rightsElement = screen.getByText(/. All Rights Reserved./i);
   
-    expect(copyrightElement).toBeInTheDocument();
-    expect(linkElement).toBeInTheDocument();
-    expect(rightsElement).toBeInTheDocument();
+    expect(copyrightElement).to.exist;
+    expect(linkElement).to.exist;
+    expect(rightsElement).to.exist;
 });
 
 test('clicks on TalentForge™ link', async () => {
@@ -61,4 +61,5 @@ test('clicks on TalentForge™ link', async () => {
     await waitFor(() => {
       expect(history.location.pathname).toBe('/');
     });
-  });
+});
+  
