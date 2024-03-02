@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import "../assets/css/ViewListing.css"
-// import { AppContext, AppContextProvider } from '../authentication/AppContext'
-// import { JobListing.ListingContext, JobListing.ListingContextProvider } from "./Opportunities";
-import { useParams } from "react-router-dom"
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
-// View Listing not rendering due to listing not being passed as a prop
-// It is correctly being set in Opportunities.jsx
-const ViewListing = ({ listing }) => {
-  // const { allListings } = useContext(AppContext)
-  // const [listings, setListings] = allListings
-  console.log(listing)
+const ViewListing = () => {
+  const { listing } = useContext(AppContext)
+  const [currentListing, setCurrentListing] = listing
+  console.log(currentListing)
 
-
+  // Conditional rendering of job description/points
+  function renderJobInfo(info) {
+    if (currentListing.description) {
+        if ( info === 'points' && currentListing.description.points.length > 0) {
+          const pointsArray = [...currentListing.description.points]
+          return pointsArray.map((point, index) => {
+            return <li key={index}>{point}</li>
+          })
+        } else if (info === 'text' && currentListing.description.text) {
+          return <p>{currentListing.description.text}</p>
+        }
+    } else {
+      return null
+    }
+  }
 
   document.title = "View Listing"
 
@@ -23,38 +33,38 @@ const ViewListing = ({ listing }) => {
         <div className="bg-white border border-gray-300 mt-6 mb-6">
           {/* Listing header */}
           <div className="flex justify-center pt-4 lg:pt-10 lg:pb-4">
-            <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold">{listing.title}</h1>
+            <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold">{currentListing.title}</h1>
           </div>
           {/* Listing subheader */}
           <div className="flex justify-center">
-            <h2 className="text-2xl md:text-4xl lg:text-4xl">{listing.department}</h2>
+            <h2 className="text-2xl md:text-4xl lg:text-4xl">{currentListing.department}</h2>
           </div>
           <div className="flex justify-center items-center flex-col sm:flex-col md:flex-col lg:flex-row">
             {/* Listing top level info */}
             <div className="top-level-info mx-2 sm:mx-4 md:mx-4 lg:mx-4 my-2 md:my-4 lg:my-4">
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-              {listing ? listing.datePosted : "Loading..."}
+              {listing ? currentListing.datePosted : "Loading..."}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Hybrid, On Site
               </p>
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                {listing.location}
+                {currentListing.location}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Hybrid, On Site
               </p>
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                {listing.roleType}
+                {currentListing.roleType}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Full time, part time
               </p>
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                {listing.roleDuration}
+                {currentListing.roleDuration}
               </h4>
               <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Temporary, Contract
@@ -64,10 +74,8 @@ const ViewListing = ({ listing }) => {
             {/* Job points */}
             <div className="job-points mx-7 md:mx-11 lg:mx-11 my-2 md:my-4 lg:my-4">
               <div className="list-disc list-inside text-lg md:text-3xl lg:text-3xl">
-                {/* Issue on initial render causes the app to crash - tried Callan's solution in homepage to display temporary text */}
-                <li>{listing.description.points[0] && listing.description?.points[0] || ''}</li>
-                <li>{listing.description.points[1] && listing.description?.points[1] || ''}</li>
-                <li>{listing.description.points[2] && listing.description?.points[2] || ''}</li>
+            {/* Bullet point rendering function */}
+                {renderJobInfo('points')}
               </div>
             </div>
           </div>
@@ -77,7 +85,7 @@ const ViewListing = ({ listing }) => {
             <div className="mx-8 my-2 md:my-4 lg:my-4">
               <p className=" text-center md:text-2xl lg:text-2xl" id="para">
                 {/* Issue on initial render causes the app to crash - tried Callan's solution in homepage to display temporary text */}
-                {listing.description?.text || ''}
+                {renderJobInfo('text')}
               </p>
             </div>
           </div>
@@ -92,7 +100,7 @@ const ViewListing = ({ listing }) => {
           </div>
           {/* Closing date */}
           <div className="flex justify-center my-3 pb-6 italic ">
-            <p className="text-lg md:text-2xl lg:text-2xl text-red-500">Closing Date: {dateFormat(listing.dateClosing)}</p>
+            <p className="text-lg md:text-2xl lg:text-2xl text-red-500">Closing Date: {currentListing.dateClosing}</p>
           </div>
         </div>
       </div>

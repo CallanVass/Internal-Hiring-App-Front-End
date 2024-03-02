@@ -8,8 +8,9 @@ import Fuse from "fuse.js" // Import Fuse.js library
 // export const ListingContext = createContext()
 
 const JobListing = () => {
-  const { allListings } = useContext(AppContext)
+  const { allListings, listing } = useContext(AppContext)
   const [listings, setListings] = allListings
+  const [currentListing, setCurrentListing] = listing
 
   const nav = useNavigate()
 
@@ -22,12 +23,12 @@ const JobListing = () => {
   // Function to handle department selection
   const handleDepartmentChange = (event) => {
     setSelectedDepartment(event.target.value)
-  };
+  }
 
   // Function to handle search input change
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value)
-  };
+  }
 
   // Effect to update filtered listings when searchQuery or selectedDepartment changes
   useEffect(() => {
@@ -51,28 +52,12 @@ const JobListing = () => {
   }, [searchQuery, selectedDepartment, listings])
 
 
-
-  const ListingContext = createContext()
-  const [listing, setListing] = useState([])
-
-
-  const ListingContextProvider = ({ children }) => {
-    console.log(listing)
-
-    return (<ListingContext.Provider value={ listing }>{console.log(listing)}
-                  <ViewListing listing={listing} />
-                </ListingContext.Provider>
-            )
-  }
-
-
   function listingClick(listing) {
     nav(`/listings/${listing._id}`)
     // nav('/opportunities')
     console.log(listing)
     console.log(listing._id)
-    setListing(listing)
-    ListingContextProvider()
+    setCurrentListing(listing)
   }
 
   document.title = "Opportunities"
