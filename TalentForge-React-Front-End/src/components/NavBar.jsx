@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
 import decoder from "../authentication/decoder"
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 
@@ -12,51 +13,19 @@ function classNames(...classes) {
 }
 
 export default function NavBar() {
+const {allUsers, loggedInUser, profile} = useContext(AppContext)
+  const [users, setUsers] = allUsers
+  const [currentUser, setCurrentUser] = loggedInUser
+  const [profileUser, setProfileUser] = profile
 
-    const [homeUser, setHomeUser] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState(null)
-  
-    useEffect(() => {
-      const fetchUserData = async () => {
-        setIsLoading(true)
-        try {
-          const token = sessionStorage.getItem('token')
-          if (!token) {
-            throw new Error('No token found')
-          }
-  
+  console.log(currentUser)
+  console.log(users)
 
-          const user = decoder(token)
-  
-          // Fetch user data using the userId
-          const response = await fetch(`http://localhost:8002/users/${user._id}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-          })
-  
-          if (!response.ok) {
-            throw new Error('Failed to fetch user data')
-          }
-  
-          const data = await response.json()
-          setHomeUser(data) // Set the user data
-        } catch (error) {
-          setError(error.message)
-        } finally {
-          setIsLoading(false)
-        }
-      }
-  
-      fetchUserData()
-    }, [])
-  
+
+
     // Define adminRender here to access homeUser
     const adminRender = () => {
-      if (homeUser && homeUser.admin) {
+      if (currentUser && currentUser.admin) {
         return [
           { name: "Create User", href: "/user-new", current: false },
           { name: "Create Listing", href: "/listing-new", current: false }
@@ -64,7 +33,7 @@ export default function NavBar() {
       }
       return []
     }
-    
+
     // Nav rendered conditionally based on homeUser.admin status
     const navigation = [
       { name: "Home", href: "/home", current: true },
@@ -76,11 +45,15 @@ export default function NavBar() {
   const { token } = useContext(AuthContext)
   const nav = useNavigate()
 
+  // Need a way to re-set the current user as profileUser
+  // Whenever another user's profile is viewed, then closed
+  // When component unmounts???
   const showProfile = () => {
-    if (token) {
-      const user = decoder(token)
-      nav(`/profile/${user._id}`)
-    }
+    // if (token) {
+      // const user = decoder(token)
+      setProfileUser(currentUser)
+      nav(`/profile/${currentUser._id}`)
+    // }
   }
   const { logout } = useContext(AuthContext)
 

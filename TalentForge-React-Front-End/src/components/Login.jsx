@@ -1,17 +1,20 @@
-import React, { useState, createContext, useContext } from "react"
+import React, { useState, useEffect,createContext, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
 import '../assets/css/Login.css'
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
-
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 
 
 
 const Login = () => {
+    const { loggedInUser } = useContext(AppContext)
+    const { login } = useContext(AuthContext)
+
+    const [currentUser, setCurrentUser] = loggedInUser
 
     const [username, setUsername] = useState("") // Note: username is an email
     const [password, setPassword] = useState("")
     const [userNotFound, setUserNotFound] = useState('no')
-    const { login } = useContext(AuthContext)
     const nav = useNavigate()
 
 
@@ -55,6 +58,8 @@ const Login = () => {
                 login(response.token)
                 // Redirect to homepage
                 nav('/home')
+                console.log(currentUser)
+                // Call fetch request to get all users and listings
             } else {
                 // Display message on login screen 'email or password is incorrect'
                 // Set username and password fields to blank
@@ -93,6 +98,15 @@ const Login = () => {
         null
         }
     }
+
+
+
+
+
+
+
+
+
 
 
     return (

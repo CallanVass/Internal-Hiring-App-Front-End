@@ -1,51 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useContext } from "react"
+import { AppContext } from '../authentication/AppContext'
 import SearchBar from "./SearchBar";
 
 const UserSearch = () => {
-  document.title = "Company Network";
+  const {allUsers} = useContext(AppContext)
+  const [users, setUsers] = allUsers
+  document.title = "Company Network"
+
   // Dummy Data
   const company = {
-    name: "Microsoft",
+    name: "Global Imports Ltd",
     description:
-      "Microsoft is a massive grapefruit that consumers can pick apart piece by piece. This is because grapefruits are so damn delicious, if not a bit tart. Makes a good perfume, though!",
+      "Use this page to search for employees in the company and make connections. You can search by name, department, or job title.",
     departments: ["marketing", "engineering", "human resources", "sales", "information technology", "board"],
-  };
-
-  const [users, setUsers] = useState([]);
-
-  // Function to fetch users from the backend
-const fetchUsers = async () => {
-  const token = sessionStorage.getItem('token'); // Retrieve the token from sessionStorage
-  const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`, // Use the token for Authorization
-  };
-
-  try {
-    try {
-      const response = await fetch('http://localhost:8002/users', { headers });
-      if (!response.ok) throw new Error(`HTTP status ${response.status}`);
-      const data = await response.json();
-      console.log(data);
-      setUsers(data);
-    } catch (error) {
-      // If the first fetch fails, try the second URL
-      console.error("Trying backup URL due to error:", error.message);
-      const response = await fetch('http://172.31.190.165:8003/users', { headers });
-      if (!response.ok) throw new Error(`HTTP status ${response.status}`);
-      const data = await response.json();
-      console.log(data);
-      setUsers(data);
-    }
-  } catch (error) {
-    console.error("Failed to fetch users", error.message);
   }
-};
 
-// Use useEffect to fetch users when the component mounts
-useEffect(() => {
-  fetchUsers();
-}, [])
+
 
   return (
     <>

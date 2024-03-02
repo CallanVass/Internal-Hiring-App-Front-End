@@ -13,196 +13,51 @@ import ViewListing from './ViewListing'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import NewUser from './NewUser' // Import the 'NewUser' component
 import { AuthContext, AuthProvider } from '../authentication/AuthContext'
-import { ListingContext } from "./Opportunities"
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
+
 import decoder from '../authentication/decoder'
 
 
 
 
-// This will be where components are configured before being sent to main.jsx
-
-export const ProfileContext = createContext()
-export const CurrentUserContext = createContext({})
-export const UserContext = createContext()
-
 
 const App = () => {
-  // const CurrentUserContext = createContext()
-  // const ProfileContext = createContext()
-  const [users, setUsers] = useState([])
-  const [error, setError] = useState(null)
-  // const currentListing = useContext(ListingContext)
-  // const token = useContext(AuthContext)
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch('http://localhost:8002/users', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-          },
-        });
-        if (!response.ok) throw new Error('Network response was not ok.');
-        const data = await response.json();
-        setUsers(data);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchUsers();
-  }, []);
-
-  // const createProvider = ({ children }) => {
-  //   return(
-  //           <NAMEContext.Provider value={/*value*/}>
-  //             {children}
-  //           </NAMEContext.Provider>
-  //   )
-  // }
-
-  const UserProvider = ({ children }) => {
-    // const [currentUser, setCurrentUser] = useState([]) // This state object is for the signed in user
-    let {id} = useParams()
-    let profileUser = users?.find(user => user._id === id)
-
-    console.log(id)
-
-    console.log(profileUser)
-    console.log(users)
-
-    const token = decoder(sessionStorage.getItem('token'))
-    console.log(sessionStorage.getItem('token'))
-    console.log(token)
-    let currentUser = users.find(user => user._id === token._id)
-    console.log(currentUser)
-
-    // setCurrentUser(users.find(user => user._id === token._id))
-
-  return(
-            <UserContext.Provider value={ {currentUser, profileUser }}>
-              {children}
-            </UserContext.Provider>
-    )
-  }
-
-
-  const CurrentUserProvider = ({ children }) => {
-    // const [currentUser, setCurrentUser] = useState([]) // This state object is for the signed in user
-    let {id} = useParams()
-    let user = users?.find(user => user._id === id)
-
-    console.log(user)
-    console.log(users)
-
-    const token = decoder(sessionStorage.getItem('token'))
-    console.log(sessionStorage.getItem('token'))
-    console.log(token)
-    let tempUser = users.find(user => user._id === token._id)
-    console.log(tempUser)
-
-    // setCurrentUser(users.find(user => user._id === token._id))
-
-  return(
-            <CurrentUserContext.Provider value={ tempUser }>
-              {children}
-            </CurrentUserContext.Provider>
-    )
-  }
-
-
-
-  const ProfileProvider = ({ children }) => {
-    let {id} = useParams()
-    let user = users?.find(user => user._id === id)
-
-    console.log(user)
-    console.log(users)
-
-    return(
-            <ProfileContext.Provider value={ user }>
-              {children}
-            </ProfileContext.Provider>
-    )
-  }
+  // Required states for App to function
+  // const [users, setUsers] = useState([])
+  // const [listings, setListings] = useState([])
+  // const [currentUser, setCurrentUser] = useState(null)
+  // const [currentListing, setCurrentListing] = useState(null)
+  // const [profileUser, setProfileUser] = useState(null)
 
 
 
 
-  /*
-Authorise user process:
-1. User logs in (token is generated)
-2. User is redirected to home page
-3. User navigates to profile page
-  - User id is extracted from token and placed in the URL
-4. Profile page is rendered with user details
-  - Conditional rendering of edit button if user id matches token id
-  - Conditional rendering of job applications if user id matches token id
-
-
-// Function to render Profile page with user id in the URL
-// Required to view profile until we are able to get user id out of the decoded token
-// function ProfileWrapper() {
-//   let {id} = useParams()
-//   let user = users?.find(user => user._id === id)
-
-//   console.log(user)
-//   console.log(users)
-
-//   const token = decoder(sessionStorage.getItem('token'))
-//   console.log(sessionStorage.getItem('token'))
-//   console.log(token)
-//   let tempUser = users.find(user => user._id === token._id)
-//   console.log(tempUser)
-
-//   // setCurrentUser(users.find(user => user._id === token._id))
-
-
-//   // This return statement sets the Profile context to be the user in the URL
-//   return user? <ProfileContext.Provider value={ user }>
-//                   <CurrentUserContext.Provider >
-//                     <Profile user={user} /*currentUser = {{currentUser}}*/
-//                   </CurrentUserContext.Provider>
-//                 </ProfileContext.Provider>
-//             : <p>User not found</p>
-// }
-
-// function HomePageWrapper() {
-//   return (<CurrentUserContext.Provider value={ currentUser }>
-//             <HomePage />
-//           </CurrentUserContext.Provider>
-//   )
-// }
-
-
-// Layout component from conditional Header render
+  // Layout component from conditional Header render
 const Layout = ({ children }) => {
-    // Assigning current user location to location
-    const location = useLocation()
-    // Conditionally show the NavBar unless on login page
-    const showNavBar = location.pathname !== '/'
+  // Assigning current user location to location
+  const location = useLocation()
+  // Conditionally show the NavBar unless on login page
+  const showNavBar = location.pathname !== '/'
 
-    return (
-    <>
-        {/* Conditionally render the NavBar unless on login page */}
-        {showNavBar && <NavBar />}
-        {/* Content to render on other pages */}
-        <div className='flex flex-col min-h-screen'>
-        <div className='flex-grow'>{children}</div>
-        </div>
-    </>
-    )
+  return (
+  <>
+  <AppContextProvider>
+      {/* Conditionally render the NavBar unless on login page */}
+      {showNavBar && <NavBar />}
+      {/* Content to render on other pages */}
+      <div className='flex flex-col min-h-screen'>
+      <div className='flex-grow'>{children}</div>
+      </div>
+      </AppContextProvider>
+  </>
+  )
 }
 
+//const = {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
 
 return (
   <AuthProvider>
-    <UserProvider>
-              <CurrentUserProvider>
-
-    <ProfileProvider>
+    <AppContextProvider>
     <BrowserRouter>
       <div className='flex flex-col min-h-screen'>
         <Routes>
@@ -232,9 +87,7 @@ return (
         <div className='flex-grow'></div><Footer />
       </div>
     </BrowserRouter>
-    </ProfileProvider>
-    </CurrentUserProvider>
-  </UserProvider>
+    </AppContextProvider>
 </AuthProvider>
   )
 }

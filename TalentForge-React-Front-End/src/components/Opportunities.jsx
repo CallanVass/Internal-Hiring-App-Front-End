@@ -1,40 +1,18 @@
-import React, { useState, useEffect, createContext } from "react"
+import React, { useState, useEffect, createContext, useContext } from "react"
 import ViewListing from "./ViewListing"
 import { useNavigate } from 'react-router-dom'
+import { AppContext, AppContextProvider } from '../authentication/AppContext'
 import Fuse from "fuse.js" // Import Fuse.js library
 
 
-export const ListingContext = createContext()
-
+// export const ListingContext = createContext()
 
 const JobListing = () => {
-  document.title = "Opportunities";
-  const [listings, setListings] = useState([])
-  const nav = useNavigate()
+  const { allListings, listing } = useContext(AppContext)
+  const [listings, setListings] = allListings
+  const [currentListing, setCurrentListing] = listing
 
-  useEffect (() => {
-    try {
-      fetch('http://localhost:8002/listings', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-      })
-      .then(res => res.json())
-      .then(data => setListings(data))
-    } catch (error) {
-      fetch('http://172.31.190.165:8003/listings', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-      })
-      .then(res => res.json())
-      .then(data => setListings(data))
-    }
-  }, [])
+  const nav = useNavigate()
 
   console.log(listings)
 
@@ -45,12 +23,12 @@ const JobListing = () => {
   // Function to handle department selection
   const handleDepartmentChange = (event) => {
     setSelectedDepartment(event.target.value)
-  };
+  }
 
   // Function to handle search input change
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value)
-  };
+  }
 
   // Effect to update filtered listings when searchQuery or selectedDepartment changes
   useEffect(() => {
@@ -74,20 +52,30 @@ const JobListing = () => {
   }, [searchQuery, selectedDepartment, listings])
 
 
-// export const ListingContext = createContext()
-// <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-function listingClick(listing) {
-  nav(`/listings/${listing._id}`)
-  console.log(listing)
-  console.log(listing._id)
+  function listingClick(listing) {
+    nav(`/listings/${listing._id}`)
+    // nav('/opportunities')
+    console.log(listing)
+    console.log(listing._id)
+    setCurrentListing(listing)
+  }
 
-  return (<ListingContext.Provider value={ listing }>{console.log(listing)}
-            {/* <ViewListing listing={listing} /> */}
-            <ViewListing listing={listing} />
-          </ListingContext.Provider>)
-}
+  // Function to display a preview of the job description
+  // The full text is displayed on the ViewListing page
+  function displayPreview(text) {
+    if (!text) {
+      return '';
+    }
+    return text.split(' ').slice(0, 20).join(' ');
+  }
+
+  // Function to format salary as currency with 1000s separator
+  function formatSalary(salary) {
+    return `$${Number(salary).toLocaleString()}`;
+  }
 
 
+  document.title = "Opportunities"
 
   return (
     <div className="bg-white mx-6 my-6 md:my-12 lg:my-24 p-6 md:p-10 lg:p-16 xl:mx-96">
@@ -135,9 +123,9 @@ function listingClick(listing) {
                   <p className="text-base text-center">{listing.department}</p>
                   <p className="text-base mt-2">{listing.roleType}</p>
                   <p className="text-base mt-2">{listing.location}</p>
-                  <p className="text-base mt-2">Salary: {`$${listing.salary}`}</p>   {/* Look at currency formatting: $100,000*/}
-                  <p className="text-base mt-2">Posted Date: {listing.datePosted}</p> {/* Date/time formatting */}
-                  <p className="text-base mt-2">Job Description: {listing.description.text}</p>
+                  <p className="text-base mt-2">Salary: {formatSalary(listing.salary)}</p>
+                  <p className="text-base mt-2">Posted Date: {listing.datePosted}</p>
+                  <p className="text-base mt-2">Job Description: {displayPreview(listing.description.text)}</p>
                   <div className="flex justify-center">
                     <button className="bg-dark-blue hover:bg-washed-blue text-white font-bold py-2 px-4 rounded mt-4">
                       Apply Now
