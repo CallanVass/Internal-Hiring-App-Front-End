@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from "react"
 import  Auth  from "../authentication/Auth"
-import { UserContext, CurrentUserContext, ProfileContext } from "./App"
+import { ContextWrapper } from "./App"
 
 
 // KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
 
 
 const Profile = () => {
-  let currentUser = useContext(CurrentUserContext) // Provides access to the user who is currently signed in
-  // let profileUser = useContext(ProfileContext) // Provides access to the user who is currently signed in
-  let profileUser = useContext(UserContext) // Provides access to the user who is currently signed in
+  const {allUsers, allListings, loggedInUser, listing, profile} = useContext(ContextWrapper)
+  const [users, setUsers] = allUsers
+  const [currentUser, setCurrentUser] = loggedInUser
+
 
   document.title = "Profile"
   const [isEditMode, setIsEditMode] = useState(false)

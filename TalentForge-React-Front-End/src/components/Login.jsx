@@ -1,12 +1,18 @@
-import React, { useState, createContext, useContext } from "react"
+import React, { useState, useEffect,createContext, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
 import '../assets/css/Login.css'
 import { AuthContext, AuthProvider } from "../authentication/AuthContext"
-
-
+import { ContextWrapper } from "./App"
+import decoder from '../authentication/decoder'
 
 
 const Login = () => {
+    const {allUsers, allListings, loggedInUser, listing, profile} = useContext(ContextWrapper)
+    const [users, setUsers] = allUsers
+    const [listings, setListings] = allListings
+    const [currentUser, setCurrentUser] = loggedInUser
+
+
 
     const [username, setUsername] = useState("") // Note: username is an email
     const [password, setPassword] = useState("")
@@ -55,6 +61,7 @@ const Login = () => {
                 login(response.token)
                 // Redirect to homepage
                 nav('/home')
+                // Call fetch request to get all users and listings
             } else {
                 // Display message on login screen 'email or password is incorrect'
                 // Set username and password fields to blank
@@ -93,6 +100,51 @@ const Login = () => {
         null
         }
     }
+
+    // Once user has token, make fetch requests on mount to get all users and listings
+    // Then the identity of the logged in user can be set in the LoggedInUserContext
+    // Is await required here?
+    useEffect(() =>  {
+      try{
+        fetch('http://localhost:8002/users/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json}',
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }})
+          .then(res => res.json())
+          .then(data => setUsers(data))
+        fetch('http://localhost:8002/listings/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json}',
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }})
+            .then(res => res.json())
+          .then(data => setListings(data))
+      } catch (error) {
+        console.log(error.message)
+      }
+
+      // Fetch the current user from the users array
+      function fetchCurrentUser() {
+        const token = sessionStorage.getItem('token')
+        const decodedToken = decoder(token)
+        const matchedUser = users.find(user => user._id === decodedToken._id)
+        setCurrentUser(matchedUser)
+        console.log(matchedUser)
+        console.log(token)
+
+      }
+      fetchCurrentUser()
+    }, [setUsers, setListings, setCurrentUser, users])
+
+    console.log(users)
+    console.log(listings)
+    console.log(currentUser)
+
+
+
 
 
     return (

@@ -76,16 +76,16 @@ const JobListing = () => {
 
 // export const ListingContext = createContext()
 // <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-function listingClick(listing) {
-  nav(`/listings/${listing._id}`)
-  console.log(listing)
-  console.log(listing._id)
+// function listingClick(listing) {
+//   nav(`/listings/${listing._id}`)
+//   console.log(listing)
+//   console.log(listing._id)
 
-  return (<ListingContext.Provider value={ listing }>{console.log(listing)}
-            {/* <ViewListing listing={listing} /> */}
-            <ViewListing listing={listing} />
-          </ListingContext.Provider>)
-}
+//   return (<ListingContext.Provider value={ listing }>{console.log(listing)}
+//             {/* <ViewListing listing={listing} /> */}
+//             <ViewListing listing={listing} />
+//           </ListingContext.Provider>)
+// }
 
 
 
