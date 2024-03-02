@@ -8,7 +8,7 @@ import decoder from '../authentication/decoder'
 
 
 const Login = () => {
-    const { loggedInUser, setUser } = useContext(AppContext)
+    const { loggedInUser } = useContext(AppContext)
     const { login } = useContext(AuthContext)
 
     const [currentUser, setCurrentUser] = loggedInUser
@@ -57,7 +57,6 @@ const Login = () => {
             // This function needs to set the logged in user in the UserContext
                 // Store the token in sessionStorage (AuthContext manages this)
                 login(response.token)
-                setUser()
                 // Redirect to homepage
                 nav('/home')
                 console.log(currentUser)

@@ -25,51 +25,7 @@ const HomePage = () => {
 
 
 
-    const [homeUser, setHomeUser] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState(null)
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-          setIsLoading(true)
-          try {
-            const token = sessionStorage.getItem('token')
-            if (!token) {
-              throw new Error('No token found')
-            }
-
-            // Decode the JWT to get the user ID
-            const base64Url = token.split('.')[1]
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-            const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
-              '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))
-            const { _id } = JSON.parse(jsonPayload)
-
-            // Fetch user data using the userId
-            const response = await fetch(`http://localhost:8002/users/${_id}`, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-              },
-            })
-
-            if (!response.ok) {
-              throw new Error('Failed to fetch user data')
-            }
-
-            const data = await response.json()
-            setHomeUser(data) // Set the user data
-          } catch (error) {
-            setError(error.message)
-          } finally {
-            setIsLoading(false)
-          }
-        }
-
-        fetchUserData()
-      }, [])
-
+   
   return (
     <>
       {/* Main container */}

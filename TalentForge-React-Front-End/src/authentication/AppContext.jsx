@@ -42,23 +42,34 @@ export const AppContextProvider = ({ children }) => {
             }
         }
         setData()
+
     }, [])
 
+    useEffect(() => {
+        const setUser = setTimeout (() => {
+            const token = sessionStorage.getItem('token')
+            const decodedToken = decoder(token)
+            const user = users.find(user => user._id === decodedToken._id)
+            console.log(token)
+            console.log(decodedToken)
+            console.log(user)
+            setCurrentUser(user)
+        }, 500)
+        console.log('setUser useEffect ran')
+        console.log(users)
+        // setUser()
+        return () => clearTimeout(setUser)
+    }, [setCurrentUser, users])
 
-    const setUser = async (userID) => {
-        const user = await users.find(user => user._id === userID)
-        setCurrentUser(user)
-    }
+    // const setProfile = (userID) => {
+    //     const user = users.find(user => user._id === userID)
+    //     setProfileUser(user)
+    // }
 
-    const setProfile = (userID) => {
-        const user = users.find(user => user._id === userID)
-        setProfileUser(user)
-    }
-
-    const setListing = (listingID) => {
-        const currentListing = listings.find(listing => listing._id === listingID)
-        setCurrentListing(currentListing)
-    }
+    // const setListing = (listingID) => {
+    //     const currentListing = listings.find(listing => listing._id === listingID)
+    //     setCurrentListing(currentListing)
+    // }
 
 
       console.log(users)
@@ -83,9 +94,9 @@ return (
             loggedInUser : [currentUser, setCurrentUser],
             listing : [currentListing, setCurrentListing],
             profile : [profileUser, setProfileUser],
-            setUser,
-            setProfile,
-            setListing
+            // setUser,
+            // setProfile,
+            // setListing
             }}>
         {children}
     </AppContext.Provider>
