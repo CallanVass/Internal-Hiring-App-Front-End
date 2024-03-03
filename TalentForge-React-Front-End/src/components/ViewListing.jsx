@@ -30,7 +30,7 @@ const ViewListing = () => {
 
   // Functionality to appply for role
   function handleSubmit() {
-    // No preceding / makes the path relative aand redirects to apply page
+    // No preceding / makes the path relative and redirects to apply page
     nav('apply')
   }
 
