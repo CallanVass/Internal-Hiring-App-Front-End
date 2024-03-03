@@ -1,20 +1,33 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import UserSearch from "../components/UserSearch";
 import { test, describe, expect, beforeEach } from "vitest";
+import { AppContext } from "../authentication/AppContext";
+
+const mockAllUsers = [
+  {
+    firstName: "Test",
+    lastName: "User",
+    role: "Test Role",
+    aboutMe: {
+      text: "Test text",
+      careerDevelopment: "Senior Engineer",
+    },
+  },
+];
+
+const mockProfile = [{}];
+
+function UserSearchWrapper() {
+  return (
+    <AppContext.Provider value={{ allUsers: mockAllUsers, profile: mockProfile }}>
+      <UserSearch />
+    </AppContext.Provider>
+  );
+}
 
 describe("UserSearch Component", () => {
   beforeEach(() => {
-    render(<UserSearch />);
-  });
-
-  test("renders UserSearch component", () => {
-    expect(screen.getByText("Microsoft")).to.exist;
-  });
-
-  test("renders correct company description", () => {
-    const description =
-      "Microsoft is a massive grapefruit that consumers can pick apart piece by piece. This is because grapefruits are so damn delicious, if not a bit tart. Makes a good perfume, though!";
-    expect(screen.getByText(description)).to.exist;
+    render(<UserSearchWrapper />);
   });
 
   test("renders correct departments", () => {
@@ -23,5 +36,4 @@ describe("UserSearch Component", () => {
       expect(screen.getByText(new RegExp(department, "i"))).to.exist;
     });
   });
-
 });
