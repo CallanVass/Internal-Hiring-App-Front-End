@@ -1,9 +1,8 @@
 // FILEPATH: /home/mattbryant/projects/talentforge/Talent-Forge-Front-End/TalentForge-React-Front-End/src/tests/NavBar.test.jsx
 
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { createMemoryHistory } from "history";
+import { render, screen } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
-import { describe, expect, it, beforeEach, test } from "vitest";
+import { describe, expect, it, beforeEach } from "vitest";
 import NavBar from "../components/NavBar";
 import { AuthContext } from "../authentication/AuthContext";
 import { AppContextProvider } from "../authentication/AppContext";

@@ -3,7 +3,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import HomePage from "../components/HomePage";
-import { describe, expect, it, beforeEach, test } from "vitest";
+import { describe, expect, it, beforeEach } from "vitest";
 import { AppContextProvider } from "../authentication/AppContext"
 
 describe("HomePage Component", () => {
