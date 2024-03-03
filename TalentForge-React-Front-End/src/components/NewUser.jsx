@@ -8,12 +8,12 @@ const NewEmployee = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-  
+
     const formData = new FormData(event.target)
     const formDataObj = Object.fromEntries(formData.entries())
-  
 
-  
+
+
     try {
       const response = await fetch('http://localhost:8002/users', {
         method: 'POST',
@@ -21,17 +21,17 @@ const NewEmployee = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
-        body: JSON.stringify(formDataObj), 
+        body: JSON.stringify(formDataObj),
       });
-  
+
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`)
       }
-  
+
       const result = await response.json();
       console.log(result)
       navigate("/home")
-      
+
     } catch (error) {
       console.error('Failed to create new employee:', error)
     }
@@ -49,7 +49,7 @@ const NewEmployee = () => {
           {/* Form: job title/dept/date */}
           <div className="w-full md:w-4/5 lg:w-3/4 xl:w-1/2">
           <br />
-            
+
               <div className="flex flex-col md:flex-row md:items-center">
                 <label htmlFor="role-input" className="w-full md:w-1/3 text-center md:text-right md:mr-4">
                   First Name:
@@ -102,7 +102,7 @@ const NewEmployee = () => {
                         type="checkbox"
                         id="show-password-checkbox"
                         className="form-checkbox h-5 w-5 text-indigo-600"
-                        onChange={() => setShowPassword(!showPassword)}
+                        onInput={() => setShowPassword(!showPassword)}
                       />
                       <span className="ml-2 text-sm text-gray-700">Show Password</span>
                     </label>
@@ -132,7 +132,7 @@ const NewEmployee = () => {
                   className="pl-2 form-input w-full md:w-2/3 lg:w-3/4 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
-            
+
           </div>
 
           {/* Buttons */}

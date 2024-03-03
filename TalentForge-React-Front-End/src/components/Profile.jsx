@@ -111,6 +111,8 @@ const Profile = () => {
         md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5
         lg:max-w-xl lg:mx-0 lg:mt-10 lg:px-5 "
           >
+
+
             <div className="flex flex-col items-center justify-center flex-1">
               {/* Edit Name */}
               {isEditMode ? (
@@ -121,7 +123,7 @@ const Profile = () => {
                     placeholder="(30 characters max)"
                     type="text"
                     value={`${editableProfile.firstName} ${" "} ${editableProfile.lastName}`}
-                    onChange={(e) => handleInputChange(e, "name")}
+                    onInput={(e) => handleInputChange(e, "name")}
                     className="text-input-class border border-gray-300 w-full"
                   />
                 </div>
@@ -140,7 +142,7 @@ const Profile = () => {
                     maxLength="20"
                     placeholder="(20 character max)"
                     value={editableProfile.role}
-                    onChange={(e) => handleInputChange(e, "role")}
+                    onInput={(e) => handleInputChange(e, "role")}
                     className="text-input-class flex-1 border border-gray-300"
                   />
                 </div>
@@ -157,7 +159,7 @@ const Profile = () => {
                     maxLength="25"
                     placeholder="(25 character max)"
                     value={editableProfile.department}
-                    onChange={(e) => handleInputChange(e, "department")}
+                    onInput={(e) => handleInputChange(e, "department")}
                     className="text-input-class border border-gray-300"
                   />
                 </div>
@@ -197,7 +199,7 @@ const Profile = () => {
                   placeholder="(15 character max)"
                   type="text"
                   value={newSkill}
-                  onChange={(e) => setNewSkill(e.target.value)}
+                  onInput={(e) => setNewSkill(e.target.value)}
                   className="border p-2 rounded-md w-full"
                 />
                 <button
@@ -232,7 +234,7 @@ const Profile = () => {
                 maxLength="220"
                 placeholder="(220 character max)"
                 value={editableProfile.aboutMe}
-                onChange={(e) => handleInputChange(e, "aboutMe")}
+                onInput={(e) => handleInputChange(e, "aboutMe")}
                 className="text-input-class w-full h-56 p-2 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               />
             </div>
@@ -266,7 +268,7 @@ const Profile = () => {
                       id={`status-${index}`}
                       value={status}
                       checked={editableProfile.status === status}
-                      onChange={(e) => handleInputChange(e, "status")}
+                      onInput={(e) => handleInputChange(e, "status")}
                       className="form-radio h-5 w-5 text-black"
                     />
                     <span>{status}</span>
@@ -298,7 +300,7 @@ const Profile = () => {
                   maxLength="220"
                   placeholder="(220 character max)"
                   value={editableProfile.careerDevelopment}
-                  onChange={(e) => handleInputChange(e, "careerDevelopment")}
+                  onInput={(e) => handleInputChange(e, "careerDevelopment")}
                   className="text-input-class w-full h-56 p-2 block rounded-md border-2 border-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" // Tailwind classes to adjust width and height
                 />
               </div>
