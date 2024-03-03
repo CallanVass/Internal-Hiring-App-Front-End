@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 const NewEmployee = () => {
@@ -22,14 +22,14 @@ const NewEmployee = () => {
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
         body: JSON.stringify(formDataObj),
-      });
+      })
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`)
       }
 
       const result = await response.json();
-      console.log(result)
+
       navigate("/home")
 
     } catch (error) {
@@ -150,7 +150,7 @@ const NewEmployee = () => {
       </div>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default NewEmployee;
+export default NewEmployee

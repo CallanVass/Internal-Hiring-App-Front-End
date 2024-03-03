@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-import { AuthContext, AuthProvider } from "./AuthContext"
+import { createContext, useState, useEffect } from 'react'
 import decoder from './decoder'
 
 
@@ -37,7 +36,7 @@ export const AppContextProvider = ({ children }) => {
                 .then(res => res.json())
                 .then(data => setListings(data))
             } catch (error) {
-            console.log(error.message)
+
             }
         }
         setData()
@@ -49,21 +48,21 @@ export const AppContextProvider = ({ children }) => {
             const token = sessionStorage.getItem('token')
             const decodedToken = decoder(token)
             const user = users.find(user => user._id === decodedToken._id)
-            console.log(token)
-            console.log(decodedToken)
-            console.log(user)
+
+
+
             setCurrentUser(user)
         }, 500)
-        console.log('setUser useEffect ran')
-        console.log(users)
+
+
         // setUser()
         return () => clearTimeout(setUser)
     }, [setCurrentUser, users])
 
 
-      console.log(users)
-      console.log(listings)
-      console.log(currentUser)
+
+
+
 
 
 

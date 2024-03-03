@@ -1,7 +1,7 @@
-import React, { useState, useEffect, createContext, useContext } from "react"
-import ViewListing from "./ViewListing"
+import { useState, useEffect, useContext } from "react"
+
 import { useNavigate } from 'react-router-dom'
-import { AppContext, AppContextProvider } from '../authentication/AppContext'
+import { AppContext } from '../authentication/AppContext'
 import Fuse from "fuse.js" // Import Fuse.js library
 
 
@@ -14,7 +14,7 @@ const JobListing = () => {
 
   const nav = useNavigate()
 
-  console.log(listings)
+
 
   const [selectedDepartment, setSelectedDepartment] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
@@ -62,9 +62,8 @@ const JobListing = () => {
 
   function listingClick(listing) {
     nav(`/listings/${listing._id}`)
-    // nav('/opportunities')
-    console.log(listing)
-    console.log(listing._id)
+
+
     setCurrentListing(listing)
   }
 

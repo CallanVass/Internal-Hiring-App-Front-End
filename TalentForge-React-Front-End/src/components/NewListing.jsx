@@ -1,6 +1,4 @@
-import React from "react"
 import { useNavigate } from "react-router-dom"
-
 
 
 const NewListing = () => {
@@ -8,13 +6,10 @@ const NewListing = () => {
 
     const navigate = useNavigate()
 
-
     const handleSubmit = async (event) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
         const formDataObj = Object.fromEntries(formData.entries())
-
-
 
         try {
           const response = await fetch('https://talent-forge-api-atu2.onrender.com/listings', {
@@ -31,7 +26,7 @@ const NewListing = () => {
           }
 
           const result = await response.json()
-          console.log(result)
+
           navigate("/home")
 
         } catch (error) {
@@ -39,9 +34,6 @@ const NewListing = () => {
 
         }
       }
-
-
-
 
 
   return (

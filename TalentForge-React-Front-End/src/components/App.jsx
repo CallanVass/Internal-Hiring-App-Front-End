@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
-import { useState, useEffect, createContext, useContext } from 'react'
 import '../assets/css/App.css'
-import { BrowserRouter, Routes, Route, useLocation, useParams } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import NavBar from './NavBar' // Import the 'NavBar' component
 import Footer from './Footer' // Import the 'Footer' component
 import Login from './Login' // Import the 'Login' component
@@ -13,12 +11,8 @@ import ViewListing from './ViewListing'
 import ApplyNow from './ApplyNow'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import NewUser from './NewUser' // Import the 'NewUser' component
-import { AuthContext, AuthProvider } from '../authentication/AuthContext'
-import { AppContext, AppContextProvider } from '../authentication/AppContext'
-
-import decoder from '../authentication/decoder'
-
-
+import { AuthProvider } from '../authentication/AuthContext'
+import { AppContextProvider } from '../authentication/AppContext'
 
 
 

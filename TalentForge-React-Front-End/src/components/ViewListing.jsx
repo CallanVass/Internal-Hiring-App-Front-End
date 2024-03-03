@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 import "../assets/css/ViewListing.css"
-import { AppContext, AppContextProvider } from '../authentication/AppContext'
+import { AppContext } from '../authentication/AppContext'
 import { useNavigate } from "react-router-dom"
 
 
@@ -9,7 +9,7 @@ const ViewListing = () => {
   const { listing } = useContext(AppContext)
   const [currentListing, setCurrentListing] = listing
   const nav = useNavigate()
-  console.log(currentListing)
+
 
   // Conditional rendering of job description/points
   function renderJobInfo(info) {
@@ -30,7 +30,7 @@ const ViewListing = () => {
 
   // Functionality to appply for role
   function handleSubmit() {
-    // No preceding / makes the path relative and redirects to apply page
+    // No preceding '/' makes the path relative and redirects to apply page
     nav('apply')
   }
 
@@ -52,9 +52,6 @@ const ViewListing = () => {
           <div className="flex justify-center items-center flex-col sm:flex-col md:flex-col lg:flex-row">
             {/* Listing top level info */}
             <div className="top-level-info mx-2 sm:mx-4 md:mx-4 lg:mx-4 my-2 md:my-4 lg:my-4">
-              {/* <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
-                e.g. Hybrid, On Site
-              </p> */}
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
                 {currentListing.location}
@@ -106,7 +103,7 @@ const ViewListing = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default ViewListing;

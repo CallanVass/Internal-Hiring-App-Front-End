@@ -7,9 +7,9 @@
 
 export default function Auth(profileUserId, currentUser) {
 
-  console.log(currentUser)
-  console.log(currentUser._id)
-  console.log(profileUserId)
+
+
+
 
   let match
 
@@ -20,8 +20,8 @@ export default function Auth(profileUserId, currentUser) {
     } else {
       match = false
     }
-    console.log(currentUser._id)
-    console.log(profileUserId)
+
+
 
   return match
 }

@@ -1,16 +1,14 @@
-import React, { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 import { NavLink } from "react-router-dom"
 import "../assets/css/HomePage.css"
-import { AppContext, AppContextProvider } from '../authentication/AppContext'
+import { AppContext } from '../authentication/AppContext'
 
 
 
 const HomePage = () => {
   const { loggedInUser } = useContext(AppContext)
   const [currentUser, setCurrentUser] = loggedInUser // currentUser is set in AppContextProvider
-
-
-
+  
 
   return (
     <>

@@ -1,10 +1,9 @@
-import { Fragment, useContext, useState, useEffect } from "react"
+import { Fragment, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { Disclosure, Menu, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
-import { AuthContext, AuthProvider } from "../authentication/AuthContext"
-import decoder from "../authentication/decoder"
-import { AppContext, AppContextProvider } from '../authentication/AppContext'
+import { AuthContext } from "../authentication/AuthContext"
+import { AppContext } from '../authentication/AppContext'
 
 
 
@@ -18,8 +17,8 @@ const {allUsers, loggedInUser, profile} = useContext(AppContext)
   const [currentUser, setCurrentUser] = loggedInUser
   const [profileUser, setProfileUser] = profile
 
-  console.log(currentUser)
-  console.log(users)
+
+
 
 
 
