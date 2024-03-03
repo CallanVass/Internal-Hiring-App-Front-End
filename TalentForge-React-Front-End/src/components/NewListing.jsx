@@ -13,23 +13,23 @@ const NewListing = () => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
         const formDataObj = Object.fromEntries(formData.entries())
-        
-    
-      
+
+
+
         try {
-          const response = await fetch('http://localhost:8002/listings', {
+          const response = await fetch('https://talent-forge-api-atu2.onrender.com/listings', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${sessionStorage.getItem('token')}` 
+              'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             },
-            body: JSON.stringify(formDataObj), 
+            body: JSON.stringify(formDataObj),
           })
-    
+
           if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`)
           }
-    
+
           const result = await response.json()
           console.log(result)
           navigate("/home")
@@ -224,7 +224,7 @@ const NewListing = () => {
                 id="job-desc-input"
                 className="form-input text-xl w-full h-80 block overflow-y-auto rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 placeholder-gray-400 placeholder-shown:text-sm placeholder-shown:leading-[3.75] "
               ></textarea>
-   
+
           </div>
 
           {/* Buttons */}

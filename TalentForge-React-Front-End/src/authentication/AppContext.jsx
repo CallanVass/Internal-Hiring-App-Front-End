@@ -17,11 +17,10 @@ export const AppContextProvider = ({ children }) => {
 
       // Once user has token, make fetch requests on mount to get all users and listings
     // Then the identity of the logged in user can be set in the LoggedInUserContext
-    // Is await required here?
     useEffect(() =>  {
         const setData = async () => {
             try{
-            await fetch('http://localhost:8002/users/', {
+            await fetch('https://talent-forge-api-atu2.onrender.com/users/', {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json}',
@@ -29,7 +28,7 @@ export const AppContextProvider = ({ children }) => {
                 }})
                 .then(res => res.json())
                 .then(data => setUsers(data))
-                await fetch('http://localhost:8002/listings/', {
+                await fetch('https://talent-forge-api-atu2.onrender.com/listings/', {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json}',

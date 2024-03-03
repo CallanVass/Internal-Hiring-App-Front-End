@@ -30,7 +30,7 @@ const ApplyNow = () => {
         const applicant = currentUser
 
         try {
-          const response = await fetch(`http://localhost:8002/listings/${currentListing._id}`, {
+          const response = await fetch(`https://talent-forge-api-atu2.onrender.com/listings/${currentListing._id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',

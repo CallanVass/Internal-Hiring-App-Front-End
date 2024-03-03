@@ -30,24 +30,14 @@ const Login = () => {
             e.preventDefault();
 
             let res;
-            try {
-              res = await fetch('http://localhost:8002/login/', {
+
+              res = await fetch('https://talent-forge-api-atu2.onrender.com/login/', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(loginCredentials)
-            })
-
-                } catch (error) {
-                  console.error('Failed to connect to port 8003, trying alternative port...', error);
-                  res = await fetch('http://172.31.190.165:8003/login/', {
-                  method: 'POST',
-                  headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(loginCredentials)
-              });
+              })
             }
 
             const response = await res.json() // This is token or server response

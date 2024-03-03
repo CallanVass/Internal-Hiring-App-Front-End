@@ -15,7 +15,7 @@ const NewEmployee = () => {
 
 
     try {
-      const response = await fetch('http://localhost:8002/users', {
+      const response = await fetch('https://talent-forge-api-atu2.onrender.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
