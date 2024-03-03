@@ -268,7 +268,7 @@ const Profile = () => {
                       id={`status-${index}`}
                       value={status}
                       checked={editableProfile.status === status}
-                      onInput={(e) => handleInputChange(e, "status")}
+                      onChange={(e) => handleInputChange(e, "status")}
                       className="form-radio h-5 w-5 text-black"
                     />
                     <span>{status}</span>
