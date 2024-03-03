@@ -111,20 +111,6 @@ const Profile = () => {
         md:flex md:items-center md:space-x-4 md:max-w-xl md:mx-auto md:mt-10 md:px-5
         lg:max-w-xl lg:mx-0 lg:mt-10 lg:px-5 "
           >
-            {/* Edit Profile Picture */}
-            {isEditMode ? (
-              <div>
-                {" "}
-                <label htmlFor="image-upload" className="cursor-pointer">
-                  <img src={profileImage} alt="Click to upload image" className="mb-3" />
-                </label>
-                <input id="image-upload" type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
-              </div>
-            ) : (
-              <div className="flex justify-center">
-                <img src={profileImage} alt="Profile Picture" className="text-center mb-4 sm:w-48 md:w-64 lg:w-96" />
-              </div>
-            )}
             <div className="flex flex-col items-center justify-center flex-1">
               {/* Edit Name */}
               {isEditMode ? (
