@@ -1,4 +1,4 @@
-import { describe, expect, it, beforeEach, test } from "vitest";
+import { expect, test } from "vitest";
 import { render } from "react-dom";
 import { act } from "react-dom/test-utils";
 import { unmountComponentAtNode } from "react-dom";
@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Login from "../components/Login";
 import { AuthContext } from "../authentication/AuthContext";
 import { fireEvent } from "@testing-library/react";
+import { AppContextProvider } from "../authentication/AppContext";
 
 let container = null;
 
@@ -16,9 +17,11 @@ test("renders Login component", () => {
   act(() => {
     render(
       <AuthContext.Provider value={{ login: () => {} }}>
-        <Router>
-          <Login />
-        </Router>
+        <AppContextProvider>
+          <Router>
+            <Login />
+          </Router>
+        </AppContextProvider>
       </AuthContext.Provider>,
       container
     );
@@ -37,9 +40,11 @@ test("username and password inputs are empty initially", () => {
   act(() => {
     render(
       <AuthContext.Provider value={{ login: () => {} }}>
-        <Router>
-          <Login />
-        </Router>
+        <AppContextProvider>
+          <Router>
+            <Login />
+          </Router>
+        </AppContextProvider>
       </AuthContext.Provider>,
       container
     );
@@ -63,9 +68,11 @@ test("username and password inputs accept input", () => {
   act(() => {
     render(
       <AuthContext.Provider value={{ login: () => {} }}>
-        <Router>
-          <Login />
-        </Router>
+        <AppContextProvider>
+          <Router>
+            <Login />
+          </Router>
+        </AppContextProvider>
       </AuthContext.Provider>,
       container
     );

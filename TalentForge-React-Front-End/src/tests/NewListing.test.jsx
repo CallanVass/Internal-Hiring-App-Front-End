@@ -3,8 +3,9 @@ import { expect, test } from "vitest";
 import NewListing from "../components/NewListing";
 import { BrowserRouter as Router } from "react-router-dom";
 
+
 test("renders NewListing and checks form submission", async () => {
-  const { getByLabelText, getByText } = render(
+  const { getByText } = render(
     <Router>
       <NewListing />
     </Router>

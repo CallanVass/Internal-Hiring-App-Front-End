@@ -1,17 +1,23 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, expect, it, beforeEach, test } from "vitest";
+import { render,  fireEvent } from "@testing-library/react";
+import { describe, expect, it, beforeEach } from "vitest";
 import Opportunities from "../components/Opportunities";
 import { BrowserRouter as Router } from "react-router-dom";
+import { AuthContext } from "../authentication/AuthContext";
+import { AppContextProvider } from "../authentication/AppContext";
 
 describe("Opportunities Component", () => {
   let container;
 
    beforeEach(() => {
      container = render(
-       <Router>
-         <Opportunities />
-       </Router>
+       <AuthContext.Provider value={{ token: "testToken" }}>
+         <AppContextProvider>
+           <Router>
+             <Opportunities />
+           </Router>
+         </AppContextProvider>
+       </AuthContext.Provider>
      ).container;
    });
 
@@ -25,9 +31,13 @@ describe("JobListing", () => {
 
   beforeEach(() => {
     container = render(
-      <Router>
-        <Opportunities />
-      </Router>
+      <AuthContext.Provider value={{ token: "testToken" }}>
+        <AppContextProvider>
+          <Router>
+            <Opportunities />
+          </Router>
+        </AppContextProvider>
+      </AuthContext.Provider>
     ).container;
   });
 

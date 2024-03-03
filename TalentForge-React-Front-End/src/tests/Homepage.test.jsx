@@ -3,20 +3,23 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter as Router } from "react-router-dom";
 import HomePage from "../components/HomePage";
-import { describe, expect, it, beforeEach, test } from "vitest";
+import { describe, expect, it, beforeEach } from "vitest";
+import { AppContextProvider } from "../authentication/AppContext"
 
 describe("HomePage Component", () => {
   beforeEach(() => {
     global.fetch = () =>
       Promise.resolve({
-        json: () => Promise.resolve({ firstName: "Test" }),
+        json: () => Promise.resolve({ firstName: "Test" }), 
       });
   });
 
   it("renders without crashing", () => {
     render(
       <Router>
-        <HomePage />
+        <AppContextProvider>
+          <HomePage />
+        </AppContextProvider>
       </Router>
     );
     const homePage = screen.getByRole("main");
@@ -26,16 +29,20 @@ describe("HomePage Component", () => {
  it("renders the welcome message", async () => {
    render(
      <Router>
-       <HomePage />
+       <AppContextProvider>
+         <HomePage />
+       </AppContextProvider>
      </Router>
    );
-   await waitFor(() => screen.getByText("Welcome Guest to"));
+   await waitFor(() => screen.getByText(/Welcome/i));
  });
 
   it("renders the logo", () => {
     render(
       <Router>
-        <HomePage />
+        <AppContextProvider>
+          <HomePage />
+        </AppContextProvider>
       </Router>
     );
     const logo = screen.getByAltText("Talent Forge Logo");
@@ -45,7 +52,9 @@ describe("HomePage Component", () => {
   it("renders the navigation links", () => {
     render(
       <Router>
-        <HomePage />
+        <AppContextProvider>
+          <HomePage />
+        </AppContextProvider>
       </Router>
     );
     const latestJobsLink = screen.getByText("Latest Jobs");
