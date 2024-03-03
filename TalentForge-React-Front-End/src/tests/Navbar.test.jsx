@@ -6,14 +6,17 @@ import { MemoryRouter as Router } from "react-router-dom";
 import { describe, expect, it, beforeEach, test } from "vitest";
 import NavBar from "../components/NavBar";
 import { AuthContext } from "../authentication/AuthContext";
+import { AppContextProvider } from "../authentication/AppContext";
 
 describe("NavBar Component", () => {
   beforeEach(() => {
     render(
       <AuthContext.Provider value={{ token: "testToken" }}>
-        <Router>
-          <NavBar />
-        </Router>
+        <AppContextProvider>
+          <Router>
+            <NavBar />
+          </Router>
+        </AppContextProvider>
       </AuthContext.Provider>
     );
   });
