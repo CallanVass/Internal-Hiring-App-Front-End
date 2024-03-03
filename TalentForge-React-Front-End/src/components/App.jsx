@@ -10,6 +10,7 @@ import Profile from './Profile' // Import the 'Profile' component
 import Opportunities from './Opportunities' // Import the 'Opportunities' component
 import UserSearch from './UserSearch' // Import the 'UserSearch' component
 import ViewListing from './ViewListing'
+import ApplyNow from './ApplyNow'
 import NewListing from './NewListing' // Import the 'NewListing' component
 import NewUser from './NewUser' // Import the 'NewUser' component
 import { AuthContext, AuthProvider } from '../authentication/AuthContext'
@@ -22,15 +23,6 @@ import decoder from '../authentication/decoder'
 
 
 const App = () => {
-  // Required states for App to function
-  // const [users, setUsers] = useState([])
-  // const [listings, setListings] = useState([])
-  // const [currentUser, setCurrentUser] = useState(null)
-  // const [currentListing, setCurrentListing] = useState(null)
-  // const [profileUser, setProfileUser] = useState(null)
-
-
-
 
   // Layout component from conditional Header render
 const Layout = ({ children }) => {
@@ -53,7 +45,6 @@ const Layout = ({ children }) => {
   )
 }
 
-//const = {allUsers, allListings, loggedInUser, listing, profile} = useContext(AppContext)
 
 return (
   <AuthProvider>
@@ -73,8 +64,8 @@ return (
                 <Route path='/opportunities' element={<Opportunities />} />
                 <Route path='/user-search' element={<UserSearch />} />
 
-                {/* <Route path='/listings/:id' element={<ListingContext.Provider value={currentListing}/>} /> {console.log(currentListing)} */}
                 <Route path='/listings/:id' element={<ViewListing />} />
+                <Route path='/listings/:id/apply' element={<ApplyNow />} />
               <Route path='/listing-new' element={<NewListing />} />
               <Route path='/user-new' element={<NewUser />} />
                 {/* Fallback route for unmatched paths */}

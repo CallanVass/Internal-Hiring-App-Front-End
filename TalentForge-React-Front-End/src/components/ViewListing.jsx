@@ -1,11 +1,14 @@
 import React, { useContext, useState, useEffect } from "react"
 import "../assets/css/ViewListing.css"
 import { AppContext, AppContextProvider } from '../authentication/AppContext'
+import { useNavigate } from "react-router-dom"
+
 
 
 const ViewListing = () => {
   const { listing } = useContext(AppContext)
   const [currentListing, setCurrentListing] = listing
+  const nav = useNavigate()
   console.log(currentListing)
 
   // Conditional rendering of job description/points
@@ -24,6 +27,13 @@ const ViewListing = () => {
     }
   }
 
+
+  // Functionality to appply for role
+  function handleSubmit() {
+    // No preceding / makes the path relative aand redirects to apply page
+    nav('apply')
+  }
+
   document.title = "View Listing"
 
 
@@ -37,38 +47,30 @@ const ViewListing = () => {
           </div>
           {/* Listing subheader */}
           <div className="flex justify-center">
-            <h2 className="text-2xl md:text-4xl lg:text-4xl">{currentListing.department}</h2>
+            <h2 className="text-2xl md:text-4xl lg:text-4xl">{`Department: ${currentListing.department}`}</h2>
           </div>
           <div className="flex justify-center items-center flex-col sm:flex-col md:flex-col lg:flex-row">
             {/* Listing top level info */}
             <div className="top-level-info mx-2 sm:mx-4 md:mx-4 lg:mx-4 my-2 md:my-4 lg:my-4">
-              <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-              {listing ? currentListing.datePosted : "Loading..."}
-              </h4>
-              <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
+              {/* <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
                 e.g. Hybrid, On Site
-              </p>
+              </p> */}
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
                 {currentListing.location}
               </h4>
-              <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
-                e.g. Hybrid, On Site
-              </p>
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                {currentListing.roleType}
+              {currentListing.roleType}
               </h4>
-              <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
-                e.g. Full time, part time
-              </p>
 
               <h4 className="info-title text-lg md:text-3xl lg:text-3xl flex justify-start pt-2">
-                {currentListing.roleDuration}
+              {currentListing.roleDuration}
               </h4>
-              <p className="info-description text-sm italic text-washed-blue flex justify-start pt-2">
-                e.g. Temporary, Contract
-              </p>
+              <h4 className="info-title text-lg md:text-xl lg:text-2xl flex justify-start pt-2">
+              {`Date Posted: `}{currentListing ? currentListing.datePosted : "Loading..."}
+              </h4>
+
             </div>
 
             {/* Job points */}
@@ -84,14 +86,13 @@ const ViewListing = () => {
             {/* Full job description */}
             <div className="mx-8 my-2 md:my-4 lg:my-4">
               <span className=" text-center md:text-2xl lg:text-2xl" id="para">
-                {/* Issue on initial render causes the app to crash - tried Callan's solution in homepage to display temporary text */}
                 {renderJobInfo('text')}
               </span>
             </div>
           </div>
           {/* Apply Now button */}
           <div className="flex justify-center my-3">
-            <button
+            <button onClick={handleSubmit}
               type="submit"
               className="bg-dark-green hover:bg-dark-blue text-white font-semibold text-2xl md:text-3xl lg:text-4xl hover:text-white m-2 py-1 px-5 h-12 lg:h-14 min-w-64 max-w-80 border border-gray-300 hover:border-transparent rounded"
             >

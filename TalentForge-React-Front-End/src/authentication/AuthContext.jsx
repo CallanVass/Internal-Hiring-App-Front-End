@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
     // Occurs when the component mounts
     useEffect(() => {
         const token = sessionStorage.getItem('token')
-        console.log('The useEffect in AuthContext.jsx is running')
         if (token) {
             setToken(token)
         }
