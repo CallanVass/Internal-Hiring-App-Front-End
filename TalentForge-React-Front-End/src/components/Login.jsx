@@ -1,8 +1,8 @@
-import React, { useState, useEffect,createContext, useContext } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from 'react-router-dom'
 import '../assets/css/Login.css'
-import { AuthContext, AuthProvider } from "../authentication/AuthContext"
-import { AppContext, AppContextProvider } from '../authentication/AppContext'
+import { AuthContext } from "../authentication/AuthContext"
+import { AppContext } from '../authentication/AppContext'
 
 
 
@@ -30,25 +30,15 @@ const Login = () => {
             e.preventDefault();
 
             let res;
-            try {
-              res = await fetch('http://localhost:8002/login/', {
+
+              res = await fetch('https://talent-forge-api-atu2.onrender.com/login/', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(loginCredentials)
-            })
+              })
 
-                } catch (error) {
-                  console.error('Failed to connect to port 8003, trying alternative port...', error);
-                  res = await fetch('http://172.31.190.165:8003/login/', {
-                  method: 'POST',
-                  headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(loginCredentials)
-              });
-            }
 
             const response = await res.json() // This is token or server response
             // If token is present in the response, redirect to homepage
@@ -58,18 +48,18 @@ const Login = () => {
                 login(response.token)
                 // Redirect to homepage
                 nav('/home')
-                console.log(currentUser)
+
                 // Call fetch request to get all users and listings
             } else {
                 // Display message on login screen 'email or password is incorrect'
                 // Set username and password fields to blank
-                console.log(userNotFound)
-                console.log(username)
+
+
                 const stringLength = username.length + password.length
                 setUserNotFound('yes')
                 // "Incorrect username or password - please try again"
                 IncorrectCredentials(stringLength)
-                console.log({"Server response code": await res.statusCode})
+
             }
 
         } else {
@@ -84,9 +74,9 @@ const Login = () => {
     }
 
     function IncorrectCredentials(stringLength=0) {
-      console.log(userNotFound)
-      console.log(username)
-      console.log(stringLength)
+
+
+
       if (userNotFound === 'yes') {
         if (stringLength > 0) {
           return <p className="text-red-600 text-base">Incorrect username or password <br/>- please try again</p>

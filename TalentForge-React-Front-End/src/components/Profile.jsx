@@ -1,32 +1,22 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from "react"
+import { useState, useContext } from "react"
 import  Auth  from "../authentication/Auth"
-import { AppContext, AppContextProvider } from '../authentication/AppContext'
+import { AppContext } from '../authentication/AppContext'
 
 
-// KD: Status is called tags in DB - but I was unclear if this was going to be hardcoded checkboxes??
-// Add search functionality to access any job applications
 
 const Profile = () => {
-  const {allUsers, allListings, loggedInUser, profile} = useContext(AppContext)
-  const [users, setUsers] = allUsers
+  const { loggedInUser, profile} = useContext(AppContext)
   const [currentUser, setCurrentUser] = loggedInUser
   const [profileUser, setProfileUser] = profile
-  const [listings, setListings] = allListings
 
 
 
   document.title = "Profile"
   const [isEditMode, setIsEditMode] = useState(false)
-  const [profileImage, setProfileImage] = useState("path-to-your-image.jpg")
   const [skills, setSkills] = useState(["Edit Profile to add skills!"])
   const [newSkill, setNewSkill] = useState("")
 
-
-
-
-  console.log(currentUser)
-  console.log(profileUser)
 
   // Checkboxes Dummy Data
   const statuses = [
@@ -68,20 +58,12 @@ const Profile = () => {
       setSkills([...skills, newSkill]);
       setNewSkill(""); // Clear input after adding
     }
-  };
+  }
 
   const removeSkill = (indexToRemove) => {
     setSkills(skills.filter((_, index) => index !== indexToRemove));
-  };
+  }
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      // Create a URL for the new image file
-      const imageUrl = URL.createObjectURL(file);
-      setProfileImage(imageUrl);
-    }
-  };
 
   const [editableProfile, setEditableProfile] = useState({
     firstName: profileUser.firstName,
@@ -91,13 +73,13 @@ const Profile = () => {
     aboutMe: profileUser.aboutMe.text,
     careerDevelopment: profileUser.aboutMe.careerDevelopment,
 
-  });
+  })
 
   const toggleEditMode = () => setIsEditMode(!isEditMode);
 
   const handleInputChange = (e, field) => {
     setEditableProfile({ ...editableProfile, [field]: e.target.value });
-  };
+  }
 
   return (
     <>

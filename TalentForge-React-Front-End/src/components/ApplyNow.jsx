@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 import "../assets/css/ViewListing.css"
-import { AppContext, AppContextProvider } from '../authentication/AppContext'
+import { AppContext } from '../authentication/AppContext'
 import { useNavigate } from "react-router-dom"
 
 
@@ -11,9 +11,8 @@ const ApplyNow = () => {
     const [currentUser, setCurrentUser] = loggedInUser // currentUser is set in AppContextProvider
     const nav = useNavigate()
     // let wordCountOk = true
-    let managerApproval = false
-    console.log(currentListing)
-    console.log(currentUser)
+
+
 
 
       function handleSendButton() {
@@ -30,7 +29,7 @@ const ApplyNow = () => {
         const applicant = currentUser
 
         try {
-          const response = await fetch(`http://localhost:8002/listings/${currentListing._id}`, {
+          const response = await fetch(`https://talent-forge-api-atu2.onrender.com/listings/${currentListing._id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -46,7 +45,7 @@ const ApplyNow = () => {
           const result = await response.json()
           alert('Success! A confirmation email has been sent to you.')
 
-          console.log(result)
+
           nav("/home")
 
         } catch (error) {

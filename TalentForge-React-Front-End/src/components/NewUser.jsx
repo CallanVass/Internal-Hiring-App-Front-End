@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 const NewEmployee = () => {
@@ -15,21 +15,21 @@ const NewEmployee = () => {
 
 
     try {
-      const response = await fetch('http://localhost:8002/users', {
+      const response = await fetch('https://talent-forge-api-atu2.onrender.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
         body: JSON.stringify(formDataObj),
-      });
+      })
 
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`)
       }
 
       const result = await response.json();
-      console.log(result)
+
       navigate("/home")
 
     } catch (error) {
@@ -150,7 +150,7 @@ const NewEmployee = () => {
       </div>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default NewEmployee;
+export default NewEmployee

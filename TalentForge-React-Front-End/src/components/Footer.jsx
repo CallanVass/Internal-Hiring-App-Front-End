@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
+
 
 const Footer = () => {
   return (
@@ -12,17 +11,6 @@ const Footer = () => {
             </a>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            {/* <div>
-                    <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
-                    <ul className="text-white dark:text-gray-400 font-medium">
-                        <li className="mb-4">
-                            <a href="https://flowbite.com/" className="hover:underline">Flowbite</a>
-                        </li>
-                        <li>
-                            <a href="https://tailwindcss.com/" className="hover:underline">Tailwind CSS</a>
-                        </li>
-                    </ul>
-                </div> */}
             <div>
               {/* follow us */}
               <h2 className="mb-6 text-sm font-custom text-white uppercase dark:text-white">Follow us</h2>
@@ -60,7 +48,7 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm font-custom text-white sm:text-center dark:text-gray-400">
-            © 2023{" "}
+            © 2024{" "}
             <a href="#" className="hover:underline hover:text-grey">
               TalentForge™
             </a>
@@ -147,7 +135,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

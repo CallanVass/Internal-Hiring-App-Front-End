@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
-import { AuthContext, AuthProvider } from "./AuthContext"
+import { createContext, useState, useEffect } from 'react'
 import decoder from './decoder'
 
 
@@ -17,11 +16,10 @@ export const AppContextProvider = ({ children }) => {
 
       // Once user has token, make fetch requests on mount to get all users and listings
     // Then the identity of the logged in user can be set in the LoggedInUserContext
-    // Is await required here?
     useEffect(() =>  {
         const setData = async () => {
             try{
-            await fetch('http://localhost:8002/users/', {
+            await fetch('https://talent-forge-api-atu2.onrender.com/users/', {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json}',
@@ -29,7 +27,7 @@ export const AppContextProvider = ({ children }) => {
                 }})
                 .then(res => res.json())
                 .then(data => setUsers(data))
-                await fetch('http://localhost:8002/listings/', {
+                await fetch('https://talent-forge-api-atu2.onrender.com/listings/', {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json}',
@@ -38,7 +36,7 @@ export const AppContextProvider = ({ children }) => {
                 .then(res => res.json())
                 .then(data => setListings(data))
             } catch (error) {
-            console.log(error.message)
+
             }
         }
         setData()
@@ -50,21 +48,21 @@ export const AppContextProvider = ({ children }) => {
             const token = sessionStorage.getItem('token')
             const decodedToken = decoder(token)
             const user = users.find(user => user._id === decodedToken._id)
-            console.log(token)
-            console.log(decodedToken)
-            console.log(user)
+
+
+
             setCurrentUser(user)
         }, 500)
-        console.log('setUser useEffect ran')
-        console.log(users)
+
+
         // setUser()
         return () => clearTimeout(setUser)
     }, [setCurrentUser, users])
 
 
-      console.log(users)
-      console.log(listings)
-      console.log(currentUser)
+
+
+
 
 
 

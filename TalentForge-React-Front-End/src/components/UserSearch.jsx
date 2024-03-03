@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { AppContext } from '../authentication/AppContext'
-import SearchBar from "./SearchBar";
+import SearchBar from "./SearchBar"
 
 const UserSearch = () => {
   const {allUsers} = useContext(AppContext)

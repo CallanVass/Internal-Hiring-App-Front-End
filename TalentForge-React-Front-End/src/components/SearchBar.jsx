@@ -11,8 +11,8 @@ const SearchBar = () => {
 const [query, setQuery] = useState('')
 // Set result state to empty list
 const [results, setResults] = useState([])
-console.log(query)
-console.log(results)
+
+
 // Create Fuse object
 useEffect(() => {
     const fuse = new Fuse(users, {
@@ -56,11 +56,11 @@ const handleSearch = (e) => {
                     {/* DATABASE PROFILE PICTURE GOES HERE */}
                     <img href=""></img>
                     {/* Linking profile */}
-                    {/* Change to onCLick event with useNavigation hook? */}
+                    {/* Change to onClick event with useNavigation hook? */}
                     <a href={`http://localhost:5173/profile/${result.item._id}`} onClick={() => setProfileUser(result.item)}>
                     <span className="block text-center mb-3 text-2xl">{result.item.firstName + " " + result.item.lastName}</span>
                     <span className="block text-center mb-3 text-l">{result.item.role}, {result.item.department}</span>
-                    {/* <div className="m-5">{result.item.aboutMe.text}</div> */}</a>
+                   </a>
                 </div>
             ))}
         </div>
